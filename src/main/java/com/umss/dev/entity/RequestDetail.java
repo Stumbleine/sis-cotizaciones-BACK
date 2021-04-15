@@ -8,12 +8,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Entity(name = "REQUEST_DETAIL")
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@Entity
+@Table(name = "REQUEST_DETAIL")
 public class RequestDetail {
 
 		@Id
 		@GeneratedValue(strategy  = GenerationType.AUTO)
+		@Column
 		private int idRequestDetail;
 		
 		@Column
@@ -24,7 +32,8 @@ public class RequestDetail {
 		private String description;
 		
 		@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
-		@JoinColumn(name="idSpendingUnitRequest")
+		@JoinColumn(name="id_spending_unit_request",referencedColumnName = "idSpendingUnitRequest")
+		@JsonBackReference
 		private SpendingUnitRequest request;
 		
 		public  RequestDetail(String name, int quantity, String description) {
@@ -56,6 +65,14 @@ public class RequestDetail {
 
 		public void setDescription(String description) {
 			this.description = description;
+		}
+
+		public SpendingUnitRequest getRequest() {
+			return request;
+		}
+
+		public void setRequest(SpendingUnitRequest request) {
+			this.request = request;
 		}
 
 

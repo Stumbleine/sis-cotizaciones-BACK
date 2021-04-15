@@ -1,5 +1,7 @@
 package com.umss.dev.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +25,9 @@ public class SpendingUnitRequestController {
 	//Create a new SpendingUnitService
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody SpendingUnitRequest spendingUnitRequest){
-		return ResponseEntity.status(HttpStatus.CREATED).body(spendingUnitRequestservice.save(spendingUnitRequest));
-		
+		SpendingUnitRequest request=spendingUnitRequest;
+		spendingUnitRequestservice.save(request);
+		return ResponseEntity.ok(request);
 	}
 	
 	/*Read a SpendingUnitService

@@ -1,5 +1,6 @@
 package com.umss.dev.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,13 +9,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity(name = "SPENDING_UNIT_REQUEST")
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
+@Entity
+@Table(name = "SPENDING_UNIT_REQUEST")
 public class SpendingUnitRequest {
 
 	@Id
-	@GeneratedValue(strategy  = GenerationType.AUTO)
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@Column(name = "idSpendingUnitRequest")
 	private int idSpendingUnitRequest;
 	
 	@Column
@@ -29,7 +37,8 @@ public class SpendingUnitRequest {
 	private double estimatedAmount;
 	
 	@OneToMany(mappedBy = "request",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
-	private List<RequestDetail> requestDetail;
+	@JsonManagedReference
+	private List<RequestDetail> requestDetail=new ArrayList<RequestDetail>();
 	
 	public SpendingUnitRequest(String name, String detail, String status,String type, double estimatedAmount) {
 		super();
@@ -86,6 +95,14 @@ public class SpendingUnitRequest {
 
 	public void setRequestDetail(List<RequestDetail> requestDetail) {
 		this.requestDetail = requestDetail;
+	}
+
+	public int getIdSpendingUnitRequest() {
+		return idSpendingUnitRequest;
+	}
+
+	public void setIdSpendingUnitRequest(int idSpendingUnitRequest) {
+		this.idSpendingUnitRequest = idSpendingUnitRequest;
 	}
 
 
