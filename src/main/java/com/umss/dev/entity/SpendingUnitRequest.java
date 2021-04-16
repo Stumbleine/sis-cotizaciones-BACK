@@ -1,7 +1,6 @@
 package com.umss.dev.entity;
-
+import java.sql.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,37 +8,67 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity(name = "SPENDING_UNIT_REQUEST")
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity
+@Table(name = "SPENDING_UNIT_REQUEST")
 public class SpendingUnitRequest {
 
 	@Id
-	@GeneratedValue(strategy  = GenerationType.AUTO)
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idSpendingUnitRequest;
 	
 	@Column
 	private String name;
 	@Column
-	private String detail;
+	private Date date;
 	@Column
 	private String status;
 	@Column
 	private String type;
 	@Column
 	private double estimatedAmount;
+	@Column
+	private String justification;
 	
 	@OneToMany(mappedBy = "request",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@JsonManagedReference
 	private List<RequestDetail> requestDetail;
-	
-	public SpendingUnitRequest(String name, String detail, String status,String type, double estimatedAmount) {
-		super();
-		this.name = name;
-		this.status=status;
-		this.detail=detail;
-		this.type=type;
-		this.estimatedAmount=estimatedAmount;
+
+	public int getIdSpendingUnitRequest() {
+		return idSpendingUnitRequest;
 	}
 
+	public void setIdSpendingUnitRequest(int idSpendingUnitRequest) {
+		this.idSpendingUnitRequest = idSpendingUnitRequest;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
+	}	
+
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	public String getType() {
 		return type;
 	}
@@ -56,28 +85,12 @@ public class SpendingUnitRequest {
 		this.estimatedAmount = estimatedAmount;
 	}
 
-	public String getName() {
-		return name;
+	public String getJustification() {
+		return justification;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getDetail() {
-		return detail;
-	}
-
-	public void setDetail(String detail) {
-		this.detail = detail;
+	public void setJustification(String justification) {
+		this.justification = justification;
 	}
 
 	public List<RequestDetail> getRequestDetail() {
@@ -87,7 +100,5 @@ public class SpendingUnitRequest {
 	public void setRequestDetail(List<RequestDetail> requestDetail) {
 		this.requestDetail = requestDetail;
 	}
-
-
 
 }
