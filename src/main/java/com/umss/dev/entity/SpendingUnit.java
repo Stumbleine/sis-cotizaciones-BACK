@@ -19,7 +19,7 @@ public class SpendingUnit {
 	@Id
 	@GeneratedValue(strategy  = GenerationType.AUTO)
 	@Column(name = "idSpendingUnit")
-	int idSpendingUnit;
+	private int idSpendingUnit;
 	
 	@Column
 	private String name;
