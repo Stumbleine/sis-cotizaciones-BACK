@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import lombok.Data;
+@Data
 @Entity
 @Table(name = "REQUEST_DETAIL")
 public class RequestDetail {
@@ -31,46 +33,4 @@ public class RequestDetail {
 		@JoinColumn(name="idSpendingUnitRequest")
 		@JsonBackReference
 		private SpendingUnitRequest request;
-
-		public int getIdRequestDetail() {
-			return idRequestDetail;
-		}
-
-		public void setIdRequestDetail(int idRequestDetail) {
-			this.idRequestDetail = idRequestDetail;
-		}
-		
-		public int getQuantity() {
-			return quantity;
-		}
-
-		public void setQuantity(int quantity) {
-			this.quantity = quantity;
-		}
-        
-		public String getUnit() {
-			return unit;
-		}
-
-		public void setUnit(String unit) {
-			this.unit = unit;
-		}
-		
-		public String getDescription() {
-			return description;
-		}
-
-		public void setDescription(String description) {
-			this.description = description;
-		}
-
-		public SpendingUnitRequest getRequest() {
-			return request;
-		}
-
-		public void setRequest(SpendingUnitRequest request) {
-			this.request = request;
-		}
-
-
 }

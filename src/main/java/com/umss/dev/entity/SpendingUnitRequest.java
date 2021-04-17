@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.Data;
+@Data
 @Entity
 @Table(name = "SPENDING_UNIT_REQUEST")
 public class SpendingUnitRequest {
@@ -36,69 +38,5 @@ public class SpendingUnitRequest {
 	@OneToMany(mappedBy = "request",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
 	private List<RequestDetail> requestDetail;
-
-	public int getIdSpendingUnitRequest() {
-		return idSpendingUnitRequest;
-	}
-
-	public void setIdSpendingUnitRequest(int idSpendingUnitRequest) {
-		this.idSpendingUnitRequest = idSpendingUnitRequest;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public Date getDate() {
-		return date;
-	}
-	
-	public void setDate(Date date) {
-		this.date = date;
-	}	
-
-	public String getStatus() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public double getEstimatedAmount() {
-		return estimatedAmount;
-	}
-
-	public void setEstimatedAmount(double estimatedAmount) {
-		this.estimatedAmount = estimatedAmount;
-	}
-
-	public String getJustification() {
-		return justification;
-	}
-
-	public void setJustification(String justification) {
-		this.justification = justification;
-	}
-
-	public List<RequestDetail> getRequestDetail() {
-		return requestDetail;
-	}
-
-	public void setRequestDetail(List<RequestDetail> requestDetail) {
-		this.requestDetail = requestDetail;
-	}
 
 }
