@@ -1,5 +1,6 @@
 package com.umss.dev.entity;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +29,7 @@ public class SpendingUnitRequest {
 	@Column
 	private String name;
 	@Column
-	private Date date;
+	private LocalDate date;
 	@Column
 	private String status;
 	@Column
