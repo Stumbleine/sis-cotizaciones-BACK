@@ -1,32 +1,66 @@
 package com.umss.dev.controller;
 
+import javax.annotation.security.PermitAll;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.umss.dev.entity.SpendingUnitRequest;
+import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.service.SpendingUnitRequestService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/request")
-public class SpendingUnitRequestController {
+//@CrossOrigin(origins = "http://localhost:4200")
+
+//@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
+//@RequestMapping("/api/request")
+@RequestMapping("/request") // api/request
+public class SpendingUnitRequestController { 
 	
 	@Autowired
-	private SpendingUnitRequestService spendingUnitRequestservice;
+	SpendingUnitRequestService spendingUnitReqService;
+	
+	public SpendingUnitRequestController(SpendingUnitRequestService spendingUnitReqServ){
+		spendingUnitReqService = spendingUnitReqServ;
+	}
+	
+	//
+	//private SpendingUnitRequestService spendingUnitRequestservice;
 	
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody SpendingUnitRequest spendingUnitRequest){
 		//return ResponseEntity.status(HttpStatus.CREATED).body(spendingUnitRequestservice.save(spendingUnitRequest));
 		SpendingUnitRequest request=spendingUnitRequest;
-		spendingUnitRequestservice.save(request);
+		spendingUnitReqService.save(request);
 		return ResponseEntity.ok(request);
-		
 	}
+	
+	@GetMapping()
+	public Iterable<SpendingUnitRequest> getSpendingUnitRequests(){
+		return spendingUnitReqService.getAll();
+	}
+	
+	@GetMapping("/allRequestsDescOrder")
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqByDescOrder(){
+		return spendingUnitReqService.getAllWithoutDetailByOrder();
+	}
+	
+	
+	
+	
+	
+	
+	 
+	
 	
 	/*Read a SpendingUnitService
 	@GetMapping("/{id}")

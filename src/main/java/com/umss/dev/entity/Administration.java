@@ -10,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Entity
+@Data
+@Entity(name = "Administration")
 @Table(name = "ADMINISTRATION")
 public class Administration {
 
@@ -26,10 +29,12 @@ public class Administration {
 	@OneToMany(mappedBy = "administration",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<UserRole> userRole;
 
-	public Administration(String name) {
+	/*public Administration(String name) {
 		super();
 		this.name = name;
-	}
+	}*/
+	
+	public Administration() {}
 	
 	public String getName() {
 		return name;

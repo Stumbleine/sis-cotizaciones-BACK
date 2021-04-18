@@ -1,14 +1,10 @@
 package com.umss.dev.service;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,30 +12,45 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
+import com.umss.dev.repository.SpendingUnitRepository;
 import com.umss.dev.repository.SpendingUnitRequestRepository;
 
+
 @Service
-public class SpendingUnitRequestService {
-	
+public class SpendingUnitService {
+
 	@Autowired
-	private SpendingUnitRequestRepository spendingUnitRequestRepository;
+	private SpendingUnitRepository spendingUnitRepository;
 	private ModelMapper modelMapper;
+	private SpendingUnitRequestRepository spendingUnitRequestRepository;
 	
-	public SpendingUnitRequestService(SpendingUnitRequestRepository spendingUnitRequestRepository, ModelMapper modelMapper) {
-		this.spendingUnitRequestRepository = spendingUnitRequestRepository;
+	
+	public SpendingUnitService(SpendingUnitRepository spendingUnitRepository, ModelMapper modelMapper, SpendingUnitRequestRepository spendingUnitRequestRepository) {
+		this.spendingUnitRepository = spendingUnitRepository;
 		this.modelMapper = modelMapper;
+		this.spendingUnitRequestRepository = spendingUnitRequestRepository; 
 		   
 	}
 	
-	@Transactional
-	public SpendingUnitRequest save(SpendingUnitRequest spendingUnitRequest) {
-		return spendingUnitRequestRepository.save(spendingUnitRequest);
+	public Iterable<CompleteSpendingUnitRequestOutput>getAllByIdWithoutDetailByOrder(Integer UserId){
+		Iterable <CompleteSpendingUnitRequestOutput> allByIdReq = getAllWithoutDetailByOrder();
+		List<CompleteSpendingUnitRequestOutput>listAllReqDesc= StreamSupport.stream(allByIdReq.spliterator(), false)
+        .collect(Collectors.toList());
 		
-	}
-	
-	public Iterable<SpendingUnitRequest> getAll(){
-		List <SpendingUnitRequest> allSpendingUnitRequests = spendingUnitRequestRepository.findAll();	
-		return allSpendingUnitRequests;
+		List<CompleteSpendingUnitRequestOutput> listAllById = new ArrayList<CompleteSpendingUnitRequestOutput>();
+		
+		for(int i=0; i<listAllReqDesc.size();i++ ) {
+			
+			CompleteSpendingUnitRequestOutput actReq = listAllReqDesc.get(i);
+			
+			if(actReq.getUserId() == UserId) {
+				
+				listAllById.add(actReq);
+			}
+			
+		}
+		
+		return listAllById;
 	}
 	
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllWithoutDetailByOrder(){
@@ -104,5 +115,6 @@ public class SpendingUnitRequestService {
 		
 	}
 	
+	
+	
 }
-
