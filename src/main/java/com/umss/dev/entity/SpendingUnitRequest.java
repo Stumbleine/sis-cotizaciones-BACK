@@ -27,7 +27,7 @@ public class SpendingUnitRequest {
 	private int idSpendingUnitRequest;
 	
 	@Column
-	private String name;
+	private String initials;
 	@Column
 	private LocalDate date;
 	@Column
