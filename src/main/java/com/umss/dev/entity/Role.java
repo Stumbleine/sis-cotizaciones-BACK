@@ -9,8 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity(name = "ROLE")
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@Entity(name = "Role")
+@Table(name = "ROLE")
 public class Role {
 
 	@Id
@@ -24,6 +30,26 @@ public class Role {
 	
 	@OneToMany(mappedBy = "role",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<UserRole> userRole;
+
+	
+	public int getIdRole() {
+		return idRole;
+	}
+
+
+	public void setIdRole(int idRole) {
+		this.idRole = idRole;
+	}
+
+
+	public List<UserRole> getUserRole() {
+		return userRole;
+	}
+
+
+	public void setUserRole(List<UserRole> userRole) {
+		this.userRole = userRole;
+	}
 
 
 	public String getRoleName() {
@@ -46,7 +72,11 @@ public class Role {
 	}
 
 
-	
-	
+	@Override
+	public String toString() {
+		return "Role [idRole=" + idRole + ", roleName=" + roleName + ", description=" + description + ", userRole="
+				+ userRole + "]";
+	}
+
 	
 }
