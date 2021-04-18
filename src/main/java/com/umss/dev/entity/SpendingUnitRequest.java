@@ -26,9 +26,9 @@ public class SpendingUnitRequest {
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idSpendingUnitRequest;
-	
+
 	@Column
-	private String name;
+	private String initials;
 	@Column
 	private LocalDate date;
 	@Column
@@ -58,18 +58,18 @@ public class SpendingUnitRequest {
 	}
 
 	public String getName() {
-		return name;
+		return initials;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.initials = name;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -123,7 +123,7 @@ public class SpendingUnitRequest {
 
 	@Override
 	public String toString() {
-		return "SpendingUnitRequest [idSpendingUnitRequest=" + idSpendingUnitRequest + ", name=" + name + ", date="
+		return "SpendingUnitRequest [idSpendingUnitRequest=" + idSpendingUnitRequest + ", name=" + initials + ", date="
 				+ date + ", status=" + status + ", type=" + type + ", estimatedAmount=" + estimatedAmount
 				+ ", justification=" + justification + ", requestDetail=" + requestDetail + ", userRole=" + userRole
 				+ "]";

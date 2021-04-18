@@ -1,6 +1,7 @@
 package com.umss.dev.output;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -9,8 +10,8 @@ public class CompleteSpendingUnitRequestOutput {
 
 
 	private int idSpendingUnitRequest;
-	private String name;
-	private Date date;
+	private String initials;
+	private LocalDate date;
 	private String status;
 	private String type;
 	private double estimatedAmount;
@@ -29,15 +30,15 @@ public class CompleteSpendingUnitRequestOutput {
 		this.idSpendingUnitRequest = idSpendingUnitRequest;
 	}
 	public String getName() {
-		return name;
+		return initials;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.initials = name;
 	}
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public String getStatus() {
@@ -77,7 +78,7 @@ public class CompleteSpendingUnitRequestOutput {
 		this.username = username;
 	}
 	public int getRoleId() {
-		return roleId;
+		return roleId; 
 	}
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
