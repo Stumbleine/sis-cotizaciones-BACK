@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class UserRole {
 
 	@Id
-	@GeneratedValue(strategy  = GenerationType.AUTO)
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idUserRole;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})

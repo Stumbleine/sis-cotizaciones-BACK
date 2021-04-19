@@ -20,7 +20,7 @@ import lombok.EqualsAndHashCode;
 public class Role {
 
 	@Id
-	@GeneratedValue(strategy  = GenerationType.AUTO)
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idRole;
 	@Column
 	private String roleName;
