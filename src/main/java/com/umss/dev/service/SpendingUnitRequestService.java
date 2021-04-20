@@ -46,15 +46,15 @@ public class SpendingUnitRequestService {
 	public SpendingUnitRequest save(SpendingUnitRequest spendingUnitRequest) {
 		//part of the automatic user save
 		
-		User newUser = new User();
+		/*User newUser = new User();
 		newUser.setName("Marco Antonio Buenavista gonzales");
 		
 		Role newRole = new Role();
 		newRole.setRoleName("Spending Unit Representative");
 		
-		UserRole newUserRole = new UserRole();
+		UserRole newUserRole = new UserRole();*/
 		 
-		if(cont == 1) {
+		/*if(cont == 1) {
 			
 			//newUserRole.setIdUserRole(1);
 			newUserRole.setRole(newRole);
@@ -65,13 +65,15 @@ public class SpendingUnitRequestService {
 			spendingUnitRequest.setUserRole(newUserRole);
 			//roleService.save();
 			cont++;
+			
 		}else {
 			
 			UserRole act = userRoleService.getById(1);
 			spendingUnitRequest.setUserRole(act);
-		}
+		}*/
 		
-		
+		UserRole act = userRoleService.getById(1);
+		spendingUnitRequest.setUserRole(act);
 		return spendingUnitRequestRepository.save(spendingUnitRequest);//
 		
 	}
