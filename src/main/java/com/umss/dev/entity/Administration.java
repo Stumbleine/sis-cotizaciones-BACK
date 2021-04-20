@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 public class Administration {
 
 	@Id
-	@GeneratedValue(strategy  = GenerationType.AUTO)
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	@Column(name = "idAdministration")
 	private int idAdministration;
 	

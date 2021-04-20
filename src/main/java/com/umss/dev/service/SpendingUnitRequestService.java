@@ -14,7 +14,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnitRequest;
+import com.umss.dev.entity.User;
+import com.umss.dev.entity.UserRole;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.repository.SpendingUnitRequestRepository;
 
@@ -24,16 +28,51 @@ public class SpendingUnitRequestService {
 	@Autowired
 	private SpendingUnitRequestRepository spendingUnitRequestRepository;
 	private ModelMapper modelMapper;
+	private UserService userService;
+	private RoleService roleService;
+	private UserRoleService userRoleService;
+	private int cont;
 	
-	public SpendingUnitRequestService(SpendingUnitRequestRepository spendingUnitRequestRepository, ModelMapper modelMapper) {
+	public SpendingUnitRequestService(SpendingUnitRequestRepository spendingUnitRequestRepository, ModelMapper modelMapper, UserService userService, RoleService roleService,UserRoleService userRoleService) {
 		this.spendingUnitRequestRepository = spendingUnitRequestRepository;
+		this.userService= userService;
+		this.roleService = roleService;
+		this.userRoleService = userRoleService;
 		this.modelMapper = modelMapper;
-		   
+		cont = 1;
 	}
 	
 	@Transactional
 	public SpendingUnitRequest save(SpendingUnitRequest spendingUnitRequest) {
-		return spendingUnitRequestRepository.save(spendingUnitRequest);
+		//part of the automatic user save
+		
+		User newUser = new User();
+		newUser.setName("Marco Antonio Buenavista gonzales");
+		
+		Role newRole = new Role();
+		newRole.setRoleName("Spending Unit Representative");
+		
+		UserRole newUserRole = new UserRole();
+		 
+		if(cont == 1) {
+			
+			//newUserRole.setIdUserRole(1);
+			newUserRole.setRole(newRole);
+			newUserRole.setUser(newUser);
+			userService.save(newUser);
+			roleService.save(newRole);
+			userRoleService.save(newUserRole);
+			spendingUnitRequest.setUserRole(newUserRole);
+			//roleService.save();
+			cont++;
+		}else {
+			
+			UserRole act = userRoleService.getById(1);
+			spendingUnitRequest.setUserRole(act);
+		}
+		
+		
+		return spendingUnitRequestRepository.save(spendingUnitRequest);//
 		
 	}
 	
@@ -50,18 +89,7 @@ public class SpendingUnitRequestService {
 		for (SpendingUnitRequest req: allSpendingUnitRequests) {
 			if (!req.getUserRole().getRole().equals(null)) {
 				if(!req.getUserRole().getSpendingUnitRequest().isEmpty() || !req.getUserRole().getSpendingUnitRequest().equals(null)) {
-					/*private int idSpendingUnitRequest;
-						private String name;
-						private Date date;
-						private String status;
-						private String type;
-						private double estimatedAmount;
-						private String justification;
-						//private List<RequestDetail> requestDetail;
-						private int userId;
-						private String username;
-						private int roleId;
-						private String roleName;*/
+					
 					CompleteSpendingUnitRequestOutput newReq = new CompleteSpendingUnitRequestOutput();
 					newReq.setIdSpendingUnitRequest(req.getIdSpendingUnitRequest());
 					
