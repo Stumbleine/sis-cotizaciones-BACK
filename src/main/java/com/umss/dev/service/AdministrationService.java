@@ -20,7 +20,6 @@ import com.umss.dev.repository.SpendingUnitRequestRepository;
 @Service
 public class AdministrationService {
 	
-	
 	@Autowired
 	private AdministrationRepository administrationRepository;
 	private ModelMapper modelMapper;
@@ -29,16 +28,15 @@ public class AdministrationService {
 	public AdministrationService(AdministrationRepository administrationRepository, ModelMapper modelMapper, SpendingUnitRequestRepository spendingUnitRequestRepository) {
 		this.administrationRepository = administrationRepository;
 		this.modelMapper = modelMapper;
-		this.spendingUnitRequestRepository = spendingUnitRequestRepository; 
-		   
+		this.spendingUnitRequestRepository = spendingUnitRequestRepository; 	   
 	}
-	
 	
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllWithoutDetailByOrder(){
 		List <SpendingUnitRequest> allSpendingUnitRequests = spendingUnitRequestRepository.findAll();
 		List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetail = new ArrayList<CompleteSpendingUnitRequestOutput>();
 		List<Integer> reqIds = new ArrayList<Integer>();
-		
+		List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetailByOrder = new ArrayList<CompleteSpendingUnitRequestOutput>();
+	
 		for (SpendingUnitRequest req: allSpendingUnitRequests) {
 			if (!req.getUserRole().getRole().equals(null)) {
 				if(!req.getUserRole().getSpendingUnitRequest().isEmpty() || !req.getUserRole().getSpendingUnitRequest().equals(null)) {
@@ -49,16 +47,14 @@ public class AdministrationService {
 						private String type;
 						private double estimatedAmount;
 						private String justification;
-						//private List<RequestDetail> requestDetail;
+						private List<RequestDetail> requestDetail;
 						private int userId;
 						private String username;
 						private int roleId;
 						private String roleName;*/
 					CompleteSpendingUnitRequestOutput newReq = new CompleteSpendingUnitRequestOutput();
-					newReq.setIdSpendingUnitRequest(req.getIdSpendingUnitRequest());
-					
-					reqIds.add(req.getIdSpendingUnitRequest());
-					
+					newReq.setIdSpendingUnitRequest(req.getIdSpendingUnitRequest());					
+					reqIds.add(req.getIdSpendingUnitRequest());					
 					newReq.setInitials(req.getInitials());
 					newReq.setDate(req.getDate());
 					newReq.setStatus(req.getStatus());
@@ -68,8 +64,7 @@ public class AdministrationService {
 					newReq.setUserId(req.getUserRole().getUser().getIdUser());
 					newReq.setUsername(req.getUserRole().getUser().getName());
 					newReq.setRoleId(req.getUserRole().getRole().getIdRole());
-					newReq.setRoleName(req.getUserRole().getRole().getRoleName());
-					
+					newReq.setRoleName(req.getUserRole().getRole().getRoleName());	
 					allSpendingUnitReqWithoutDetail.add(newReq);
 					
 				}
@@ -80,11 +75,11 @@ public class AdministrationService {
 		
 		Collections.sort(reqIds);
 		Collections.reverse(reqIds);
-		List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetailByOrder = new ArrayList<CompleteSpendingUnitRequestOutput>();
 		
 		for(Integer actId: reqIds) {
 			for(CompleteSpendingUnitRequestOutput actReq: allSpendingUnitReqWithoutDetail) {
 				if(actId == actReq.getIdSpendingUnitRequest()) {
+					
 					allSpendingUnitReqWithoutDetailByOrder.add(actReq);
 				}
 				
@@ -92,11 +87,7 @@ public class AdministrationService {
 			
 		}
 		
-		return allSpendingUnitReqWithoutDetailByOrder;
-		
+		return allSpendingUnitReqWithoutDetailByOrder;	
 	}
-	
-
-	
 
 }

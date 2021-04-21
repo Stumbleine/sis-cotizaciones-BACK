@@ -11,34 +11,47 @@ public class UserOutputNormalAtributes {
 	private String password;
 	private List<UserRole> userRole;
 	
-	
 	public int getIdUser() {
+		
 		return idUser;
 	}
+	
 	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
+	
 	public String getName() {
+	
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public String getEmail() {
+	
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getPassword() {
+	
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	public List<UserRole> getUserRole() {
+	
 		return userRole;
 	}
+	
 	public void setUserRole(List<UserRole> userRole) {
 		this.userRole = userRole;
 	}

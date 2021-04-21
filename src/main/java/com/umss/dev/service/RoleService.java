@@ -27,6 +27,7 @@ public class RoleService {
 	public Role getById(Integer roleId) {
 		Role roleAct = roleRepository.findById(roleId).orElse(null);
 	    if (null == roleAct) {
+	    	
 	        throw new DtoNotFoundException(RoleOutputNormalAtributes.class.toString(), roleId);
 	    }
 	  
@@ -34,7 +35,6 @@ public class RoleService {
 	}
 	
 	public Role save(Role role) {
-		//Period converted = modelMapper.map(period,Period.class);
 	    Role persistedRole = roleRepository.save(role);
 	     
 	     return persistedRole;

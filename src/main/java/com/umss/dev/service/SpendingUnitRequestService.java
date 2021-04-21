@@ -74,12 +74,13 @@ public class SpendingUnitRequestService {
 		
 		UserRole act = userRoleService.getById(1);
 		spendingUnitRequest.setUserRole(act);
-		return spendingUnitRequestRepository.save(spendingUnitRequest);//
 		
+		return spendingUnitRequestRepository.save(spendingUnitRequest);//
 	}
 	
 	public Iterable<SpendingUnitRequest> getAll(){
 		List <SpendingUnitRequest> allSpendingUnitRequests = spendingUnitRequestRepository.findAll();	
+		
 		return allSpendingUnitRequests;
 	}
 	
@@ -94,9 +95,7 @@ public class SpendingUnitRequestService {
 					
 					CompleteSpendingUnitRequestOutput newReq = new CompleteSpendingUnitRequestOutput();
 					newReq.setIdSpendingUnitRequest(req.getIdSpendingUnitRequest());
-					
 					reqIds.add(req.getIdSpendingUnitRequest());
-					
 					newReq.setInitials(req.getInitials());
 					newReq.setDate(req.getDate());
 					newReq.setStatus(req.getStatus());
@@ -107,7 +106,6 @@ public class SpendingUnitRequestService {
 					newReq.setUsername(req.getUserRole().getUser().getName());
 					newReq.setRoleId(req.getUserRole().getRole().getIdRole());
 					newReq.setRoleName(req.getUserRole().getRole().getRoleName());
-					
 					allSpendingUnitReqWithoutDetail.add(newReq);
 					
 				}
@@ -123,6 +121,7 @@ public class SpendingUnitRequestService {
 		for(Integer actId: reqIds) {
 			for(CompleteSpendingUnitRequestOutput actReq: allSpendingUnitReqWithoutDetail) {
 				if(actId == actReq.getIdSpendingUnitRequest()) {
+					
 					allSpendingUnitReqWithoutDetailByOrder.add(actReq);
 				}
 				
@@ -130,8 +129,7 @@ public class SpendingUnitRequestService {
 			
 		}
 		
-		return allSpendingUnitReqWithoutDetailByOrder;
-		
+		return allSpendingUnitReqWithoutDetailByOrder;	
 	}
 	
 }

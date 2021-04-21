@@ -26,7 +26,6 @@ public class SpendingUnitRequest {
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idSpendingUnitRequest;
-
 	@Column
 	private String initials;
 	@Column
@@ -39,11 +38,9 @@ public class SpendingUnitRequest {
 	private double estimatedAmount;
 	@Column
 	private String justification;
-	
 	@OneToMany(mappedBy = "request",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
-	private List<RequestDetail> requestDetail;
-	
+	private List<RequestDetail> requestDetail;	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idUserRole")
 	@JsonBackReference
@@ -57,8 +54,8 @@ public class SpendingUnitRequest {
 		this.idSpendingUnitRequest = idSpendingUnitRequest;
 	}
 	
-
 	public String getInitials() {
+		
 		return initials;
 	}
 
@@ -67,6 +64,7 @@ public class SpendingUnitRequest {
 	}
 
 	public LocalDate getDate() {
+		
 		return date;
 	}
 
@@ -75,6 +73,7 @@ public class SpendingUnitRequest {
 	}
 
 	public String getStatus() {
+		
 		return status;
 	}
 
@@ -83,6 +82,7 @@ public class SpendingUnitRequest {
 	}
 
 	public String getType() {
+		
 		return type;
 	}
 
@@ -91,6 +91,7 @@ public class SpendingUnitRequest {
 	}
 
 	public double getEstimatedAmount() {
+		
 		return estimatedAmount;
 	}
 
@@ -99,6 +100,7 @@ public class SpendingUnitRequest {
 	}
 
 	public String getJustification() {
+		
 		return justification;
 	}
 
@@ -107,6 +109,7 @@ public class SpendingUnitRequest {
 	}
 
 	public List<RequestDetail> getRequestDetail() {
+		
 		return requestDetail;
 	}
 
@@ -115,6 +118,7 @@ public class SpendingUnitRequest {
 	}
 
 	public UserRole getUserRole() {
+		
 		return userRole;
 	}
 
@@ -124,6 +128,7 @@ public class SpendingUnitRequest {
 
 	@Override
 	public String toString() {
+		
 		return "SpendingUnitRequest [idSpendingUnitRequest=" + idSpendingUnitRequest + ", name=" + initials + ", date="
 				+ date + ", status=" + status + ", type=" + type + ", estimatedAmount=" + estimatedAmount
 				+ ", justification=" + justification + ", requestDetail=" + requestDetail + ", userRole=" + userRole

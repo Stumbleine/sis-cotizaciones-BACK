@@ -23,29 +23,25 @@ public class UserRole {
 
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
-	private int idUserRole;
-	
+	private int idUserRole;	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idUser")
 	private User user;
-	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idRole")
 	private Role role;
-	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idSpendingUnit")
 	private SpendingUnit spendingUnit;
-	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idAdministration")
 	private Administration administration;
-	
 	@OneToMany(mappedBy = "userRole",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
 	private List<SpendingUnitRequest> spendingUnitRequest;
 
 	public int getIdUserRole() {
+		
 		return idUserRole;
 	}
 
@@ -54,6 +50,7 @@ public class UserRole {
 	}
 
 	public User getUser() {
+		
 		return user;
 	}
 
@@ -62,6 +59,7 @@ public class UserRole {
 	}
 
 	public Role getRole() {
+		
 		return role;
 	}
 
@@ -70,6 +68,7 @@ public class UserRole {
 	}
 
 	public SpendingUnit getSpendingUnit() {
+		
 		return spendingUnit;
 	}
 
@@ -78,6 +77,7 @@ public class UserRole {
 	}
 
 	public Administration getAdministration() {
+		
 		return administration;
 	}
 
@@ -86,6 +86,7 @@ public class UserRole {
 	}
 
 	public List<SpendingUnitRequest> getSpendingUnitRequest() {
+		
 		return spendingUnitRequest;
 	}
 
@@ -95,10 +96,10 @@ public class UserRole {
 
 	@Override
 	public String toString() {
+		
 		return "UserRole [idUserRole=" + idUserRole + ", user=" + user + ", role=" + role + ", spendingUnit="
 				+ spendingUnit + ", administration=" + administration + ", spendingUnitRequest=" + spendingUnitRequest
 				+ "]";
 	}
-	
 	
 }

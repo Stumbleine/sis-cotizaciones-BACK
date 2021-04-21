@@ -36,7 +36,6 @@ public class SpendingUnitService {
 		Iterable <CompleteSpendingUnitRequestOutput> allByIdReq = getAllWithoutDetailByOrder();
 		List<CompleteSpendingUnitRequestOutput>listAllReqDesc= StreamSupport.stream(allByIdReq.spliterator(), false)
         .collect(Collectors.toList());
-		
 		List<CompleteSpendingUnitRequestOutput> listAllById = new ArrayList<CompleteSpendingUnitRequestOutput>();
 		
 		for(int i=0; i<listAllReqDesc.size();i++ ) {
@@ -57,27 +56,13 @@ public class SpendingUnitService {
 		List <SpendingUnitRequest> allSpendingUnitRequests = spendingUnitRequestRepository.findAll();
 		List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetail = new ArrayList<CompleteSpendingUnitRequestOutput>();
 		List<Integer> reqIds = new ArrayList<Integer>();
-		
+		List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetailByOrder = new ArrayList<CompleteSpendingUnitRequestOutput>();
 		for (SpendingUnitRequest req: allSpendingUnitRequests) {
 			if (!req.getUserRole().getRole().equals(null)) {
 				if(!req.getUserRole().getSpendingUnitRequest().isEmpty() || !req.getUserRole().getSpendingUnitRequest().equals(null)) {
-					/*private int idSpendingUnitRequest;
-						private String name;
-						private Date date;
-						private String status;
-						private String type;
-						private double estimatedAmount;
-						private String justification;
-						//private List<RequestDetail> requestDetail;
-						private int userId;
-						private String username;
-						private int roleId;
-						private String roleName;*/
 					CompleteSpendingUnitRequestOutput newReq = new CompleteSpendingUnitRequestOutput();
-					newReq.setIdSpendingUnitRequest(req.getIdSpendingUnitRequest());
-					
-					reqIds.add(req.getIdSpendingUnitRequest());
-					
+					newReq.setIdSpendingUnitRequest(req.getIdSpendingUnitRequest());		
+					reqIds.add(req.getIdSpendingUnitRequest());				
 					newReq.setInitials(req.getInitials());
 					newReq.setDate(req.getDate());
 					newReq.setStatus(req.getStatus());
@@ -87,8 +72,7 @@ public class SpendingUnitService {
 					newReq.setUserId(req.getUserRole().getUser().getIdUser());
 					newReq.setUsername(req.getUserRole().getUser().getName());
 					newReq.setRoleId(req.getUserRole().getRole().getIdRole());
-					newReq.setRoleName(req.getUserRole().getRole().getRoleName());
-					
+					newReq.setRoleName(req.getUserRole().getRole().getRoleName());			
 					allSpendingUnitReqWithoutDetail.add(newReq);
 					
 				}
@@ -99,8 +83,7 @@ public class SpendingUnitService {
 		
 		Collections.sort(reqIds);
 		Collections.reverse(reqIds);
-		List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetailByOrder = new ArrayList<CompleteSpendingUnitRequestOutput>();
-		
+	
 		for(Integer actId: reqIds) {
 			for(CompleteSpendingUnitRequestOutput actReq: allSpendingUnitReqWithoutDetail) {
 				if(actId == actReq.getIdSpendingUnitRequest()) {
@@ -111,10 +94,7 @@ public class SpendingUnitService {
 			
 		}
 		
-		return allSpendingUnitReqWithoutDetailByOrder;
-		
+		return allSpendingUnitReqWithoutDetailByOrder;		
 	}
-	
-	
-	
+		
 }

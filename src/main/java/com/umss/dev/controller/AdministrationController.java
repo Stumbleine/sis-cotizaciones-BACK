@@ -36,8 +36,8 @@ public class AdministrationController {
 	
 	@GetMapping()
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllWithoutDetailByOrder(){
-		return administrationService.getAllWithoutDetailByOrder();
 		
+		return administrationService.getAllWithoutDetailByOrder();	
 	}
 
 }

@@ -23,11 +23,11 @@ public class UserService {
 	   
 	}
 	
-	
-	///////////////////////////////////////////////////////////
 	public User getById(Integer userId) {
 		User userAct = userRepository.findById(userId).orElse(null);
+		
 	    if (null == userAct) {
+	    	
 	        throw new DtoNotFoundException(UserOutputNormalAtributes.class.toString(), userId);
 	    }
 	  
@@ -35,7 +35,6 @@ public class UserService {
 	}
 	
 	public User save(User user) {
-		//Period converted = modelMapper.map(period,Period.class);
 	    User persistedUser = userRepository.save(user);
 	     
 	     return persistedUser;

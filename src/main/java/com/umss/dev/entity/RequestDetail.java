@@ -21,14 +21,12 @@ public class RequestDetail {
 		@Id
 		@GeneratedValue(strategy  = GenerationType.IDENTITY)
 		private int idRequestDetail;
-		
 		@Column
 		private int quantity;
 		@Column
 		private String unit;
 		@Column
 		private String description;
-		
 		@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 		@JoinColumn(name="idSpendingUnitRequest")
 		@JsonBackReference
@@ -51,6 +49,7 @@ public class RequestDetail {
 		}
 
 		public String getUnit() {
+			
 			return unit;
 		}
 
@@ -59,6 +58,7 @@ public class RequestDetail {
 		}
 
 		public String getDescription() {
+			
 			return description;
 		}
 
@@ -67,6 +67,7 @@ public class RequestDetail {
 		}
 
 		public SpendingUnitRequest getRequest() {
+			
 			return request;
 		}
 
@@ -76,9 +77,9 @@ public class RequestDetail {
 
 		@Override
 		public String toString() {
+			
 			return "RequestDetail [idRequestDetail=" + idRequestDetail + ", quantity=" + quantity + ", unit=" + unit
 					+ ", description=" + description + ", request=" + request + "]";
 		}
-		
-		
+				
 }

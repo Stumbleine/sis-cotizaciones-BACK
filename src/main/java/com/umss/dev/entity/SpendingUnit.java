@@ -17,58 +17,50 @@ import lombok.EqualsAndHashCode;
 @Entity(name = "Spending_Unit")
 @Table(name = "SPENDING_UNIT")
 public class SpendingUnit {
-
 	
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	@Column(name = "idSpendingUnit")
 	private int idSpendingUnit;
-	
 	@Column
-	private String name;
-	
-	
+	private String name;	
 	@OneToMany(mappedBy = "spendingUnit",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<UserRole> userRole;
 
-	public SpendingUnit() {}
-	
+	public SpendingUnit() {
+		
+	}	
 
 	public int getIdSpendingUnit() {
+	
 		return idSpendingUnit;
 	}
-
 
 	public void setIdSpendingUnit(int idSpendingUnit) {
 		this.idSpendingUnit = idSpendingUnit;
 	}
 
-
 	public List<UserRole> getUserRole() {
+		
 		return userRole;
 	}
-
 
 	public void setUserRole(List<UserRole> userRole) {
 		this.userRole = userRole;
 	}
-
 
 	public SpendingUnit(String name) {
 		super();
 		this.name = name;
 	}
 
-
 	public String getName() {
+		
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
+		
 }

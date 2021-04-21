@@ -18,11 +18,7 @@ import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.service.SpendingUnitRequestService;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
-
-//@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
 @CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
-//@RequestMapping("/api/request")
 @RequestMapping("/request") // api/request
 public class SpendingUnitRequestController { 
 	
@@ -33,45 +29,24 @@ public class SpendingUnitRequestController {
 		spendingUnitReqService = spendingUnitReqServ;
 	}
 	
-	//
-	//private SpendingUnitRequestService spendingUnitRequestservice;
-	
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody SpendingUnitRequest spendingUnitRequest){
-		//return ResponseEntity.status(HttpStatus.CREATED).body(spendingUnitRequestservice.save(spendingUnitRequest));
 		SpendingUnitRequest request=spendingUnitRequest;
 		spendingUnitReqService.save(request);
+		
 		return ResponseEntity.ok(request);
 	}
 	
 	@GetMapping()
 	public Iterable<SpendingUnitRequest> getSpendingUnitRequests(){
+		
 		return spendingUnitReqService.getAll();
 	}
 	
 	@GetMapping("/allRequestsDescOrder")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqByDescOrder(){
+		
 		return spendingUnitReqService.getAllWithoutDetailByOrder();
 	}
 	
-	
-	
-	
-	
-	
-	 
-	
-	
-	/*Read a SpendingUnitService
-	@GetMapping("/{id}")
-	public ResponseEntity<?> read (@PathVariable Integer id){
-		Optional<SpendingUnitRequest> oRequest= spendingUnitRequestService.findById(id);
-		
-		if(!oRequest.isPresent()){
-		  return ResponseEntity.notFound().build(); //Return 404
-		}
-
-		return ResponseEntity.ok(oRequest); //When there's a request
-	}*/
-
 }

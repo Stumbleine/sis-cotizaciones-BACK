@@ -19,7 +19,6 @@ import lombok.EqualsAndHashCode;
 @Table(name = "USER")
 public class User {
 
-	
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idUser;
@@ -29,24 +28,16 @@ public class User {
 	private String email;
 	@Column
 	private String password;
-	
 	@OneToMany(mappedBy = "user",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<UserRole> userRole;
-
-	/*public User(String name, String email, String password) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}*/ 
-	
-	
 	
 	public String getName() {
+		
 		return name;
 	}
 
 	public int getIdUser() {
+		
 		return idUser;
 	}
 
@@ -59,6 +50,7 @@ public class User {
 	}
 
 	public String getEmail() {
+		
 		return email;
 	}
 
@@ -67,6 +59,7 @@ public class User {
 	}
 
 	public String getPassword() {
+		
 		return password;
 	}
 
@@ -75,6 +68,7 @@ public class User {
 	}
 
 	public List<UserRole> getUserRole() {
+		
 		return userRole;
 	}
 
@@ -84,9 +78,9 @@ public class User {
 
 	@Override
 	public String toString() {
+		
 		return "User [idUser=" + idUser + ", name=" + name + ", email=" + email + ", password=" + password
 				+ ", userRole=" + userRole + "]";
 	}
-	
-	
+		
 }

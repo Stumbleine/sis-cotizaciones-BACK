@@ -21,8 +21,7 @@ import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.service.SpendingUnitRequestService;
 import com.umss.dev.service.SpendingUnitService;
 
-//import com.umss.detection.jtemplate.dto.response.StudentResponse;
-//http://localhost:8585/api/spendingUnit/2
+
 
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
