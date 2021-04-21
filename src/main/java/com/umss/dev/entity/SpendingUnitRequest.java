@@ -56,13 +56,14 @@ public class SpendingUnitRequest {
 	public void setIdSpendingUnitRequest(int idSpendingUnitRequest) {
 		this.idSpendingUnitRequest = idSpendingUnitRequest;
 	}
+	
 
-	public String getName() {
+	public String getInitials() {
 		return initials;
 	}
 
-	public void setName(String name) {
-		this.initials = name;
+	public void setInitials(String initials) {
+		this.initials = initials;
 	}
 
 	public LocalDate getDate() {

@@ -97,7 +97,7 @@ public class SpendingUnitRequestService {
 					
 					reqIds.add(req.getIdSpendingUnitRequest());
 					
-					newReq.setName(req.getName());
+					newReq.setInitials(req.getInitials());
 					newReq.setDate(req.getDate());
 					newReq.setStatus(req.getStatus());
 					newReq.setType(req.getType());

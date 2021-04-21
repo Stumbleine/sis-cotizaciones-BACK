@@ -10,7 +10,7 @@ public class CompleteSpendingUnitRequestOutput {
 
 
 	private int idSpendingUnitRequest;
-	private String initials;
+	private String initials;//
 	private LocalDate date;
 	private String status;
 	private String type;
@@ -29,11 +29,11 @@ public class CompleteSpendingUnitRequestOutput {
 	public void setIdSpendingUnitRequest(int idSpendingUnitRequest) {
 		this.idSpendingUnitRequest = idSpendingUnitRequest;
 	}
-	public String getName() {
+	public String getInitials() {
 		return initials;
 	}
-	public void setName(String name) {
-		this.initials = name;
+	public void setInitials(String initials) {
+		this.initials = initials;
 	}
 	public LocalDate getDate() {
 		return date;
