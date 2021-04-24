@@ -1,7 +1,7 @@
 package com.umss.dev.controller;
 
 import javax.annotation.security.PermitAll;
-
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
@@ -49,4 +50,9 @@ public class SpendingUnitRequestController {
 		return spendingUnitReqService.getAllWithoutDetailByOrder();
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> spendingUnitRequest(@PathVariable (value = "id") Integer spendingUnitRequestId){	
+		
+		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
+	}
 }

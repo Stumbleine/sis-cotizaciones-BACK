@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,7 @@ import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.entity.User;
 import com.umss.dev.entity.UserRole;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
+import com.umss.dev.output.SpendingUnitRequesteOutputAtributes;
 import com.umss.dev.repository.SpendingUnitRequestRepository;
 
 @Service
@@ -130,6 +132,27 @@ public class SpendingUnitRequestService {
 		}
 		
 		return allSpendingUnitReqWithoutDetailByOrder;	
+	}
+	
+	public SpendingUnitRequesteOutputAtributes getSpendingUnitRequeste(int id) {
+		Optional<SpendingUnitRequest> spendingUnitRequest = spendingUnitRequestRepository.findById(id);
+		
+		return getAtributes(spendingUnitRequest.get());
+	}
+	
+	private SpendingUnitRequesteOutputAtributes getAtributes(SpendingUnitRequest spendingUnitRequest) {
+		SpendingUnitRequesteOutputAtributes outputAtributes=new SpendingUnitRequesteOutputAtributes();
+		outputAtributes.setUsername(spendingUnitRequest.getUserRole().getUser().getName());
+		outputAtributes.setDate(spendingUnitRequest.getDate());
+		outputAtributes.setEstimatedAmount(spendingUnitRequest.getEstimatedAmount());
+		outputAtributes.setIdSpendingUnitRequest(spendingUnitRequest.getIdSpendingUnitRequest());
+		outputAtributes.setInitials(spendingUnitRequest.getInitials());
+		outputAtributes.setJustification(spendingUnitRequest.getJustification());
+		outputAtributes.setRequestDetail(spendingUnitRequest.getRequestDetail());
+		outputAtributes.setStatus(spendingUnitRequest.getStatus());
+		outputAtributes.setType(spendingUnitRequest.getType());
+		
+		return outputAtributes;
 	}
 	
 }
