@@ -17,11 +17,11 @@ import lombok.Data;
 @Entity (name = "PriceQoutationDetail")
 @Table(name = "PRICE_QOUTATION_DETAIL")
 
-public class PriceQoutationDetail {
+public class PriceQuotationDetail {
 
 		@Id
 		@GeneratedValue(strategy  = GenerationType.IDENTITY)
-		private int idPriceQoutationDetail;
+		private int idPriceQuotationDetail;
 		@Column
 		private int quantity;
 		@Column
@@ -32,17 +32,17 @@ public class PriceQoutationDetail {
 		private float unitPrice;
 		@Column
 		private float totalPrice;
-		/*@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
-		@JoinColumn(name="idPriceQuatation")
+		@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+		@JoinColumn(name="idPriceQuotation")
 		@JsonBackReference
-		private PriceQoutation priceQuatation;*/
+		private PriceQuotation priceQuotation;
 		
-		public int getIdPriceQoutationDetail() {
-			return idPriceQoutationDetail;
+		public int getIdPriceQuotationDetail() {
+			return idPriceQuotationDetail;
 		}
 		
-		public void setIdPriceQoutationDetail(int idPriceQoutationDetail) {
-			this.idPriceQoutationDetail = idPriceQoutationDetail;
+		public void setIdPriceQuotationDetail(int idPriceQuotationDetail) {
+			this.idPriceQuotationDetail = idPriceQuotationDetail;
 		}
 		
 		public int getQuantity() {
@@ -85,12 +85,12 @@ public class PriceQoutationDetail {
 			this.totalPrice = totalPrice;
 		}
 		
-		/*public PriceQoutation priceQoutation() {
-			return priceQoutation;
+		public PriceQuotation priceQuotation() {
+			return priceQuotation;
 		}
 		
-		public void setPriceQoutation(PriceQoutation priceQoutation) {
-			this.priceQoutation = priceQoutation;
-		}*/
+		public void setPriceQuotation(PriceQuotation priceQuotation) {
+			this.priceQuotation = priceQuotation;
+		}
 			
 }
