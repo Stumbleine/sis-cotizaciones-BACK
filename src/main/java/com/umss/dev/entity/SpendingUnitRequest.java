@@ -36,7 +36,7 @@ public class SpendingUnitRequest {
 	private String type;
 	@Column
 	private double estimatedAmount;
-	@Column
+	@Column(length = 1000)
 	private String justification;
 	@OneToMany(mappedBy = "request",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
