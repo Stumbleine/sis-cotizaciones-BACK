@@ -39,7 +39,11 @@ public class UserRole {
 	@OneToMany(mappedBy = "userRole",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
 	private List<SpendingUnitRequest> spendingUnitRequest;
-
+	/*
+	@OneToMany(mappedBy = "",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@JsonManagedReference
+	private List<PriceQuotationRequest> priceQuotationRequest;
+	*/
 	public int getIdUserRole() {
 		
 		return idUserRole;
