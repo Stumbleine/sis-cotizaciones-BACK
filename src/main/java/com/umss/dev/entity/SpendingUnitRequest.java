@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
+
 @Data
 @Entity(name = "SpendingUnitRequest" )
 @Table(name = "SPENDING_UNIT_REQUEST")
