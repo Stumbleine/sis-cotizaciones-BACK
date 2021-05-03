@@ -32,18 +32,29 @@ public class UserRole {
 	private Role role;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idSpendingUnit")
+	
 	private SpendingUnit spendingUnit;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idAdministration")
 	private Administration administration;
+	
 	@OneToMany(mappedBy = "userRole",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
 	private List<SpendingUnitRequest> spendingUnitRequest;
-	/*
-	@OneToMany(mappedBy = "",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	
+	///
+	@OneToMany(mappedBy = "userRole",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
 	private List<PriceQuotationRequest> priceQuotationRequest;
-	*/
+	
+	public List<PriceQuotationRequest> getPriceQuotationRequest() {
+		return priceQuotationRequest;
+	}
+
+	public void setPriceQuotationRequest(List<PriceQuotationRequest> priceQuotationRequest) {
+		this.priceQuotationRequest = priceQuotationRequest;
+	}
+
 	public int getIdUserRole() {
 		
 		return idUserRole;

@@ -29,17 +29,31 @@ public class PriceQuotationRequest {
 	@Column(length = 1000)
 	private String link;
 	
+	
+	/**/
 	@OneToMany(mappedBy = "priceQuotationRequest",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<PriceQuotation> priceQuotations;
 	
+	///
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idUserRole")
 	@JsonBackReference
 	private UserRole userRole;
 	
+	///
 	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="idPriceQuotation", referencedColumnName="idPriceQuotation")
-	private PriceQuotation priceQuottation;
+	@JoinColumn(name="idSpendingUnitRequest", referencedColumnName="idSpendingUnitRequest")
+	private SpendingUnitRequest spendingUnitRequest;
+	
+	
+
+	public SpendingUnitRequest getSpendingUnitRequest() {
+		return spendingUnitRequest;
+	}
+
+	public void setSpendingUnitRequest(SpendingUnitRequest spendingUnitRequest) {
+		this.spendingUnitRequest = spendingUnitRequest;
+	}
 
 	public int getIdPriceQuotationRequest() {
 		return idPriceQuotationRequest;
@@ -73,13 +87,6 @@ public class PriceQuotationRequest {
 		this.userRole = userRole;
 	}
 
-	public PriceQuotation getPriceQuottation() {
-		return priceQuottation;
-	}
-
-	public void setPriceQuottation(PriceQuotation priceQuottation) {
-		this.priceQuottation = priceQuottation;
-	}
 	
 	
 

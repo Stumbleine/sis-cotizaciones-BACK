@@ -24,6 +24,7 @@ public class Administration {
 	private int idAdministration;
 	@Column
 	private String name;
+	
 	@OneToMany(mappedBy = "administration",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<UserRole> userRole;
 	
