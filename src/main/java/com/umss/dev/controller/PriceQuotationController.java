@@ -75,39 +75,6 @@ public class PriceQuotationController {
 	}
 	
 	
-	/*@PutMapping("/updateQuotation/")
-	 Public PriceQuotation updateQuotation(@RequestBody PriceQuotation newQuotation) {
-		int id = lastPriceQuotationSaved.getIdPriceQuotation();
-		
-	    return priceQuotationRepository.findById(id).map(quotation -> {
-	        quotation.setWayOfPayment(newQuotation.getWayOfPayment());
-	        quotation.setGarantyTerm(newQuotation.getGarantyTerm());
-	        quotation.setDeliveryTerm(newQuotation.getDeliveryTerm());
-	        quotation.setOffValidation(newQuotation.getOffValidation());
-	        quotation.setTotal(newQuotation.getTotal());
-	        quotation.setPriceQuotationDetail(newQuotation.getPriceQuotationDetail());
-	        return repository.save(quotation);
-	      })
-	      .orElseGet(() -> {
-	    	 newQuotation.setId(id);
-	        return repository.save(newQuotation);
-	      });
-	  }*/
-	/*@PutMapping("/employees/{id}")
-  Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
-    
-    return repository.findById(id)
-      .map(employee -> {
-        employee.setName(newEmployee.getName());
-        employee.setRole(newEmployee.getRole());
-        return repository.save(employee);
-      })
-      .orElseGet(() -> {
-        newEmployee.setId(id);
-        return repository.save(newEmployee);
-      });
-  }*/
-	
 	/*@GetMapping("/{id}")
 	public ResponseEntity<CompletePriceQuotationOutput> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		
