@@ -121,16 +121,6 @@ public class PriceQuotation {
 		this.priceQuotationDetail = priceQuotationDetail;
 	}
 
-
-	public PriceQuotationRequest getPriceQuotationRequest() {
-		return priceQuotationRequest;
-	}
-
-
-	public void setPriceQuotationRequest(PriceQuotationRequest priceQuotationRequest) {
-		this.priceQuotationRequest = priceQuotationRequest;
-	}
-
 	
 	
 }

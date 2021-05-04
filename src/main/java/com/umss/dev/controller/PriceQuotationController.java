@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.modelmapper.ModelMapper;
 import java.util.Optional;
 
+import javax.annotation.security.PermitAll;
+
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.output.CompletePriceQuotationOutput;
 import com.umss.dev.repository.PriceQuotationRepository;
@@ -44,11 +46,13 @@ public class PriceQuotationController {
 		return ResponseEntity.ok( priceQuotationService.save(priceQuotation));
 	}*/
 	
-	@PostMapping
+	@PermitAll
+	@PostMapping()
 	public ResponseEntity<PriceQuotation> create(@RequestBody PriceQuotation priceQuotation){
+		//priceQuotation.
 		PriceQuotation request = priceQuotation;
 		lastPriceQuotationSaved = request;
-		priceQuotationService.save(priceQuotation);
+		priceQuotationService.saveOther(priceQuotation);
 		return ResponseEntity.ok(request);
 	}
 	

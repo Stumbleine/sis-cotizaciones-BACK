@@ -15,11 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 @Data
 @Entity(name = "PriceQuotationRequest" )
 @Table(name = "PRICE_QUOTATON_REQUEST")
+
 public class PriceQuotationRequest {
 	
 	@Id
@@ -34,15 +37,20 @@ public class PriceQuotationRequest {
 	@OneToMany(mappedBy = "priceQuotationRequest",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<PriceQuotation> priceQuotations;
 	
-	///
+	/**/
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idUserRole")
 	@JsonBackReference
 	private UserRole userRole;
 	
 	///
-	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="idSpendingUnitRequest", referencedColumnName="idSpendingUnitRequest")
+	/*@JoinColumn(name = "idPriceQuotationRequest" )
+	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
+	@JsonManagedReference
+	private PriceQuotationRequest priceQuotation;*/
+	@JoinColumn(name = "idSpendingUnitRequest" )
+	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
+	@JsonManagedReference
 	private SpendingUnitRequest spendingUnitRequest;
 	
 	
@@ -69,14 +77,6 @@ public class PriceQuotationRequest {
 
 	public void setLink(String link) {
 		this.link = link;
-	}
-
-	public List<PriceQuotation> getPriceQuotations() {
-		return priceQuotations;
-	}
-
-	public void setPriceQuotations(List<PriceQuotation> priceQuotations) {
-		this.priceQuotations = priceQuotations;
 	}
 
 	public UserRole getUserRole() {
