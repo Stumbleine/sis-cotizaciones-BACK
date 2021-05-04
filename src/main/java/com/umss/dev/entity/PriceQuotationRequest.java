@@ -44,10 +44,10 @@ public class PriceQuotationRequest {
 	private UserRole userRole;
 	
 	///
-	/*@JoinColumn(name = "idPriceQuotationRequest" )
+	@JoinColumn(name = "idPriceQuotationRequest" )
 	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
 	@JsonManagedReference
-	private PriceQuotationRequest priceQuotation;*/
+	private PriceQuotationRequest priceQuotation;
 	@JoinColumn(name = "idSpendingUnitRequest" )
 	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
 	@JsonManagedReference

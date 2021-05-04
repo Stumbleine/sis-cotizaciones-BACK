@@ -110,17 +110,7 @@ public class PriceQuotation {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
-
-
-	public List<PriceQuotationDetail> getPriceQuotationDetail() {
-		return priceQuotationDetail;
-	}
-
-
-	public void setPriceQuotationDetail(List<PriceQuotationDetail> priceQuotationDetail) {
-		this.priceQuotationDetail = priceQuotationDetail;
-	}
-
+	
 	
 	
 }
