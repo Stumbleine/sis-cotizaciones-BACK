@@ -35,7 +35,8 @@ public class PriceQuotationRequest {
 	
 	/**/
 	@OneToMany(mappedBy = "priceQuotationRequest",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
-	private List<PriceQuotation> priceQuotations;
+	@JsonManagedReference
+	private List<PriceQuotation> priceQuotations; 
 	
 	/**/
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
@@ -43,14 +44,9 @@ public class PriceQuotationRequest {
 	@JsonBackReference
 	private UserRole userRole;
 	
-	///
-	@JoinColumn(name = "idPriceQuotationRequest" )
-	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
-	@JsonManagedReference
-	private PriceQuotationRequest priceQuotation;
 	@JoinColumn(name = "idSpendingUnitRequest" )
 	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
-	@JsonManagedReference
+	//@JsonManagedReference
 	private SpendingUnitRequest spendingUnitRequest;
 	
 	

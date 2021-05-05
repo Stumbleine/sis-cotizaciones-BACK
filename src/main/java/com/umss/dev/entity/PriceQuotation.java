@@ -24,7 +24,7 @@ import lombok.Data;
 public class PriceQuotation {
 
 	@Id
-	@GeneratedValue(strategy  = GenerationType.AUTO)
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idPriceQuotation;
 	@Column
 	private String wayOfPayment;
@@ -40,6 +40,7 @@ public class PriceQuotation {
 	/***/
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idPriceQuotationRequest")
+	@JsonBackReference
 	private PriceQuotationRequest priceQuotationRequest;
 	
 	@OneToMany(mappedBy = "priceQuotation",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
