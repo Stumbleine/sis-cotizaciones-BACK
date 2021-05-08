@@ -39,9 +39,11 @@ public class SpendingUnitRequest {
 	private double estimatedAmount;
 	@Column(length = 1000)
 	private String justification;
+	
 	@OneToMany(mappedBy = "request",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
-	private List<RequestDetail> requestDetail;	
+	private List<RequestDetail> requestDetail;
+	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idUserRole")
 	@JsonBackReference

@@ -36,6 +36,7 @@ public class UserRole {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idAdministration")
 	private Administration administration;
+	
 	@OneToMany(mappedBy = "userRole",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
 	private List<SpendingUnitRequest> spendingUnitRequest;

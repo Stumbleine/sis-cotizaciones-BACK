@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 @Data
@@ -29,6 +31,9 @@ public class PriceQuotationRequest {
 	@Column(length = 1000)
 	private String link;
 	
+	/*@OneToMany(mappedBy = "request",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@JsonManagedReference*/
+	
 	@OneToMany(mappedBy = "priceQuotationRequest",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<PriceQuotation> priceQuotations;
 	
@@ -39,7 +44,8 @@ public class PriceQuotationRequest {
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="idPriceQuotation", referencedColumnName="idPriceQuotation")
-	private PriceQuotation priceQuottation;
+	private PriceQuotation priceQuotation;
+	
 
 	public int getIdPriceQuotationRequest() {
 		return idPriceQuotationRequest;
@@ -74,11 +80,11 @@ public class PriceQuotationRequest {
 	}
 
 	public PriceQuotation getPriceQuottation() {
-		return priceQuottation;
+		return priceQuotation;
 	}
 
 	public void setPriceQuottation(PriceQuotation priceQuottation) {
-		this.priceQuottation = priceQuottation;
+		this.priceQuotation = priceQuottation;
 	}
 	
 	

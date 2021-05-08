@@ -23,7 +23,8 @@ public class SpendingUnit {
 	@Column(name = "idSpendingUnit")
 	private int idSpendingUnit;
 	@Column
-	private String name;	
+	private String name;
+	
 	@OneToMany(mappedBy = "spendingUnit",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<UserRole> userRole;
 

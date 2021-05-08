@@ -28,6 +28,7 @@ public class User {
 	private String email;
 	@Column
 	private String password;
+	
 	@OneToMany(mappedBy = "user",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<UserRole> userRole;
 	

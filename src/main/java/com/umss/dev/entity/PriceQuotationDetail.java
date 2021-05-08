@@ -32,6 +32,7 @@ public class PriceQuotationDetail {
 		private float unitPrice;
 		@Column
 		private float totalPrice;
+		
 		@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 		@JoinColumn(name="idPriceQuotation")
 		@JsonBackReference

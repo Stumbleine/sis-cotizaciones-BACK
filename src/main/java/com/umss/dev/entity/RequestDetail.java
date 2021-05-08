@@ -27,6 +27,7 @@ public class RequestDetail {
 		private String unit;
 		@Column
 		private String description;
+		
 		@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 		@JoinColumn(name="idSpendingUnitRequest")
 		@JsonBackReference
