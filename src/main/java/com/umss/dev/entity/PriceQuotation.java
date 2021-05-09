@@ -47,7 +47,55 @@ public class PriceQuotation {
 	@JsonManagedReference
 	private List<PriceQuotationDetail> priceQuotationDetail;
 	
+	@Column
+	private String state;
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@JoinColumn(name="idBusiness")
+	private Business business;
+	
+	public PriceQuotation(String wayOfPayment, int garantyTerm, int deliveryTerm, String offValidation, Double total,
+			PriceQuotationRequest priceQuotationRequest, List<PriceQuotationDetail> priceQuotationDetail,
+			String state) {
+		super();
+		this.wayOfPayment = wayOfPayment;
+		this.garantyTerm = garantyTerm;
+		this.deliveryTerm = deliveryTerm;
+		this.offValidation = offValidation;
+		this.total = total;
+		this.priceQuotationRequest = priceQuotationRequest;
+		this.priceQuotationDetail = priceQuotationDetail;
+		this.state = state;
+	}
+
+	
+
+	public String getState() {
+		return state;
+	}
+
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+
+	public PriceQuotation(int idPriceQuotation, String wayOfPayment, int garantyTerm, int deliveryTerm,
+			String offValidation, Double total, String state) {
+		super();
+		this.idPriceQuotation = idPriceQuotation;
+		this.wayOfPayment = wayOfPayment;
+		this.garantyTerm = garantyTerm;
+		this.deliveryTerm = deliveryTerm;
+		this.offValidation = offValidation;
+		this.total = total;
+		this.state = state;
+	}
+
+
+
 	public PriceQuotation() {
 		super();
 	}
