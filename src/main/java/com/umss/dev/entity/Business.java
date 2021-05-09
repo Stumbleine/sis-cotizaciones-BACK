@@ -40,7 +40,7 @@ public class Business {
 	@JoinColumn(name="idArea")
 	private Area area;
 	
-	@OneToMany(mappedBy = "priceQuotation",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@OneToMany(mappedBy = "business",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<PriceQuotation> priceQuotationcs ;
 
 	public Business(String name, String description, String adress, String phone, String eMail, String nit, Area area) {
