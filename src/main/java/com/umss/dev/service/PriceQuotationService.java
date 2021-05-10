@@ -84,13 +84,17 @@ public class PriceQuotationService {
 			for (PriceQuotation req: allPriceQuotation) {
 				
 				if(idPriceQuotationRequest == req.getPriceQuotationRequest().getIdPriceQuotationRequest()) {
+					
 		        PriceQuotationOutput newReq = new PriceQuotationOutput();
 				newReq.setIdPriceQuotation(req.getIdPriceQuotation());					
 				reqIds.add(req.getIdPriceQuotation());					
 				newReq.setState(req.getState());
 				newReq.setNameBussiness(req.getBusiness().getName());
 				newReq.setNameArea(req.getBusiness().getArea().getName());
+				newReq.setTotal(req.getTotal());
+				newReq.setPriceQuotationDetail(req.getPriceQuotationDetail());
 				pricequotations.add(newReq);
+				
 				}
 	         }
 		

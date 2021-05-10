@@ -29,9 +29,9 @@ public class PriceQuotationDetail {
 		@Column
 		private String description;
 		@Column
-		private float unitPrice;
+		private Float unitPrice;
 		@Column
-		private float totalPrice;
+		private Float totalPrice;
 		@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 		@JoinColumn(name="idPriceQuotation")
 		@JsonBackReference
@@ -69,23 +69,23 @@ public class PriceQuotationDetail {
 			this.description = description;
 		}
 		
-		public float getUnitPrice() {
+		public Float getUnitPrice() {
 			return unitPrice;
 		}
-		
-		public void setUnitPrice(float unitPrice) {
+
+		public void setUnitPrice(Float unitPrice) {
 			this.unitPrice = unitPrice;
 		}
-		
-		public float getTotalPrice() {
+
+		public Float getTotalPrice() {
 			return totalPrice;
 		}
-		
-		public void setTotalPrice(float totalPrice) {
+
+		public void setTotalPrice(Float totalPrice) {
 			this.totalPrice = totalPrice;
 		}
-		
-		public PriceQuotation priceQuotation() {
+
+		public PriceQuotation getPriceQuotation() {
 			return priceQuotation;
 		}
 		
