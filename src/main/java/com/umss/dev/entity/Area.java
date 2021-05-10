@@ -63,6 +63,11 @@ public class Area {
 	public void setBusiness(List<Business> business) {
 		this.business = business;
 	}
+
+	@Override
+	public String toString() {
+		return "Area [idArea=" + idArea + ", name=" + name + ", business=" + business + "]";
+	}
 	
 	
 	
