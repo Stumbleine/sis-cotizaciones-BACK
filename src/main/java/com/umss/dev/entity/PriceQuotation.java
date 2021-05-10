@@ -159,6 +159,44 @@ public class PriceQuotation {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
+
+
+
+	public PriceQuotationRequest getPriceQuotationRequest() {
+		return priceQuotationRequest;
+	}
+
+
+
+	public void setPriceQuotationRequest(PriceQuotationRequest priceQuotationRequest) {
+		this.priceQuotationRequest = priceQuotationRequest;
+	}
+
+
+
+	public List<PriceQuotationDetail> getPriceQuotationDetail() {
+		return priceQuotationDetail;
+	}
+
+
+
+	public void setPriceQuotationDetail(List<PriceQuotationDetail> priceQuotationDetail) {
+		this.priceQuotationDetail = priceQuotationDetail;
+	}
+
+
+
+	public Business getBusiness() {
+		return business;
+	}
+
+
+
+	public void setBusiness(Business business) {
+		this.business = business;
+	}
+	
+	
 	
 	
 	
