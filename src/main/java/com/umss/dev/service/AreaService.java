@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.umss.dev.entity.Area;
 import com.umss.dev.entity.Business;
 import com.umss.dev.exception.DtoNotFoundException;
+import com.umss.dev.output.BusinessOutput;
 import com.umss.dev.repository.AreaRepository;
 
 @Service
@@ -36,20 +37,50 @@ public class AreaService {
 	    return studentAct;
 	}*/
 	
-	public Iterable<Business> getBusinessByIdArea(int idArea){
+	public Iterable<BusinessOutput> getBusinessByIdArea(int idArea){
 		Area areaAct = areaRepository.findById(idArea).orElse(null);
+		List<BusinessOutput> businessFound = new ArrayList<>();
 	    if (null == areaAct) {
 	        throw new DtoNotFoundException(Area.class.toString(), idArea);
 	    }
-	    return areaAct.getBusiness();
+	     //System.out.println("----------------------------------------"+areaAct.getBusiness().isEmpty());
+	     
+	    for (Business actBusiness: areaAct.getBusiness()){
+	    		if(!(businessFound.contains(actBusiness))) {
+	    			BusinessOutput newBusiness = new BusinessOutput();
+	    			newBusiness.setIdBusiness(actBusiness.getIdBusiness());
+	    			newBusiness.setName(actBusiness.getName());
+	    			newBusiness.setAdress(actBusiness.getAdress());
+	    			newBusiness.setDescription(actBusiness.getDescription());
+	    			newBusiness.seteMail(actBusiness.geteMail());
+	    			newBusiness.setNit(actBusiness.getNit());
+	    			newBusiness.setPhone(actBusiness.getPhone());
+	    			businessFound.add(newBusiness);
+	    		}
+	    }
+	    
+	    return businessFound;
+	    
 	}
 	
-	public Iterable<Business> getBusinessByArea(String areaName){
-		List<Business> businessFound = new ArrayList<>();
+	public Iterable<BusinessOutput> getBusinessByArea(String areaName){
+		List<BusinessOutput> businessFound = new ArrayList<>();
 		List<Area> allArea = areaRepository.findAll();
 		for (Area actArea : allArea ) {
 			if(actArea.getName().equals(areaName)) {
-				businessFound = actArea.getBusiness();
+				 for (Business actBusiness: actArea.getBusiness()){
+			    		if(!(businessFound.contains(actBusiness))) {
+			    			BusinessOutput newBusiness = new BusinessOutput();
+			    			newBusiness.setIdBusiness(actBusiness.getIdBusiness());
+			    			newBusiness.setName(actBusiness.getName());
+			    			newBusiness.setAdress(actBusiness.getAdress());
+			    			newBusiness.setDescription(actBusiness.getDescription());
+			    			newBusiness.seteMail(actBusiness.geteMail());
+			    			newBusiness.setNit(actBusiness.getNit());
+			    			newBusiness.setPhone(actBusiness.getPhone());
+			    			businessFound.add(newBusiness);
+			    		}
+			    }
 			}
 			
 		}

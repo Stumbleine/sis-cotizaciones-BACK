@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.umss.dev.entity.Business;
+import com.umss.dev.output.BusinessOutput;
 import com.umss.dev.repository.AreaRepository;
 import com.umss.dev.service.AreaService;
 
@@ -38,15 +39,15 @@ public class AreaController {
 		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
 	}*/
 	
-	@GetMapping("/{id}")
-	public Iterable<Business> getBusinessByIdArea(@PathVariable (value = "id") Integer areaId){
+	@GetMapping("getById/{id}")
+	public Iterable<BusinessOutput> getBusinessByIdArea(@PathVariable (value = "id") Integer areaId){
 		
 		return areaService.getBusinessByIdArea(areaId);
 		
 	}
-	
-	@GetMapping("/{name}")
-	public Iterable<Business> getBusinessByAreaName(@PathVariable (value = "name") String areaName){
+										
+	@GetMapping("getByName/{name}")
+	public Iterable<BusinessOutput> getBusinessByAreaName(@PathVariable (value = "name") String areaName){
 		
 		return areaService.getBusinessByArea(areaName);
 		
