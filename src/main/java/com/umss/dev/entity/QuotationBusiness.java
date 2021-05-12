@@ -21,37 +21,29 @@ public class QuotationBusiness {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idQuotationBusiness;
 	@Column
-	private String name;
+	private String nameBusiness;
 	@Column
-	private Float subTotal;
+	private Float subtotal;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idComparativeTableOfQuotes")
 	@JsonBackReference
 	private ComparativeTableOfQuotes comparativeTableOfQuotes;
 
-	/*public int getIdQuotationBusiness() {
-		return idQuotationBusiness;
+	public String getNameBusiness() {
+		return nameBusiness;
 	}
 
-	public void setIdQuotationBusiness(int idQuotationBusiness) {
-		this.idQuotationBusiness = idQuotationBusiness;
-	}*/
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setNameBusiness(String nameBusiness) {
+		this.nameBusiness = nameBusiness;
 	}
 
 	public Float getSubtotal() {
-		return subTotal;
+		return subtotal;
 	}
 
 	public void setSubtotal(Float subtotal) {
-		this.subTotal = subtotal;
+		this.subtotal = subtotal;
 	}
 
 	public ComparativeTableOfQuotes getComparativeTableOfQuotes() {
