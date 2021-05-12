@@ -39,7 +39,9 @@ public class ComparativeTableOfQuotesService {
 
 
 	@Transactional
-	public ComparativeTableOfQuotes save(ComparativeTableOfQuotes comparativeTableOfQuotes) {
+	public ComparativeTableOfQuotes save(ComparativeTableOfQuotes comparativeTableOfQuotes,Integer id) {
+		Optional<PriceQuotationRequest> request= priceQuotationRequestRepository.findById(id);
+		comparativeTableOfQuotes.setPriceQuotationRequest(request.get());
 		return comparativeTableOfQuotesRepository.save(comparativeTableOfQuotes);
 	}
 	

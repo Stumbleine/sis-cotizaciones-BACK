@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
-@Data
+//@Data
 @Entity(name = "PriceQuotationRequest" )
 @Table(name = "PRICE_QUOTATON_REQUEST")
 
@@ -49,6 +49,9 @@ public class PriceQuotationRequest {
 	//@JsonManagedReference
 	private SpendingUnitRequest spendingUnitRequest;
 	
+	@OneToMany(mappedBy = "priceQuotationRequest",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})	
+	@JsonManagedReference
+	private List<ComparativeTableOfQuotes> ComparativeTableOfQuotes;
 	
 
 	public SpendingUnitRequest getSpendingUnitRequest() {
@@ -83,7 +86,12 @@ public class PriceQuotationRequest {
 		this.userRole = userRole;
 	}
 
-	
-	
+	public List<ComparativeTableOfQuotes> getComparativeTableOfQuotes() {
+		return ComparativeTableOfQuotes;
+	}
 
+	public void setComparativeTableOfQuotes(List<ComparativeTableOfQuotes> comparativeTableOfQuotes) {
+		ComparativeTableOfQuotes = comparativeTableOfQuotes;
+	}
+	
 }

@@ -38,11 +38,12 @@ public class ComparativeTablesOfQuotesController {
 		this.comparativeTableOfQuotesService = comparativeTableOfQuotesService;
 	}
 
-    @PostMapping
-	public ResponseEntity<?> create(@RequestBody List<ComparativeTableOfQuotes> comparativeTableOfQuotes){
+    @PostMapping("/{id}")
+	public ResponseEntity<?> create(@RequestBody List<ComparativeTableOfQuotes> comparativeTableOfQuotes,@PathVariable Integer id){
+    	
     	List<ComparativeTableOfQuotes> comparativeTable=comparativeTableOfQuotes;
     	for(ComparativeTableOfQuotes quotations:comparativeTable) {
-    		comparativeTableOfQuotesService.save(quotations);
+    		comparativeTableOfQuotesService.save(quotations,id);
     	}
 		
 		return ResponseEntity.ok(comparativeTable);

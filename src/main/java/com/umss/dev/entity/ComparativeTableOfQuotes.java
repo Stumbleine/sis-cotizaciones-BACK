@@ -8,14 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
-@Data
+//@Data
 @Entity(name = "ComparativeTableOfQuotes")
 @Table(name = "COMPARATIVE_TABLE_OF_QUOTES")
 public class ComparativeTableOfQuotes {
@@ -23,8 +26,6 @@ public class ComparativeTableOfQuotes {
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idComparativeTableOfQuotes;
-	@Column
-	private int idPriceQuotationDetail;
 	@Column
 	private int quantity;
 	@Column
@@ -36,6 +37,10 @@ public class ComparativeTableOfQuotes {
 	@JsonManagedReference
 	private List<QuotationBusiness> quotationBusiness;
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@JoinColumn(name="idPriceQuotationRequest")
+	@JsonBackReference
+	private PriceQuotationRequest priceQuotationRequest;
 	
 	public int getIdComparativeTableOfQuotes() {
 		return idComparativeTableOfQuotes;
@@ -67,5 +72,11 @@ public class ComparativeTableOfQuotes {
 	public void setQuotationBusiness(List<QuotationBusiness> quotationBusiness) {
 		this.quotationBusiness = quotationBusiness;
 	}
-
+	public PriceQuotationRequest getPriceQuotationRequest() {
+		return priceQuotationRequest;
+	}
+	public void setPriceQuotationRequest(PriceQuotationRequest priceQuotationRequest) {
+		this.priceQuotationRequest = priceQuotationRequest;
+	}
+	
 }
