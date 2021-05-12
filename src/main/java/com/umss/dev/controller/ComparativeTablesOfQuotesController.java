@@ -20,7 +20,6 @@ import com.umss.dev.entity.ComparativeTableOfQuotes;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.entity.SpendingUnitRequest;
-import com.umss.dev.output.ComparativeTableOfQuotesOutput;
 import com.umss.dev.output.PriceQuotationOutput;
 import com.umss.dev.service.ComparativeTableOfQuotesService;
 
@@ -49,7 +48,13 @@ public class ComparativeTablesOfQuotesController {
 		return ResponseEntity.ok(comparativeTable);
 	}
 
-	/*
+    @GetMapping("/{id}")
+	public Iterable<ComparativeTableOfQuotes> getComparativeTableOfQuotesService(@PathVariable Integer id){
+		
+		return comparativeTableOfQuotesService.getComparativeTable(id);
+	}
+    
+    /*
 	@GetMapping()
 	@ResponseBody
 	public String getFoos(@RequestParam List<String> ids) {
@@ -71,10 +76,4 @@ public class ComparativeTablesOfQuotesController {
 		 System.out.println("LLega aqui 11");
 	     return comparativeTableOfQuotesService.getPriceQuotation( id,Ids);
 	}*/
-
-    @GetMapping()
-	public Iterable<ComparativeTableOfQuotes> getComparativeTableOfQuotesService(){
-		
-		return comparativeTableOfQuotesService.getAll();
-	}
 }
