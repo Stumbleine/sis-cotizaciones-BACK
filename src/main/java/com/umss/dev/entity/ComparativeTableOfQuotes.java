@@ -42,12 +42,12 @@ public class ComparativeTableOfQuotes {
 	@JsonBackReference
 	private PriceQuotationRequest priceQuotationRequest;
 	
-	public int getIdComparativeTableOfQuotes() {
+	/*public int getIdComparativeTableOfQuotes() {
 		return idComparativeTableOfQuotes;
 	}
 	public void setIdComparativeTableOfQuotes(int idComparativeTableOfQuotes) {
 		this.idComparativeTableOfQuotes = idComparativeTableOfQuotes;
-	}
+	}*/
 	public int getQuantity() {
 		return quantity;
 	}
