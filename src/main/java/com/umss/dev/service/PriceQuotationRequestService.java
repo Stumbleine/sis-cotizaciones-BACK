@@ -1,12 +1,7 @@
 package com.umss.dev.service;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+
 import java.util.List;
-import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +9,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.repository.PriceQuoatitonRequestRepository;
 import com.umss.dev.repository.PriceQuotationRepository;
@@ -39,8 +33,8 @@ public class PriceQuotationRequestService {
 		this.modelMapper = modelMapper;
 	}
 
-
-
+						//S/M/H/D/M
+	//@Scheduled(cron = "0 * * * * ?")
 	@Scheduled(cron = "0 0 0 * * ?")
 	   public void cronJobSch() {
 		
