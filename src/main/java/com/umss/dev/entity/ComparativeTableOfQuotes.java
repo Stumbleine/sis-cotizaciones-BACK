@@ -1,15 +1,21 @@
 package com.umss.dev.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
-//@Data
+@Data
 @Entity(name = "ComparativeTableOfQuotes")
 @Table(name = "COMPARATIVE_TABLE_OF_QUOTES")
 public class ComparativeTableOfQuotes {
@@ -18,19 +24,18 @@ public class ComparativeTableOfQuotes {
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idComparativeTableOfQuotes;
 	@Column
+	private int idPriceQuotationDetail;
+	@Column
 	private int quantity;
 	@Column
 	private String unit;
 	@Column
 	private String description;
-	@Column
-	private Double total;
-	@Column
-	private Float subtotalBussiness1;
-	@Column
-	private Float subtotalBussiness2;
-	@Column
-	private Float subtotalBussiness3;
+	
+	@OneToMany(mappedBy = "comparativeTableOfQuotes",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})	
+	@JsonManagedReference
+	private List<QuotationBusiness> quotationBusiness;
+	
 	
 	public int getIdComparativeTableOfQuotes() {
 		return idComparativeTableOfQuotes;
@@ -56,33 +61,11 @@ public class ComparativeTableOfQuotes {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	public Double getTotal() {
-		return total;
+	public List<QuotationBusiness> getQuotationBusiness() {
+		return quotationBusiness;
 	}
-	public void setTotal(Double total) {
-		this.total = total;
+	public void setQuotationBusiness(List<QuotationBusiness> quotationBusiness) {
+		this.quotationBusiness = quotationBusiness;
 	}
-	public Float getSubtotalBussiness1() {
-		return subtotalBussiness1;
-	}
-	public void setSubtotalBussiness1(Float subtotalBussiness1) {
-		this.subtotalBussiness1 = subtotalBussiness1;
-	}
-	public Float getSubtotalBussiness2() {
-		return subtotalBussiness2;
-	}
-	public void setSubtotalBussiness2(Float subtotalBussiness2) {
-		this.subtotalBussiness2 = subtotalBussiness2;
-	}
-	public Float getSubtotalBussiness3() {
-		return subtotalBussiness3;
-	}
-	public void setSubtotalBussiness3(Float subtotalBussiness3) {
-		this.subtotalBussiness3 = subtotalBussiness3;
-	}
-
-	
-	
 
 }
