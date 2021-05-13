@@ -2,35 +2,35 @@ package com.umss.dev.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.umss.dev.entity.PriceQuotationRequest;
-import com.umss.dev.repository.PriceQuoatitonRequestRepository;
-import com.umss.dev.repository.PriceQuotationRepository;
+import com.umss.dev.entity.SpendingUnitRequest;
+import com.umss.dev.output.PriceQuotationOutput;
+import com.umss.dev.output.SpendingUnitRequesteOutputAtributes;
+import com.umss.dev.repository.PriceQuotationRequestRepository;
 
 @Service
-@Component
 public class PriceQuotationRequestService {
 	
-	@Autowired
-	private PriceQuoatitonRequestRepository priceQuoatitonRequestRepository;
-	@Autowired
-	private PriceQuotationRepository priceQuotationRepository;
+	private PriceQuotationRequestRepository priceQuotationRequestRepository;
 	private ModelMapper modelMapper;
+	private PriceQuotationService priceQuotationService;
 	
-	
-
-	public PriceQuotationRequestService(PriceQuoatitonRequestRepository priceQuoatitonRequestRepository,
-			PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper) {
-		super();
-		this.priceQuoatitonRequestRepository = priceQuoatitonRequestRepository;
-		this.priceQuotationRepository = priceQuotationRepository;
+	public PriceQuotationRequestService(PriceQuotationRequestRepository priceQuotationRequestRepository,ModelMapper modelMapper, PriceQuotationService priceQuotationService) {
+		this.priceQuotationRequestRepository = priceQuotationRequestRepository;
 		this.modelMapper = modelMapper;
+		this.priceQuotationService =priceQuotationService;
+	}
+	
+	public Iterable<PriceQuotationOutput> getPriceQuotation(Integer idPriceQuotation){
+		
+		Optional<PriceQuotationRequest> request= priceQuotationRequestRepository.findById(idPriceQuotation);
+		return priceQuotationService.getPriceQuotationByOrder(request.get().getIdPriceQuotationRequest());
 	}
 
 						//S/M/H/D/M
@@ -38,12 +38,12 @@ public class PriceQuotationRequestService {
 	@Scheduled(cron = "0 0 0 * * ?")
 	   public void cronJobSch() {
 		
-		List<PriceQuotationRequest>priceQuotationRequests=priceQuoatitonRequestRepository.findAll();
+		List<PriceQuotationRequest>priceQuotationRequests=priceQuotationRequestRepository.findAll();
 	    
 	      if(!priceQuotationRequests.isEmpty()) {
 	    	  for(int i=0;i<priceQuotationRequests.size();i++) {
 	    		 if(priceQuotationRequests.get(i).getDeadline()!=null) {
-	    			 priceQuoatitonRequestRepository.update("EXPIRADO",priceQuotationRequests.get(i).getDeadline().toString() ,priceQuotationRequests.get(i).getIdPriceQuotationRequest(), "VACIO");
+	    			 priceQuotationRequestRepository.update("EXPIRADO",priceQuotationRequests.get(i).getDeadline().toString() ,priceQuotationRequests.get(i).getIdPriceQuotationRequest(), "SIN COTIZAR");
 	    		 }    		  
 	    	  }
 	    	 
@@ -51,29 +51,4 @@ public class PriceQuotationRequestService {
 	       
 	   }
 
-/*
-
-	private void setStatusDeadLine(PriceQuotationRequest priQuotationRequest) {
-		List<PriceQuotation> priceQuotations=priceQuotationRepository.findAll();
-		List<PriceQuotation> reponse=new ArrayList<PriceQuotation>();
-		PriceQuotation newPriceQuotation = new PriceQuotation();
-		for(int i=0;i<priceQuotations.size();i++) {
-			if(priceQuotations.get(i).getPriceQuotationRequest().getIdPriceQuotationRequest()== priQuotationRequest.getIdPriceQuotationRequest()) {
-				if(priceQuotations.get(i).getState().compareTo("VACIO")==0) {
-					
-					//System.out.println(newPriceQuotation.getIdPriceQuotation()+"------>  "+ newPriceQuotation.getState());
-				}
-			}
-		}
-		/*
-		if(priceQuotations.isEmpty()) {
-			for(int i=0;i<priceQuotations.size();i++) {
-				if(priceQuotations.get(i).getState()=="VACIO") {
-					
-					System.out.println("asdfasdfasd");
-				}
-				
-			}
-		}
-	}*/
 }
