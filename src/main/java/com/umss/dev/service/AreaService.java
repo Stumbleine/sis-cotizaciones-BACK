@@ -51,7 +51,7 @@ public class AreaService {
 	    			newBusiness.setIdBusiness(actBusiness.getIdBusiness());
 	    			newBusiness.setName(actBusiness.getName());
 	    			newBusiness.setAdress(actBusiness.getAdress());
-	    			newBusiness.setDescription(actBusiness.getDescription());
+	    			//newBusiness.setDescription(actBusiness.getDescription());
 	    			newBusiness.seteMail(actBusiness.geteMail());
 	    			newBusiness.setNit(actBusiness.getNit());
 	    			newBusiness.setPhone(actBusiness.getPhone());
@@ -74,7 +74,7 @@ public class AreaService {
 			    			newBusiness.setIdBusiness(actBusiness.getIdBusiness());
 			    			newBusiness.setName(actBusiness.getName());
 			    			newBusiness.setAdress(actBusiness.getAdress());
-			    			newBusiness.setDescription(actBusiness.getDescription());
+			    			//newBusiness.setDescription(actBusiness.getDescription());
 			    			newBusiness.seteMail(actBusiness.geteMail());
 			    			newBusiness.setNit(actBusiness.getNit());
 			    			newBusiness.setPhone(actBusiness.getPhone());
@@ -82,6 +82,29 @@ public class AreaService {
 			    		}
 			    }
 			}
+			
+		}
+		
+		return businessFound;
+	}
+	
+	public Iterable<BusinessOutput> getAll(){
+		List<BusinessOutput> businessFound = new ArrayList<>();
+		List<Area> allArea = areaRepository.findAll();
+		for (Area actArea : allArea ) {
+			 for (Business actBusiness: actArea.getBusiness()){
+			    		if(!(businessFound.contains(actBusiness))) {
+			    			BusinessOutput newBusiness = new BusinessOutput();
+			    			newBusiness.setIdBusiness(actBusiness.getIdBusiness());
+			    			newBusiness.setName(actBusiness.getName());
+			    			newBusiness.setAdress(actBusiness.getAdress());
+			    			//newBusiness.setDescription(actBusiness.getDescription());
+			    			newBusiness.seteMail(actBusiness.geteMail());
+			    			newBusiness.setNit(actBusiness.getNit());
+			    			newBusiness.setPhone(actBusiness.getPhone());
+			    			businessFound.add(newBusiness);
+			    		}
+			    }
 			
 		}
 		

@@ -10,7 +10,7 @@ public class BusinessOutput {
 
 	private int idBusiness;
 	private String name;
-	private String description;
+	//private String description;
 	private String adress;
 	private String phone;
 	private String eMail;
@@ -31,12 +31,12 @@ public class BusinessOutput {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
+	/*public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
+	}*/
 	public String getAdress() {
 		return adress;
 	}
