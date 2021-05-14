@@ -56,7 +56,10 @@ public class PriceQuotationRequest {
 	@JsonManagedReference
 	private List<ComparativeTableOfQuotes> ComparativeTableOfQuotes;
 	
-
+	@JoinColumn(name = "idReport" )
+	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
+	private Report report;
+	
 	public SpendingUnitRequest getSpendingUnitRequest() {
 		return spendingUnitRequest;
 	}
