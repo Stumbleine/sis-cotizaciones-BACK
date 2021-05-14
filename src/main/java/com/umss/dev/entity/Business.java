@@ -41,7 +41,7 @@ public class Business {
 	private Area area;
 	
 	@OneToMany(mappedBy = "business",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
-	private List<PriceQuotation> priceQuotationcs ;
+	private List<PriceQuotation> priceQuotations;
 
 	public Business(String name, String description, String adress, String phone, String eMail, String nit, Area area) {
 		super();
@@ -66,6 +66,14 @@ public class Business {
 
 	public Business() {
 		super();
+	}
+	
+	public int getIdBusiness() {
+		return idBusiness;
+	}
+
+	public void setIdBusiness(int idBusiness) {
+		this.idBusiness = idBusiness;
 	}
 
 	public String getName() {
