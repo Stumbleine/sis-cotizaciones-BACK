@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.umss.dev.entity.PriceQuotation;
 
+
 @Repository
 public interface PriceQuotationRepository extends JpaRepository<PriceQuotation, Integer>{
 

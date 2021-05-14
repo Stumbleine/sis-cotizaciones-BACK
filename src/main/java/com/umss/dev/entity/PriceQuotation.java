@@ -194,10 +194,6 @@ public class PriceQuotation {
 
 	public void setBusiness(Business business) {
 		this.business = business;
-	}
-	
-	
-	
-	
+	}	
 	
 }
