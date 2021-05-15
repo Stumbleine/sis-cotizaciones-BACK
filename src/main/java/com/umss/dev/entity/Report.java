@@ -30,6 +30,10 @@ public class Report {
 	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
 	private PriceQuotationRequest priceQuotation;
 
+	@OneToOne(cascade =CascadeType.ALL)
+	@JoinColumn(name = "idFile",unique = true)
+	private DocumentQuotation documentQuotation;
+	
 	public int getIdReport() {
 		return idReport;
 	}
