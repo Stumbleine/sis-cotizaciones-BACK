@@ -39,6 +39,6 @@ public class Administration {
 
 	public void setName(String name) {
 		this.name = name;
-	}	
+	}
 	
 }

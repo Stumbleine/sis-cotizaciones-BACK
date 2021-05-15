@@ -152,5 +152,6 @@ public class SpendingUnitRequest {
 				+ ", justification=" + justification + ", requestDetail=" + requestDetail + ", userRole=" + userRole
 				+ "]";
 	}
+	
 
 }

@@ -54,6 +54,10 @@ public class PriceQuotation {
 	@JoinColumn(name="idBusiness")
 	private Business business;
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@JoinColumn(name="idComparateTable")
+	private ComparateTable comparateTable;
+	
 	public PriceQuotation(String wayOfPayment, int garantyTerm, int deliveryTerm, String offValidation, Double total,
 			PriceQuotationRequest priceQuotationRequest, List<PriceQuotationDetail> priceQuotationDetail,
 			String state) {
