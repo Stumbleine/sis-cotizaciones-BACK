@@ -106,6 +106,17 @@ INSERT INTO `user` (`id_user`, `email`, `name`, `password`) VALUES
 				('10', NULL, '10', '2'),
 				('11', NULL, '11', '2');
 
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=3 WHERE s.id_spending_unit_request=3;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=4 WHERE s.id_spending_unit_request=4;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=5 WHERE s.id_spending_unit_request=5;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=6 WHERE s.id_spending_unit_request=6;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=7 WHERE s.id_spending_unit_request=7;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=8 WHERE s.id_spending_unit_request=8;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=9 WHERE s.id_spending_unit_request=9;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=10 WHERE s.id_spending_unit_request=10;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=11 WHERE s.id_spending_unit_request=11;	
+
+
 	INSERT INTO `area` (`id_area`, `name_area`) VALUES
 				('1', 'Electrónica'), 
 				('2', 'Inmuebles');
@@ -314,4 +325,10 @@ INSERT INTO `document_quotation` (`id_document_quotaion`, `content`, `name_docum
 						(2, LOAD_FILE('C:\Users\Asus\Desktop\prueba.pdf'), 'Informe de Aprobacion' , 6200, 2),
 						(3, LOAD_FILE('C:\Users\Asus\Desktop\prueba.pdf'), 'Informe de Aprobacion' , '1620',3),
 						(4, LOAD_FILE('C:\Users\Asus\Desktop\prueba.pdf'), 'Informe de Rechazo', 1620, 4),
-						(5, LOAD_FILE('C:\Users\Asus\Desktop\prueba.pdf'), 'Informe de Rechazo', 1620, 5);						
+						(5, LOAD_FILE('C:\Users\Asus\Desktop\prueba.pdf'), 'Informe de Rechazo', 1620, 5);		
+
+						UPDATE report r SET r.id_file=1 WHERE r.id_report=1;						
+UPDATE report r SET r.id_file=2 WHERE r.id_report=2;		
+UPDATE report r SET r.id_file=3 WHERE r.id_report=3;		
+UPDATE report r SET r.id_file=4 WHERE r.id_report=4;		
+UPDATE report r SET r.id_file=5 WHERE r.id_report=5;					
