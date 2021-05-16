@@ -25,9 +25,4 @@ public class ReportController {
 		this.reportService = reportService;
 	}
 
-	@GetMapping("/{id}")
-	public ReportOutput report(@PathVariable (value = "id") Integer id){
-		return reportService.getReport(id);
-	} 
-
 }

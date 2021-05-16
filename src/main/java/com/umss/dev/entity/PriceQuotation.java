@@ -54,8 +54,11 @@ public class PriceQuotation {
 	@JoinColumn(name="idBusiness")
 	private Business business;
 	
-	@Column(columnDefinition = "boolean default false")
-	private boolean selected;
+	/*@Column(columnDefinition = "boolean default false")
+	private boolean selected;*/
+	
+	@Column(length=2)
+	private String selected;
 	
 	public PriceQuotation(String wayOfPayment, int garantyTerm, int deliveryTerm, String offValidation, Double total,
 			PriceQuotationRequest priceQuotationRequest, List<PriceQuotationDetail> priceQuotationDetail,
@@ -167,11 +170,11 @@ public class PriceQuotation {
 		this.business = business;
 	}
 
-	public boolean getSelected() {
+	public String getSelected() {
 		return selected;
 	}
 
-	public void setSelected(boolean selected) {
+	public void setSelected(String selected) {
 		this.selected = selected;
 	}	
 	

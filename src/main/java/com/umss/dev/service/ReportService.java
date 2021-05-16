@@ -31,33 +31,5 @@ public class ReportService {
 		this.priceQuotationRequestService = priceQuotationRequestService;
 		this.modelMapper = modelMapper;
 	}
-
-
-	public ReportOutput getReport(Integer id) {
-		
-		ReportOutput report= new ReportOutput();
-		List<Report> listReport= reportRepository.findAll();
-		Iterable<PriceQuotationOutput> quotations = new ArrayList<PriceQuotationOutput>();
-		
-		for(Report reports: listReport) {
-		
-			if(reports.getPriceQuotation().getIdPriceQuotationRequest()==id) {
-	
-				quotations= priceQuotationRequestService.getPriceQuotation(id);
-				for(PriceQuotationOutput allQuotation: quotations) {
-					System.out.println("TRUE OR FALSE: "+ allQuotation.getSelected());
-					if(allQuotation.getSelected().booleanValue()== true) {
-						report.setNameBusiness(allQuotation.getNameBussiness());
-						report.setAreaBusiness(allQuotation.getNameArea());
-						report.setCommentary(reports.getCommentary());
-						report.setTotalQuotation(allQuotation.getTotal());
-					}
-				}
-			}
-			
-			
-		}
-		return report;
-	}
 	
 }

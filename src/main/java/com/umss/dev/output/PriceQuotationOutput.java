@@ -1,5 +1,7 @@
 package com.umss.dev.output;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.umss.dev.entity.PriceQuotationDetail;
@@ -11,8 +13,9 @@ public class PriceQuotationOutput {
 	private String nameBussiness;
 	private String nameArea;
 	private Double total;
+	private LocalDate deadline;
 	private List<PriceQuotationDetail> priceQuotationDetail;
-	private Boolean selected;
+	private String selected;
 	
 	public int getIdPriceQuotation() {
 		return idPriceQuotation;
@@ -62,12 +65,21 @@ public class PriceQuotationOutput {
 		this.priceQuotationDetail = priceQuotationDetail;
 	}
 
-	public Boolean getSelected() {
+	/*public String getSelected() {
 		return selected;
 	}
 
-	public void setSelected(Boolean selected) {
+	public void setSelected(String selected) {
 		this.selected = selected;
+	}*/
+
+	public LocalDate getDeadline() {
+		return deadline;
 	}
+
+	public void setDeadline(LocalDate deadline) {
+		this.deadline = deadline;
+	}
+	
 	
 }

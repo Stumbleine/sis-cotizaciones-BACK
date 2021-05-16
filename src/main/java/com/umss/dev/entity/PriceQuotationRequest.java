@@ -1,6 +1,7 @@
 package com.umss.dev.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -34,7 +35,7 @@ public class PriceQuotationRequest {
 	private String link;
 	
 	@Column
-	private Date deadline;
+	private LocalDate deadline;
 	
 	/**/
 	@OneToMany(mappedBy = "priceQuotationRequest",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
@@ -100,11 +101,11 @@ public class PriceQuotationRequest {
 		ComparativeTableOfQuotes = comparativeTableOfQuotes;
 	}
 	
-	public Date getDeadline() {
+	public LocalDate  getDeadline() {
 		return deadline;
 	}
 
-	public void setDeadline(Date deadline) {
+	public void setDeadline(LocalDate  deadline) {
 		this.deadline = deadline;
 	}
 }
