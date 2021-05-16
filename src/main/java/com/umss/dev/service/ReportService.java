@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.entity.Report;
+import com.umss.dev.output.CompletePriceQuotation;
 import com.umss.dev.output.DocumentQuotationAtributesOutput;
 import com.umss.dev.output.PriceQuotationOutput;
 import com.umss.dev.output.ReportOutput;
@@ -30,10 +31,6 @@ public class ReportService {
 	@Autowired
 	private PriceQuotationService priceQuotationService;
 	
-	private PriceQuotationRepository priceQuotationRepository;	
-	
-
-
 	public ReportService(ReportRepository reportRepository, PriceQuotationRequestService priceQuotationRequestService,
 			ModelMapper modelMapper, PriceQuotationService priceQuotationService) {
 		super();
@@ -43,31 +40,25 @@ public class ReportService {
 		this.priceQuotationService = priceQuotationService;
 	}
 
-
-
-
 	public ReportOutput getReport(Integer id) {
 		ReportOutput reportOutput=new ReportOutput();
 		DocumentQuotationAtributesOutput documentQuotationAtributesOutput=new DocumentQuotationAtributesOutput();
-		//PriceQuotation priceQuotation=priceQuotationRepository.findById(reportRepository.idQuotation(id)).get();
-		//System.out.println(reportRepository.idQuotation(id));
-		Report report=reportRepository.findById(reportRepository.idReport(id)).get();
-		getAtributesDocument(reportOutput, documentQuotationAtributesOutput, report);
-		//getAtributesQuotaion(priceQuotation, reportOutput);
-		PriceQuotationRequest priceQuotations=priceQuotationRequestService.gitById(report.getPriceQuotation().getIdPriceQuotationRequest());
-		PriceQuotation priceQuotation=getPriceQuotaion(report.getPriceQuotation().getIdPriceQuotationRequest());
 		
-		System.out.println(documentQuotationAtributesOutput.getNameDocumenQuotaion());
+		//System.out.println(priceQuotation.getBusiness().getName());
+		try {
+			CompletePriceQuotation priceQuotation=priceQuotationService.findPriceQuotationById(reportRepository.idQuotation(id));
+			Report report=reportRepository.findById(reportRepository.idReport(id)).get();
+			getAtributesDocument(reportOutput, documentQuotationAtributesOutput, report);
+			getAtributesQuotaion(priceQuotation, reportOutput);
+		} catch (Exception e) {
+			reportOutput=null;
+		}
+		
+		
+		//System.out.println(documentQuotationAtributesOutput.getNameDocumenQuotaion());
 		return reportOutput;
 	}
 	
-	private PriceQuotation getPriceQuotaion(int id) {
-		Iterable<PriceQuotationOutput> list=priceQuotationRequestService.getPriceQuotation(id);
-		
-		return null;
-	}
-
-
 
 
 	private void getAtributesDocument(ReportOutput reportOutput,DocumentQuotationAtributesOutput documentQuotationAtributesOutput,Report report) {
@@ -80,11 +71,11 @@ public class ReportService {
 		
 	}
 
-	private void getAtributesQuotaion(PriceQuotation priceQuotation,ReportOutput reportOutput) {
+	private void getAtributesQuotaion(CompletePriceQuotation priceQuotation,ReportOutput reportOutput) {
 		
 		reportOutput.setTotal(priceQuotation.getTotal());
 		reportOutput.setNameBusiness(priceQuotation.getBusiness().getName());
-		reportOutput.setNameArea(priceQuotation.getBusiness().getArea().getName());
+		reportOutput.setNameArea(priceQuotation.getBusiness().getNameArea());;
 		
 	}
 }
