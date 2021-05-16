@@ -49,19 +49,27 @@ public class ReportService {
 	public ReportOutput getReport(Integer id) {
 		ReportOutput reportOutput=new ReportOutput();
 		DocumentQuotationAtributesOutput documentQuotationAtributesOutput=new DocumentQuotationAtributesOutput();
-		
-		
 		//PriceQuotation priceQuotation=priceQuotationRepository.findById(reportRepository.idQuotation(id)).get();
 		//System.out.println(reportRepository.idQuotation(id));
 		Report report=reportRepository.findById(reportRepository.idReport(id)).get();
-		
 		getAtributesDocument(reportOutput, documentQuotationAtributesOutput, report);
 		//getAtributesQuotaion(priceQuotation, reportOutput);
+		PriceQuotationRequest priceQuotations=priceQuotationRequestService.gitById(report.getPriceQuotation().getIdPriceQuotationRequest());
+		PriceQuotation priceQuotation=getPriceQuotaion(report.getPriceQuotation().getIdPriceQuotationRequest());
 		
 		System.out.println(documentQuotationAtributesOutput.getNameDocumenQuotaion());
 		return reportOutput;
 	}
 	
+	private PriceQuotation getPriceQuotaion(int id) {
+		Iterable<PriceQuotationOutput> list=priceQuotationRequestService.getPriceQuotation(id);
+		
+		return null;
+	}
+
+
+
+
 	private void getAtributesDocument(ReportOutput reportOutput,DocumentQuotationAtributesOutput documentQuotationAtributesOutput,Report report) {
 		documentQuotationAtributesOutput.setContent(report.getDocumentQuotation().getContent());
 		documentQuotationAtributesOutput.setNameDocumenQuotaion(report.getDocumentQuotation().getNameDocumenQuotaion());

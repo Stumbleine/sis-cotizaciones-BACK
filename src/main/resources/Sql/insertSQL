@@ -106,7 +106,7 @@ INSERT INTO `user` (`id_user`, `email`, `name`, `password`) VALUES
 				('10', NULL, '10', '2'),
 				('11', NULL, '11', '2');
 
-	INSERT INTO `area` (`id_area`, `name`) VALUES 
+	INSERT INTO `area` (`id_area`, `name_area`) VALUES
 				('1', 'Electrónica'), 
 				('2', 'Inmuebles');
 
@@ -118,39 +118,38 @@ INSERT INTO `user` (`id_user`, `email`, `name`, `password`) VALUES
 						('5', 'Av. martin cardenas entre calle cochabamba', 'empresa que distribuye muebles', 'NOELIA@gmail.com', 'MUEBLES NOELIA', '123756989102', '67125289', '2'),
 						('6', 'Av. calle pando entre madre de DiosII', 'empresa que distribuye muebles', 'jheyson@gmail.com', 'MUEBLES JHEYSON', '658716989102', '72325412', '2');
 
-	INSERT INTO `price_quotation` (`id_price_quotation`, `delivery_term`, `garanty_term`, `off_validation`, `state`, `total`, `way_of_payment`, `id_business`, `id_price_quotation_request`) VALUES 
-												('1', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '1', '6'),
-												('2', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '2', '6'),
-												('3', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '3', '6'),
-												('4', '24', '32', '2020-06-12', 'SIN COTIZAR', '300', 'Al Contado y a credito', '4', '6'),
-												('14', '14', '22', '2020-06-12', 'EXPIRADO', '860', 'A Creadito', '5', '6'),
+	INSERT INTO `price_quotation` (`id_price_quotation`, `delivery_term`, `garanty_term`, `off_validation`, `state`, `total`, `way_of_payment`, `id_business`, `id_price_quotation_request`,`selected`) VALUES 
+												('1', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '1', '6','1'),
+												('2', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '2', '6',0),
+												('3', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '3', '6',0),
+												('4', '24', '32', '2020-06-12', 'SIN COTIZAR', '300', 'Al Contado y a credito', '4', '6',0),
+												('14', '14', '22', '2020-06-12', 'EXPIRADO', '860', 'A Creadito', '5', '6',0),
 
-												('5', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '1', '7'),
-												('6', '14', '23', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '2', '7'),
-												('7', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '3', '7'),
+												('5', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '1', '7',0),
+												('6', '14', '23', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '2', '7',0),
+												('7', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '3', '7',0),
 
-												('8', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '1', '8'),
-												('9', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '2', '8'),
-												('10', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '3', '8'),
-												('11', '24', '12', '2020-06-12', 'INCOMPLETO', '600', 'Al Contado', '4', '8'),
-												('12', '14', '22', '2020-06-12', 'SIN COTIZAR', '860', 'A Creadito', '5', '8'),
-												('13', '24', '32', '2020-06-12', 'SIN COTIZAR', '300', 'Al Contado y a credito', '6', '8'),
+												('8', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '1', '8',0),
+												('9', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '2', '8',0),
+												('10', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '3', '8',0),
+												('11', '24', '12', '2020-06-12', 'INCOMPLETO', '600', 'Al Contado', '4', '8',0),
+												('12', '14', '22', '2020-06-12', 'SIN COTIZAR', '860', 'A Creadito', '5', '8',0),
+												('13', '24', '32', '2020-06-12', 'SIN COTIZAR', '300', 'Al Contado y a credito', '6', '8',0),
 
 												
 
 											
-												('15', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '1', '9'),
-												('16', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '2', '9'),
-												('17', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '3', '9'),
-												('18', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '4', '9'),
+												('15', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '1', '9',0),
+												('16', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '2', '9',0),
+												('17', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '3', '9',0),
+												('18', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '4', '9',0),
 
-												('19', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '4', '5'),
-												('20', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '6', '5'),
+												('19', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '4', '5',0),
+												('20', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '6', '5',0),
 												
-												('21', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '3', '10'),
-												('22', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '4', '11'),
-												('23', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '6', '11');
-												
+												('21', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '3', '10',0),
+												('22', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '4', '11',0),
+												('23', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '6', '11',0);
 
 	INSERT INTO `price_qoutation_detail` (`id_price_quotation_detail`, `description`, `quantity`, `total_price`, `unit`, `unit_price`, `id_price_quotation`) VALUES
 														('1', 'sillas de madera', '20','200', 'pieza', '4000', '1'),
@@ -291,5 +290,9 @@ INSERT INTO `user` (`id_user`, `email`, `name`, `password`) VALUES
 														('114', 'venta de madera  ', '50','100', 'unidades', '5000', '23'),
 														('115', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '23');
 														
-														
+	INSERT INTO `document_quotation` (`id_document_quotaion`, `content`, `name_documen_quotaion`, `size_docuemnt_quotaion`, `id_report`) VALUES 
+									(1, LOAD_FILE('C:\Users\Asus\Desktop\prueba.pdf'), Informe de Aprobacion , '1620', '1');
+	
+	INSERT INTO `report` (`id_report`, `commentary`, `id_file`, `id_price_quotation_request`) VALUES 
+						(1, 'Se elegio comprar los productos de esta empresa porque cumple con lo requerido y los precios son accesible', NULL, 6);													
 														
