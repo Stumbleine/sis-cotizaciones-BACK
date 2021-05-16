@@ -15,6 +15,8 @@ public class BusinessOutput {
 	private String phone;
 	private String eMail;
 	private String nit;
+	private int idArea;
+	private String nameArea;
 	//private List<PriceQuotation> priceQuotations ;
 	
 	public BusinessOutput () {}
@@ -61,6 +63,21 @@ public class BusinessOutput {
 	public void setNit(String nit) {
 		this.nit = nit;
 	}
-	
+
+	public int getIdArea() {
+		return idArea;
+	}
+
+	public void setIdArea(int idArea) {
+		this.idArea = idArea;
+	}
+
+	public String getNameArea() {
+		return nameArea;
+	}
+
+	public void setNameArea(String nameArea) {
+		this.nameArea = nameArea;
+	}
 	
 }

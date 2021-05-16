@@ -48,7 +48,6 @@ public class Area {
 	}
 
 
-
 	public int getIdArea() {
 		return idArea;
 	}

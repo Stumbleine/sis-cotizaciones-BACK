@@ -39,14 +39,14 @@ public class AreaController {
 		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
 	}*/
 	
-	@GetMapping("getBusinessesById/{id}")
+	@GetMapping("getBusinessesByAreaId/{id}")
 	public Iterable<BusinessOutput> getBusinessByIdArea(@PathVariable (value = "id") Integer areaId){
 		
 		return areaService.getBusinessByIdArea(areaId);
 		
 	}
 										
-	@GetMapping("getBusinessesByName/{name}")
+	@GetMapping("getBusinessesByAreaName/{name}")
 	public Iterable<BusinessOutput> getBusinessByAreaName(@PathVariable (value = "name") String areaName){
 		
 		return areaService.getBusinessByArea(areaName);
