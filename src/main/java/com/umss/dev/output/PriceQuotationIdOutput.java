@@ -2,12 +2,12 @@ package com.umss.dev.output;
 
 import lombok.Data;
 
-public class CompletePriceQuotationOutput {
+public class PriceQuotationIdOutput {
 
 	int idPriceQuotation;
 	// datos de la empresas
 
-	public CompletePriceQuotationOutput() {
+	public PriceQuotationIdOutput() {
 
 	}	
 	

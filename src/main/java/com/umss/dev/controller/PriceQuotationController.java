@@ -18,7 +18,8 @@ import java.util.Optional;
 import javax.annotation.security.PermitAll;
 
 import com.umss.dev.entity.PriceQuotation;
-import com.umss.dev.output.CompletePriceQuotationOutput;
+import com.umss.dev.output.PriceQuotationIdOutput;
+import com.umss.dev.output.CompletePriceQuotation;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.output.PriceQuotationOutput;
 import com.umss.dev.repository.PriceQuotationRepository;
@@ -59,8 +60,8 @@ public class PriceQuotationController {
 	}
 	
 	@GetMapping("/getIdOfNewQuotation")
-	public CompletePriceQuotationOutput getIdOfNewQuotation(){
-		CompletePriceQuotationOutput newQuotation = new CompletePriceQuotationOutput();
+	public PriceQuotationIdOutput getIdOfNewQuotation(){
+		PriceQuotationIdOutput newQuotation = new PriceQuotationIdOutput();
 		newQuotation.setIdPriceQuotation(lastPriceQuotationSaved.getIdPriceQuotation());
 		return newQuotation;
 	}
@@ -81,11 +82,11 @@ public class PriceQuotationController {
 	}
 	
 	
-	/*@GetMapping("/{id}")
-	public ResponseEntity<CompletePriceQuotationOutput> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
+	@GetMapping("getById/{id}")
+	public ResponseEntity<CompletePriceQuotation> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		
-		return ResponseEntity.ok( priceQuotationService.getPriceQuotation(idPriceQuotation));
-	}*/
+		return ResponseEntity.ok( priceQuotationService.findPriceQuotationById(idPriceQuotation));
+	}
     
 	
 }

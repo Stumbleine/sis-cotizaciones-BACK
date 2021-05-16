@@ -47,6 +47,16 @@ public class Area {
 		super();
 	}
 
+	
+	
+	public int getIdArea() {
+		return idArea;
+	}
+
+	public void setIdArea(int idArea) {
+		this.idArea = idArea;
+	}
+
 	public String getName() {
 		return name;
 	}
