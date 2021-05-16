@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
-@Data
+//@Data
 @Entity(name = "PriceQuotation")
 @Table(name = "PRICE_QUOTATION")
 public class PriceQuotation {
@@ -54,6 +54,9 @@ public class PriceQuotation {
 	@JoinColumn(name="idBusiness")
 	private Business business;
 	
+	@Column(columnDefinition = "boolean default false")
+	private boolean selected;
+	
 	public PriceQuotation(String wayOfPayment, int garantyTerm, int deliveryTerm, String offValidation, Double total,
 			PriceQuotationRequest priceQuotationRequest, List<PriceQuotationDetail> priceQuotationDetail,
 			String state) {
@@ -68,19 +71,13 @@ public class PriceQuotation {
 		this.state = state;
 	}
 
-	
-
 	public String getState() {
 		return state;
 	}
 
-
-
 	public void setState(String state) {
 		this.state = state;
 	}
-
-
 
 	public PriceQuotation(int idPriceQuotation, String wayOfPayment, int garantyTerm, int deliveryTerm,
 			String offValidation, Double total, String state) {
@@ -94,106 +91,88 @@ public class PriceQuotation {
 		this.state = state;
 	}
 
-
-
 	public PriceQuotation() {
 		super();
 	}
-
 
 	public int getIdPriceQuotation() {
 		return idPriceQuotation;
 	}
 
-
 	public void setIdPriceQuotation(int idPriceQuotation) {
 		this.idPriceQuotation = idPriceQuotation;
 	}
-
 
 	public String getWayOfPayment() {
 		return wayOfPayment;
 	}
 
-
 	public void setWayOfPayment(String wayOfPayment) {
 		this.wayOfPayment = wayOfPayment;
 	}
-
 
 	public int getGarantyTerm() {
 		return garantyTerm;
 	}
 
-
 	public void setGarantyTerm(int garantyTerm) {
 		this.garantyTerm = garantyTerm;
 	}
-
 
 	public int getDeliveryTerm() {
 		return deliveryTerm;
 	}
 
-
 	public void setDeliveryTerm(int deliveryTerm) {
 		this.deliveryTerm = deliveryTerm;
 	}
-
 
 	public String getOffValidation() {
 		return offValidation;
 	}
 
-
 	public void setOffValidation(String offValidation) {
 		this.offValidation = offValidation;
 	}
-
 
 	public Double getTotal() {
 		return total;
 	}
 
-
 	public void setTotal(Double total) {
 		this.total = total;
 	}
-
-
 
 	public PriceQuotationRequest getPriceQuotationRequest() {
 		return priceQuotationRequest;
 	}
 
-
-
 	public void setPriceQuotationRequest(PriceQuotationRequest priceQuotationRequest) {
 		this.priceQuotationRequest = priceQuotationRequest;
 	}
-
-
 
 	public List<PriceQuotationDetail> getPriceQuotationDetail() {
 		return priceQuotationDetail;
 	}
 
-
-
 	public void setPriceQuotationDetail(List<PriceQuotationDetail> priceQuotationDetail) {
 		this.priceQuotationDetail = priceQuotationDetail;
 	}
-
-
 
 	public Business getBusiness() {
 		return business;
 	}
 
-
-
 	public void setBusiness(Business business) {
 		this.business = business;
+	}
+
+	public boolean getSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}	
 	
 }
