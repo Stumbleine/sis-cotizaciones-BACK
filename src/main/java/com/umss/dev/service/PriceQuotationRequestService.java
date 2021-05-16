@@ -50,5 +50,9 @@ public class PriceQuotationRequestService {
 	      }
 	       
 	   }
+	
+	public PriceQuotationRequest gitById(int id) {
+		return priceQuotationRequestRepository.findById(id).get();
+	}
 
 }

@@ -58,4 +58,12 @@ public class Report {
 		this.priceQuotation = priceQuotation;
 	}
 
+	public DocumentQuotation getDocumentQuotation() {
+		return documentQuotation;
+	}
+
+	public void setDocumentQuotation(DocumentQuotation documentQuotation) {
+		this.documentQuotation = documentQuotation;
+	}
+ 
 }

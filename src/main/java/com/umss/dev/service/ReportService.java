@@ -1,6 +1,7 @@
-package com.umss.dev.service;
+	package com.umss.dev.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,10 +9,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.entity.Report;
+import com.umss.dev.output.DocumentQuotationAtributesOutput;
 import com.umss.dev.output.PriceQuotationOutput;
 import com.umss.dev.output.ReportOutput;
+import com.umss.dev.repository.PriceQuotationRepository;
 import com.umss.dev.repository.ReportRepository;
 
 @Service
@@ -23,41 +27,56 @@ public class ReportService {
 	private PriceQuotationRequestService priceQuotationRequestService;
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
+	private PriceQuotationService priceQuotationService;
 	
+	private PriceQuotationRepository priceQuotationRepository;	
 	
+
+
 	public ReportService(ReportRepository reportRepository, PriceQuotationRequestService priceQuotationRequestService,
-			ModelMapper modelMapper) {
+			ModelMapper modelMapper, PriceQuotationService priceQuotationService) {
+		super();
 		this.reportRepository = reportRepository;
 		this.priceQuotationRequestService = priceQuotationRequestService;
 		this.modelMapper = modelMapper;
+		this.priceQuotationService = priceQuotationService;
 	}
+
+
 
 
 	public ReportOutput getReport(Integer id) {
+		ReportOutput reportOutput=new ReportOutput();
+		DocumentQuotationAtributesOutput documentQuotationAtributesOutput=new DocumentQuotationAtributesOutput();
 		
-		ReportOutput report= new ReportOutput();
-		List<Report> listReport= reportRepository.findAll();
-		Iterable<PriceQuotationOutput> quotations = new ArrayList<PriceQuotationOutput>();
 		
-		for(Report reports: listReport) {
+		//PriceQuotation priceQuotation=priceQuotationRepository.findById(reportRepository.idQuotation(id)).get();
+		//System.out.println(reportRepository.idQuotation(id));
+		Report report=reportRepository.findById(reportRepository.idReport(id)).get();
 		
-			if(reports.getPriceQuotation().getIdPriceQuotationRequest()==id) {
-	
-				quotations= priceQuotationRequestService.getPriceQuotation(id);
-				for(PriceQuotationOutput allQuotation: quotations) {
-					System.out.println("TRUE OR FALSE: "+ allQuotation.getSelected());
-					if(allQuotation.getSelected().booleanValue()== true) {
-						report.setNameBusiness(allQuotation.getNameBussiness());
-						report.setAreaBusiness(allQuotation.getNameArea());
-						report.setCommentary(reports.getCommentary());
-						report.setTotalQuotation(allQuotation.getTotal());
-					}
-				}
-			}
-			
-			
-		}
-		return report;
+		getAtributesDocument(reportOutput, documentQuotationAtributesOutput, report);
+		//getAtributesQuotaion(priceQuotation, reportOutput);
+		
+		System.out.println(documentQuotationAtributesOutput.getNameDocumenQuotaion());
+		return reportOutput;
 	}
 	
+	private void getAtributesDocument(ReportOutput reportOutput,DocumentQuotationAtributesOutput documentQuotationAtributesOutput,Report report) {
+		documentQuotationAtributesOutput.setContent(report.getDocumentQuotation().getContent());
+		documentQuotationAtributesOutput.setNameDocumenQuotaion(report.getDocumentQuotation().getNameDocumenQuotaion());
+		documentQuotationAtributesOutput.setSizeDocuemntQuotaion(report.getDocumentQuotation().getSizeDocuemntQuotaion());
+		
+		reportOutput.setDescripcion(report.getCommentary());
+		reportOutput.setDocumentQuotationAtributesOutput(documentQuotationAtributesOutput);
+		
+	}
+
+	private void getAtributesQuotaion(PriceQuotation priceQuotation,ReportOutput reportOutput) {
+		
+		reportOutput.setTotal(priceQuotation.getTotal());
+		reportOutput.setNameBusiness(priceQuotation.getBusiness().getName());
+		reportOutput.setNameArea(priceQuotation.getBusiness().getArea().getName());
+		
+	}
 }

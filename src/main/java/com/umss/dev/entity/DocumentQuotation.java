@@ -78,5 +78,13 @@ public class DocumentQuotation {
 	public void setReport(Report report) {
 		this.report = report;
 	}
+
+	public String getNameDocumenQuotaion() {
+		return nameDocumenQuotaion;
+	}
+
+	public void setNameDocumenQuotaion(String nameDocumenQuotaion) {
+		this.nameDocumenQuotaion = nameDocumenQuotaion;
+	}
 	
 }
