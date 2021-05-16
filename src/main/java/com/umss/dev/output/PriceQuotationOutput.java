@@ -12,6 +12,7 @@ public class PriceQuotationOutput {
 	private String nameArea;
 	private Double total;
 	private List<PriceQuotationDetail> priceQuotationDetail;
+	private Boolean selected;
 	
 	public int getIdPriceQuotation() {
 		return idPriceQuotation;
@@ -60,7 +61,13 @@ public class PriceQuotationOutput {
 	public void setPriceQuotationDetail(List<PriceQuotationDetail> priceQuotationDetail) {
 		this.priceQuotationDetail = priceQuotationDetail;
 	}
-	
-	
+
+	public Boolean getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Boolean selected) {
+		this.selected = selected;
+	}
 	
 }
