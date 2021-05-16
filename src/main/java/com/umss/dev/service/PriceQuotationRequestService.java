@@ -33,8 +33,8 @@ public class PriceQuotationRequestService {
 	}
 	
 	public Iterable<PriceQuotationOutput> getPriceQuotation(Integer idPriceQuotation){
-		
-		Optional<PriceQuotationRequest> request= priceQuotationRequestRepository.findById(idPriceQuotation);
+		Optional<SpendingUnitRequest> srequest= spendingUnitRequestRepository.findById(idPriceQuotation);
+		Optional<PriceQuotationRequest> request= priceQuotationRequestRepository.findById(srequest.get().getPriceQuotation().getIdPriceQuotationRequest());
 		return priceQuotationService.getPriceQuotationByOrder(request.get().getIdPriceQuotationRequest());
 	}
 	
