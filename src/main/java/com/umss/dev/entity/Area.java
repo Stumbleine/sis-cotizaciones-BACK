@@ -23,13 +23,12 @@ import lombok.Data;
 public class Area {
 
 	@Id
-	@GeneratedValue(strategy  = GenerationType.AUTO)
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idArea;
 	@Column
 	private String name;
 	
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
-	@JoinColumn(name="idBusiness")	
+	@OneToMany(mappedBy = "area",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})	
 	private List<Business> business;
 
 	public Area(String name, List<Business> business) {

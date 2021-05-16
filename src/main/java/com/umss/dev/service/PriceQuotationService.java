@@ -75,14 +75,13 @@ public class PriceQuotationService {
 	}*/
 	
 	public Iterable<PriceQuotationOutput> getPriceQuotationByOrder(Integer idPriceQuotationRequest){
+
 		List <PriceQuotation> allPriceQuotation = priceQuotationRepository.findAll();
 		List <PriceQuotationOutput> pricequotations = new ArrayList<PriceQuotationOutput>();
 		List<Integer> reqIds = new ArrayList<Integer>();
 		List <PriceQuotationOutput> allPriceQuotationByOrder = new ArrayList<PriceQuotationOutput>();
-	
-		
+
 			for (PriceQuotation req: allPriceQuotation) {
-				
 				if(idPriceQuotationRequest == req.getPriceQuotationRequest().getIdPriceQuotationRequest()) {
 		        PriceQuotationOutput newReq = new PriceQuotationOutput();
 				newReq.setIdPriceQuotation(req.getIdPriceQuotation());					
@@ -90,10 +89,12 @@ public class PriceQuotationService {
 				newReq.setState(req.getState());
 				newReq.setNameBussiness(req.getBusiness().getName());
 				newReq.setNameArea(req.getBusiness().getArea().getName());
+				newReq.setTotal(req.getTotal());
+				newReq.setPriceQuotationDetail(req.getPriceQuotationDetail());
 				pricequotations.add(newReq);
+				
 				}
 	         }
-		
 		Collections.sort(reqIds);
 		Collections.reverse(reqIds);
 		

@@ -1,43 +1,295 @@
+INSERT INTO `user` (`id_user`, `email`, `name`, `password`) VALUES 
+					('1', 'marko@gmail.com', 'Marco Antonio Buenavista gonzales', 'marco2020'), 
+					('2', 'valerio@gmail.com', 'Valeriano valdes', 'valerio2020'), 
+					('3', 'Jheyson@gmail.com', 'Json valdes', 'Json2020'), 
+					('4', 'Noe@gmail.com', 'Noelia Calcina', 'noe2020'), 
+					('5', 'Jorge@gmail.com', 'Jorge Flores', 'jorge2020');
+	INSERT INTO `spending_unit` (`id_spending_unit`, `name`) VALUES 
+					('1', 'Deportes'), 
+					('2', 'Educación'), 
+					('3', 'Seguridad'), 
+					('4', 'Salud');
+	INSERT INTO `role` (`id_role`, `description`, `role_name`) VALUES 
+					('1', NULL, 'Comun'), 
+					('2', NULL, 'Admin');
+	INSERT INTO `administration` (`id_administration`, `name`) VALUES 
+					('1', 'administracion');
+	INSERT INTO `user_role` (`id_user_role`, `id_administration`, `id_role`, `id_spending_unit`, `id_user`) VALUES 
+					('1', NULL, '1', '1', '1'), 
+					('2', '1', '2', NULL, '2'), 
+					('3', NULL, '1', '2', '3'), 
+					('4', NULL, '2', '4', '4'), 
+					('5', NULL, '1', '3', '5');
+	INSERT INTO `spending_unit_request` (`id_spending_unit_request`, `date`, `estimated_amount`, `initials`, `justification`, `status`, `type`, `id_price_quotation_request`, `id_user_role`) VALUES 
+					('1', '2021-05-10', '100', 'SDC', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Pendiente', 'Solicitud de Compra', NULL, '1'), 
+					('3', '2021-04-13', '300', 'JCH', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Rechazado', 'Solicitud de Compra', NULL, '3'), 
+					('4', '2021-04-05', '600', 'JBU', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Autorizado', 'Solicitud de Compra', NULL, '4'), 
+					('5', '2021-04-12', '500', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Cotizando', 'Solicitud de Compra', NULL, '5'),
+					('6', '2021-04-12', '900', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Aprobado', 'Solicitud de Compra', NULL, '4'),
+					('7', '2021-04-12', '900', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Rechazado', 'Solicitud de Compra', NULL, '1'),
+					('8', '2021-04-12', '900', 'GBB', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Cotizando', 'Solicitud de Compra', NULL, '3'),
+					('9', '2021-04-12', '400', 'YCV', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Cotizando', 'Solicitud de servicio', NULL, '3'),
+					('10', '2021-04-12', '400', 'YCV', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Aprobado', 'Solicitud de servicio', NULL, '3'),
+					('11', '2021-04-12', '400', 'YCV', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Aprobado', 'Solicitud de servicio', NULL, '3');
+	INSERT INTO `request_detail` (`id_request_detail`, `description`, `quantity`, `unit`, `id_spending_unit_request`) VALUES 
+					('1', 'sillas de madera ', '20', 'pieza', '1'),
+					('2', 'estante de madera', '1', 'pieza', '1'),
+					('3', 'mesa de madera para 10 personas', '2', 'pieza', '1'),
+					('4', 'venta de madera', '50', 'pieza', '1'),
+					('5', 'mesa de madrea para 3 personas', '200', 'pieza', '1'),
 
-INSERT INTO `user` (`id_user`, `email`, `name`, `password`) VALUES ('1', 'marko@gmail.com', 'Marco Antonio Buenavista gonzales', 'marco2020'), ('2', 'valerio@gmail.com', 'Valeriano valdes', 'valerio2020'), ('3', 'Jheyson@gmail.com', 'Json valdes', 'Json2020'), ('4', 'Noe@gmail.com', 'Noelia Calcina', 'noe2020'), ('5', 'Jorge@gmail.com', 'Jorge Flores', 'jorge2020');
-INSERT INTO `spending_unit` (`id_spending_unit`, `name`) VALUES ('1', 'Deportes'), ('2', 'Educación'), ('3', 'Seguridad'), ('4', 'Salud');
-INSERT INTO `role` (`id_role`, `description`, `role_name`) VALUES ('1', NULL, 'Comun'), ('2', NULL, 'Admin');
-INSERT INTO `administration` (`id_administration`, `name`) VALUES ('1', 'administracion');
-INSERT INTO `user_role` (`id_user_role`, `id_administration`, `id_role`, `id_spending_unit`, `id_user`) VALUES ('1', NULL, '1', '1', '1'), (NULL, '1', '2', NULL, '2'), ('3', NULL, '1', '2', '3'), ('4', NULL, '2', '4', '4'), ('5', NULL, '1', '3', '5');
-INSERT INTO `spending_unit_request` (`id_spending_unit_request`, `date`, `estimated_amount`, `initials`, `justification`, `status`, `type`, `id_price_quotation_request`, `id_user_role`) VALUES 
-				('1', '2021-05-10', '100', 'SDC', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Pendiente', 'Solicitud de Compra', NULL, '1'), 
-				('3', '2021-04-13', '300', 'JCH', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Rechazado', 'Solicitud de Servicio', NULL, '3'), 
-				('4', '2021-04-05', '600', 'JBU', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Autorizado', 'Solicitud de Compra', NULL, '4'), 
-				('5', '2021-04-12', '500', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Cotizando', 'Solicitud de Compra y Servicio', NULL, '5'),
-				('6', '2021-04-12', '900', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Aprobado', 'Solicitud de Compra y Servicio', NULL, '1');
-INSERT INTO `request_detail` (`id_request_detail`, `description`, `quantity`, `unit`, `id_spending_unit_request`) VALUES 
-															('1', 'repuesto para los equipos para el laboratorio de informatica y sistemas', '200', 'pieza', '1'), ('2', 'servicio de matenimiento para los equipos en el laboratorio de informatica y sistemas ', '3050', NULL, '1'), ('3', 'impresora para el centro de estudiantes de ing. de sistemas', '3', 'pieza', '1'),('4', 'Banner informativo para los nuevos estudiantes de la carrea de ing. sistemas ', '2000', 'unidades', '1'), ('5', 'Servicio de amplificacion para el aniversario de la carrera ing. sistemas', '900', NULL, '1'), ('6', 'sillas para el centro de estudiantes de la carrera de ing, industrial', '50', 'pieza', '1'),
-															('7', 'repuesto para los equipos para el laboratorio de informatica y sistemas', '200', 'pieza', '3'), ('8', 'servicio de matenimiento para los equipos en el laboratorio de informatica y sistemas ', '800', NULL, '3'), ('9', 'impresora para el centro de estudiantes de ing. de sistemas', '3', 'pieza', '3'),('10', 'Banner informativo para los nuevos estudiantes de la carrea de ing. sistemas ', '2000', 'unidades', '3'), ('11', 'Servicio de amplificacion para el aniversario de la carrera ing. sistemas', '300', NULL, '3'), ('12', 'sillas para el centro de estudiantes de la carrera de ing, industrial', '50', 'pieza', '3'),
-															('13', 'repuesto para los equipos para el laboratorio de informatica y sistemas', '200', 'pieza', '4'), ('14', 'servicio de matenimiento para los equipos en el laboratorio de informatica y sistemas ', '700', NULL, '4'), ('15', 'impresora para el centro de estudiantes de ing. de sistemas', '4', 'pieza', '1'),('16', 'Banner informativo para los nuevos estudiantes de la carrea de ing. sistemas ', '2000', 'unidades', '4'), ('17', 'Servicio de amplificacion para el aniversario de la carrera ing. sistemas', '300', NULL, '4'), ('18', 'sillas para el centro de estudiantes de la carrera de ing, industrial', '50', 'pieza', '4'),
-															('19', 'repuesto para los equipos para el laboratorio de informatica y sistemas', '200', 'pieza', '5'), ('20', 'servicio de matenimiento para los equipos en el laboratorio de informatica y sistemas ', '1000', NULL, '5'), ('21', 'impresora para el centro de estudiantes de ing. de sistemas', '3', 'pieza', '5'),('22', 'Banner informativo para los nuevos estudiantes de la carrea de ing. sistemas ', '2000', 'unidades', '5'), ('23', 'Servicio de amplificacion para el aniversario de la carrera ing. sistemas', '300', NULL, '5'), ('24', 'sillas para el centro de estudiantes de la carrera de ing, industrial', '50', 'pieza', '5'),
-															('25', 'repuesto para los equipos para el laboratorio de informatica y sistemas', '200', 'pieza', '6'), ('26', 'servicio de matenimiento para los equipos en el laboratorio de informatica y sistemas ', '1200', NULL, '6'), ('27', 'impresora para el centro de estudiantes de ing. de sistemas', '3', 'pieza', '6'),('28', 'Banner informativo para los nuevos estudiantes de la carrea de ing. sistemas ', '2000', 'unidades', '6'), ('29', 'Servicio de amplificacion para el aniversario de la carrera ing. sistemas', '300', NULL, '6'), ('30', 'sillas para el centro de estudiantes de la carrera de ing, industrial', '50', 'pieza', '6');
-INSERT INTO `price_quotaton_request` (`id_price_quotation_request`, `link`, `id_spending_unit_request`, `id_user_role`) VALUES ('1', NULL, '1', '2'),  ('3', NULL, '3', '2'), ('4', NULL, '4', '2'), ('5', NULL, '5', '2'),('6', NULL, '6', '2');
+					('6', 'sillas de madera ', '20', 'pieza', '3'),
+					('7', 'estante de madera', '1', 'pieza', '3'),
+					('8', 'mesa de madera para 10 personas', '2', 'pieza', '3'),
+					('9', 'venta de madera', '50', 'pieza', '3'),
+					('10', 'mesa de madrea para 3 personas', '200', 'pieza', '3'),
 
-INSERT INTO `area` (`id_area`, `name`) VALUES ('1', 'Electrónica'), ('2', 'Inmuebles');
+					('11', 'sillas de madera ', '20', 'pieza', '4'),
+					('12', 'estante de madera', '1', 'pieza', '4'),
+					('13', 'mesa de madera para 10 personas', '2', 'pieza', '4'),
+					('14', 'venta de madera', '50', 'pieza', '4'),
+					('15', 'mesa de madrea para 3 personas', '200', 'pieza', '4'),
 
-INSERT INTO `business` (`id_business`, `adress`, `description`, `e_mail`, `name`, `nit`, `phone`, `id_area`) VALUES ('1', 'Av. Blanco Galindo entre peru N° 200', 'Empresa que se dedicas a la distribución de productos electrónicos', 'electroArts@gmail.com', 'ElectroniArts', '1234657989102', '71810106', '1'), ('2', 'av. los molles aq. cochabamba tiquipaya, Cochabamba', 'empresa que distribuye muebles', 'laFuente@gmail.com', 'MUEBLES LAFUENTE', '7512322154', ' 76933144', '2');
 
-INSERT INTO `price_quotation` (`id_price_quotation`, `delivery_term`, `garanty_term`, `off_validation`, `state`, `total`, `way_of_payment`, `id_business`, `id_price_quotation_request`) VALUES 
-											('1', '24', '12', '2020-06-12', 'COMPLETADO', '3600', 'Al Contado', '1', '1'),
-											('2', '14', '22', '2020-06-12', 'COMPLETADO', '3600', 'A Creadito', '2', '3'),
-											('3', '34', '42', '2020-06-12', 'COMPLETADO', '3600', 'Al Contado y a credito', '2', '4');
+					('16', 'sillas de madera ', '20', 'pieza', '5'),
+					('17', 'estante de madera', '1', 'pieza', '5'),
+					('18', 'mesa de madera para 10 personas', '2', 'pieza', '5'),
+					('19', 'venta de madera', '50', 'pieza', '5'),
+					('20', 'mesa de madrea para 3 personas', '200', 'pieza', '5'),
 
-INSERT INTO `price_qoutation_detail` (`id_price_quotation_detail`, `description`, `quantity`, `total_price`, `unit`, `unit_price`, `id_price_quotation`) VALUES
-													 ('1', 'repuesto para los equipos para el laboratorio de informatica y sistemas', '200',NULL, 'pieza', NULL, '1'),
-													  ('2', 'servicio de matenimiento para los equipos en el laboratorio de informatica y sistemas', '1',NULL, null, NULL, '1'),
-													   ('3', 'impresora para el centro de estudiantes de ing. de sistemas', '2',NULL, 'pieza', NULL, '1'),
-													    ('4', 'Banner informativo para los nuevos estudiantes de la carrea de ing. sistemas ', '50',NULL, 'unidades', NULL, '1'),
-														  ('5', 'repuesto para los equipos para el laboratorio de informatica y sistemas', '200',NULL, 'pieza', NULL, '2'),
-													  ('6', 'servicio de matenimiento para los equipos en el laboratorio de informatica y sistemas', '1',NULL, null, NULL, '2'),
-													   ('7', 'impresora para el centro de estudiantes de ing. de sistemas', '2',NULL, 'pieza', NULL, '2'),
-													    ('8', 'Banner informativo para los nuevos estudiantes de la carrea de ing. sistemas ', '50',NULL, 'unidades', NULL, '2'),
-														  ('9', 'repuesto para los equipos para el laboratorio de informatica y sistemas', '200',NULL, 'pieza', NULL, '3'),
-													  ('10', 'servicio de matenimiento para los equipos en el laboratorio de informatica y sistemas', '1',NULL, null, NULL, '3'),
-													   ('11', 'impresora para el centro de estudiantes de ing. de sistemas', '2',NULL, 'pieza', NULL, '3'),
-													    ('12', 'Banner informativo para los nuevos estudiantes de la carrea de ing. sistemas ', '50',NULL, 'unidades', NULL, '3') ;
+					('21', 'sillas de madera ', '20', 'pieza', '6'),
+					('22', 'estante de madera', '1', 'pieza', '6'),
+					('23', 'mesa de madera para 10 personas', '2', 'pieza', '6'),
+					('24', 'venta de madera', '50', 'pieza', '6'),
+					('25', 'mesa de madrea para 3 personas', '200', 'pieza', '6'),
 
+
+					('26', 'sillas de madera ', '20', 'pieza', '7'),
+					('27', 'estante de madera', '1', 'pieza', '7'),
+					('28', 'mesa de madera para 10 personas', '2', 'pieza', '7'),
+					('29', 'venta de madera', '50', 'pieza', '7'),
+					('30', 'mesa de madrea para 3 personas', '200', 'pieza', '7'),
+
+					('31', 'sillas de madera ', '20', 'pieza', '8'),
+					('32', 'estante de madera', '1', 'pieza', '8'),
+					('33', 'mesa de madera para 10 personas', '2', 'pieza', '8'),
+					('34', 'venta de madera', '50', 'pieza', '8'),
+					('35', 'mesa de madrea para 3 personas', '200', 'pieza', '8'),
+
+
+					('36', 'sillas de madera ', '20', 'pieza', '9'),
+					('37', 'estante de madera', '1', 'pieza', '9'),
+					('38', 'mesa de madera para 10 personas', '2', 'pieza', '9'),
+					('39', 'venta de madera', '50', 'pieza', '9'),
+					('40', 'mesa de madrea para 3 personas', '200', 'pieza', '9'),
+
+					('41', 'sillas de madera ', '20', 'pieza', '10'),
+					('42', 'estante de madera', '1', 'pieza', '10'),
+					('43', 'mesa de madera para 10 personas', '2', 'pieza', '10'),
+					('44', 'venta de madera', '50', 'pieza', '10'),
+					('45', 'mesa de madrea para 3 personas', '200', 'pieza', '10'),
+
+					('46', 'sillas de madera ', '20', 'pieza', '11'),
+					('47', 'estante de madera', '1', 'pieza', '11'),
+					('48', 'mesa de madera para 10 personas', '2', 'pieza', '11'),
+					('49', 'venta de madera', '50', 'pieza', '11'),
+					('50', 'mesa de madrea para 3 personas', '200', 'pieza', '11');
+
+	INSERT INTO `price_quotaton_request` (`id_price_quotation_request`, `link`, `id_spending_unit_request`, `id_user_role`) VALUES  
+				('3', NULL, '3', '2'),
+				('4', NULL, '4', '2'),
+				('5', NULL, '5', '2'),
+				('6', NULL, '6', '2'),
+				('7', NULL, '7', '2'),
+				('8', NULL, '8', '2'),
+				('9', NULL, '9', '2'),
+				('10', NULL, '10', '2'),
+				('11', NULL, '11', '2');
+
+	INSERT INTO `area` (`id_area`, `name`) VALUES 
+				('1', 'Electrónica'), 
+				('2', 'Inmuebles');
+
+	INSERT INTO `business` (`id_business`, `adress`, `description`, `e_mail`, `name`, `nit`, `phone`, `id_area`) VALUES
+						('1', 'Av. Blanco Galindo entre peru N° 200', 'empresa que distribuye muebles', 'VICTORIA@gmail.com', 'MUEBLES VICTORIA', '1234657989102', '71810106', '2'),
+						('2', 'av. los molles aq. cochabamba tiquipaya, Cochabamba', 'empresa que distribuye muebles', 'laFuente@gmail.com', 'MUEBLES LAFUENTE', '7512322154', ' 76933144', '2'),
+						('3', 'Av. Blanco Galindo entre pacheco', 'empresa que distribuye muebles', 'COCO@gmail.com', 'INMOVILARIO COCO', '1234121989102', '74452588', '2'),
+						('4', 'Av. Blanco Galindo entre beijin', 'empresa que distribuye muebles', 'ALEX@gmail.com', 'MUEBLES ALEX', '1236756989102', '78981234', '2'),
+						('5', 'Av. martin cardenas entre calle cochabamba', 'empresa que distribuye muebles', 'NOELIA@gmail.com', 'MUEBLES NOELIA', '123756989102', '67125289', '2'),
+						('6', 'Av. calle pando entre madre de DiosII', 'empresa que distribuye muebles', 'jheyson@gmail.com', 'MUEBLES JHEYSON', '658716989102', '72325412', '2');
+
+	INSERT INTO `price_quotation` (`id_price_quotation`, `delivery_term`, `garanty_term`, `off_validation`, `state`, `total`, `way_of_payment`, `id_business`, `id_price_quotation_request`) VALUES 
+												('1', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '1', '6'),
+												('2', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '2', '6'),
+												('3', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '3', '6'),
+												('4', '24', '32', '2020-06-12', 'SIN COTIZAR', '300', 'Al Contado y a credito', '4', '6'),
+												('14', '14', '22', '2020-06-12', 'EXPIRADO', '860', 'A Creadito', '5', '6'),
+
+												('5', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '1', '7'),
+												('6', '14', '23', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '2', '7'),
+												('7', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '3', '7'),
+
+												('8', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '1', '8'),
+												('9', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '2', '8'),
+												('10', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '3', '8'),
+												('11', '24', '12', '2020-06-12', 'INCOMPLETO', '600', 'Al Contado', '4', '8'),
+												('12', '14', '22', '2020-06-12', 'SIN COTIZAR', '860', 'A Creadito', '5', '8'),
+												('13', '24', '32', '2020-06-12', 'SIN COTIZAR', '300', 'Al Contado y a credito', '6', '8'),
+
+												
+
+											
+												('15', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '1', '9'),
+												('16', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '2', '9'),
+												('17', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '3', '9'),
+												('18', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '4', '9'),
+
+												('19', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '4', '5'),
+												('20', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '6', '5'),
+												
+												('21', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '3', '10'),
+												('22', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '4', '11'),
+												('23', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '6', '11');
+												
+
+	INSERT INTO `price_qoutation_detail` (`id_price_quotation_detail`, `description`, `quantity`, `total_price`, `unit`, `unit_price`, `id_price_quotation`) VALUES
+														('1', 'sillas de madera', '20','200', 'pieza', '4000', '1'),
+														('2', 'estante de madera', '1', '400', null, '400', '1'),
+														('3', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '1'),
+														('4', 'venta de madera  ', '50','100', 'unidades', '5000', '1'),
+														('5', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '1'),
+
+														('6', 'sillas de madera', '20','200', 'pieza', '4000', '2'),
+														('7', 'estante de madera', '1', '400', null, '400', '2'),
+														('8', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '2'),
+														('9', 'venta de madera  ', '50','100', 'unidades', '5000', '2'),
+														('10', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '2'),
+														
+														('11', 'sillas de madera', '20','200', 'pieza', '4000', '3'),
+														('12', 'estante de madera', '1', '400', null, '400', '3'),
+														('13', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '3'),
+														('14', 'venta de madera  ', '50','100', 'unidades', '5000', '3'),
+														('15', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '3'),
+
+														('16', 'sillas de madera', '20',null, 'pieza', null, '4'),
+														('17', 'estante de madera', '1', null, null, null, '4'),
+														('18', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '4'),
+														('19', 'venta de madera  ', '50',null, 'unidades', null, '4'),
+														('20', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '4'),
+
+														('21', 'sillas de madera', '20','200', 'pieza', '4000', '5'),
+														('22', 'estante de madera', '1', '400', null, '400', '5'),
+														('23', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '5'),
+														('24', 'venta de madera  ', '50','100', 'unidades', '5000', '5'),
+														('25', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '5'),
+
+														('26', 'sillas de madera', '20','200', 'pieza', '4000', '6'),
+														('27', 'estante de madera', '1', '400', null, '400', '6'),
+														('28', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '6'),
+														('29', 'venta de madera  ', '50','100', 'unidades', '5000', '6'),
+														('30', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '6'),
+
+														('31', 'sillas de madera', '20','200', 'pieza', '4000', '7'),
+														('32', 'estante de madera', '1', '400', null, '400', '7'),
+														('33', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '7'),
+														('34', 'venta de madera  ', '50','100', 'unidades', '5000', '7'),
+														('35', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '7'),
+
+														('36', 'sillas de madera', '20','200', 'pieza', '4000', '8'),
+														('37', 'estante de madera', '1', '400', null, '400', '8'),
+														('38', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '8'),
+														('39', 'venta de madera  ', '50','100', 'unidades', '5000', '8'),
+														('40', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '8'),
+
+														('41', 'sillas de madera', '20','200', 'pieza', '4000', '9'),
+														('42', 'estante de madera', '1', '400', null, '400', '9'),
+														('43', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '9'),
+														('44', 'venta de madera  ', '50','100', 'unidades', '5000', '9'),
+														('45', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '9'),
+
+														('46', 'sillas de madera', '20','200', 'pieza', '4000', '10'),
+														('47', 'estante de madera', '1', '400', null, '400', '10'),
+														('48', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '10'),
+														('49', 'venta de madera  ', '50','100', 'unidades', '5000', '10'),
+														('50', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '10'),
+
+														('51', 'sillas de madera', '20','200', 'pieza', '4000', '11'),
+														('52', 'estante de madera', '1', '400', null, '400', '11'),
+														('53', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '11'),
+														('54', 'venta de madera  ', '50','100', 'unidades', '5000', '11'),
+														('55', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '11'),
+
+														('56', 'sillas de madera', '20',null, 'pieza', null, '12'),
+														('57', 'estante de madera', '1', null, null, null, '12'),
+														('58', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '12'),
+														('59', 'venta de madera  ', '50',null, 'unidades', null, '12'),
+														('60', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '12'),
+
+														('61', 'sillas de madera', '20',null, 'pieza', null, '13'),
+														('62', 'estante de madera', '1', null, null, null, '13'),
+														('63', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '13'),
+														('64', 'venta de madera  ', '50',null, 'unidades', null, '13'),
+														('65', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '13'),
+
+														('66', 'sillas de madera', '20',null, 'pieza', null, '14'),
+														('67', 'estante de madera', '1', null, null, null, '14'),
+														('68', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '14'),
+														('69', 'venta de madera  ', '50',null, 'unidades', null, '14'),
+														('70', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '14'),
+
+														('71', 'sillas de madera', '20','200', 'pieza', '4000', '15'),
+														('72', 'estante de madera', '1', '400', null, '400', '15'),
+														('73', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '15'),
+														('74', 'venta de madera  ', '50','100', 'unidades', '5000', '15'),
+														('75', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '15'),
+
+														('76', 'sillas de madera', '20','200', 'pieza', '4000', '16'),
+														('77', 'estante de madera', '1', '400', null, '400', '16'),
+														('78', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '16'),
+														('79', 'venta de madera  ', '50','100', 'unidades', '5000', '16'),
+														('80', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '16'),
+
+														('81', 'sillas de madera', '20','200', 'pieza', '4000', '17'),
+														('82', 'estante de madera', '1', '400', null, '400', '17'),
+														('83', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '17'),
+														('84', 'venta de madera  ', '50','100', 'unidades', '5000', '17'),
+														('85', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '17'),
+
+														('86', 'sillas de madera', '20','200', 'pieza', '4000', '18'),
+														('87', 'estante de madera', '1', '400', null, '400', '18'),
+														('88', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '18'),
+														('89', 'venta de madera  ', '50','100', 'unidades', '5000', '18'),
+														('90', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '18'),
+
+														('91', 'sillas de madera', '20',null, 'pieza', null, '19'),
+														('92', 'estante de madera', '1', null, null, null, '19'),
+														('93', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '19'),
+														('94', 'venta de madera  ', '50',null, 'unidades', null, '19'),
+														('95', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '19'),
+														
+														('96', 'sillas de madera', '20',null, 'pieza', null, '20'),
+														('97', 'estante de madera', '1', null, null, null, '20'),
+														('98', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '20'),
+														('99', 'venta de madera  ', '50',null, 'unidades', null, '20'),
+														('100', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '20'),
+
+														('101', 'sillas de madera', '20','200', 'pieza', '4000', '21'),
+														('102', 'estante de madera', '1', '400', null, '400', '21'),
+														('103', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '21'),
+														('104', 'venta de madera  ', '50','100', 'unidades', '5000', '21'),
+														('105', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '21'),
+
+														('106', 'sillas de madera', '20','200', 'pieza', '4000', '22'),
+														('107', 'estante de madera', '1', '400', null, '400', '22'),
+														('108', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '22'),
+														('109', 'venta de madera  ', '50','100', 'unidades', '5000', '22'),
+														('110', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '22'),
+
+														('111', 'sillas de madera', '20','200', 'pieza', '4000', '23'),
+														('112', 'estante de madera', '1', '400', null, '400', '23'),
+														('113', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '23'),
+														('114', 'venta de madera  ', '50','100', 'unidades', '5000', '23'),
+														('115', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '23');
+														
+														
+														

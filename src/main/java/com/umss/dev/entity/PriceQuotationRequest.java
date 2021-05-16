@@ -1,5 +1,6 @@
 package com.umss.dev.entity;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
-@Data
+//@Data
 @Entity(name = "PriceQuotationRequest" )
 @Table(name = "PRICE_QUOTATON_REQUEST")
 
@@ -32,6 +33,8 @@ public class PriceQuotationRequest {
 	@Column(length = 1000)
 	private String link;
 	
+	@Column
+	private Date deadline;
 	
 	/**/
 	@OneToMany(mappedBy = "priceQuotationRequest",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
@@ -49,8 +52,14 @@ public class PriceQuotationRequest {
 	//@JsonManagedReference
 	private SpendingUnitRequest spendingUnitRequest;
 	
+	@OneToMany(mappedBy = "priceQuotationRequest",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})	
+	@JsonManagedReference
+	private List<ComparativeTableOfQuotes> ComparativeTableOfQuotes;
 	
-
+	@JoinColumn(name = "idReport" )
+	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
+	private Report report;
+	
 	public SpendingUnitRequest getSpendingUnitRequest() {
 		return spendingUnitRequest;
 	}
@@ -83,7 +92,19 @@ public class PriceQuotationRequest {
 		this.userRole = userRole;
 	}
 
-	
-	
+	public List<ComparativeTableOfQuotes> getComparativeTableOfQuotes() {
+		return ComparativeTableOfQuotes;
+	}
 
+	public void setComparativeTableOfQuotes(List<ComparativeTableOfQuotes> comparativeTableOfQuotes) {
+		ComparativeTableOfQuotes = comparativeTableOfQuotes;
+	}
+	
+	public Date getDeadline() {
+		return deadline;
+	}
+
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
+	}
 }
