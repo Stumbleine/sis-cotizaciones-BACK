@@ -30,9 +30,6 @@ public class PriceQuotationRequest {
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idPriceQuotationRequest;
 	
-	@Column(length = 1000)
-	private String link;
-	
 	@Column
 	private Date deadline;
 	
@@ -76,13 +73,6 @@ public class PriceQuotationRequest {
 		this.idPriceQuotationRequest = idPriceQuotationRequest;
 	}
 
-	public String getLink() {
-		return link;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
-	}
 
 	public UserRole getUserRole() {
 		return userRole;

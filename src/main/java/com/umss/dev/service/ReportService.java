@@ -43,15 +43,25 @@ public class ReportService {
 	public ReportOutput getReport(Integer id) {
 		ReportOutput reportOutput=new ReportOutput();
 		DocumentQuotationAtributesOutput documentQuotationAtributesOutput=new DocumentQuotationAtributesOutput();
-		
 		//System.out.println(priceQuotation.getBusiness().getName());
+		CompletePriceQuotation priceQuotation=new CompletePriceQuotation();
 		try {
-			CompletePriceQuotation priceQuotation=priceQuotationService.findPriceQuotationById(reportRepository.idQuotation(id));
-			Report report=reportRepository.findById(reportRepository.idReport(id)).get();
-			getAtributesDocument(reportOutput, documentQuotationAtributesOutput, report);
+			priceQuotation=priceQuotationService.findPriceQuotationById(reportRepository.idQuotation(id));
 			getAtributesQuotaion(priceQuotation, reportOutput);
 		} catch (Exception e) {
-			reportOutput=null;
+			reportOutput.setNameArea(null);
+			reportOutput.setNameBusiness(null);
+			reportOutput.setTotal(0);
+		}
+		
+		try {
+			
+			Report report=reportRepository.findById(reportRepository.idReport(id)).get();
+			getAtributesDocument(reportOutput, documentQuotationAtributesOutput, report);
+			
+		} catch (Exception e) {
+			reportOutput.setDescripcion(null);
+			reportOutput.setDocumentQuotationAtributesOutput(null);
 		}
 		
 		
