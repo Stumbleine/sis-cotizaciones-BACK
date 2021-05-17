@@ -56,10 +56,11 @@ public class PriceQuotationController {
 	}*/
 	
 	@PermitAll
-	@PostMapping()
-	public ResponseEntity<PriceQuotation> create(@Valid @RequestBody PriceQuotationInput priceQuotationInput){
-		
-		PriceQuotation request = priceQuotationService.save2(priceQuotationInput);
+	@PostMapping("/createQuotation/{id}")
+	public ResponseEntity<PriceQuotation> create(@Valid @RequestBody PriceQuotationInput priceQuotationInput, @PathVariable (value = "id") Integer idSpendingUnitRequest){
+		System.out.println("********//********************//***********"+idSpendingUnitRequest);
+		//priceQuotationInput.setIdSpendingUnitRequest(idSpendingUnitRequest);
+		PriceQuotation request = priceQuotationService.save2(priceQuotationInput, idSpendingUnitRequest );
 		lastPriceQuotationSaved = request;
 		//priceQuotationService.saveOther(actPriceQuotation);
 		return ResponseEntity.ok(request);

@@ -30,11 +30,13 @@ public class PriceQuotationService {
 	private PriceQuotationRepository priceQuotationRepository;
 	private ModelMapper modelMapper;
 	private BusinessService businessService;
+	private SpendingUnitRequestService spedingUnitRequestService;
 	
-	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService) {
+	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService, SpendingUnitRequestService spedingUnitRequestService) {
 		super();
 		this.priceQuotationRepository = priceQuotationRepository;
 		this.businessService = businessService;
+		this.spedingUnitRequestService = spedingUnitRequestService;
 		this.modelMapper = modelMapper;
 	
 	}
@@ -79,7 +81,7 @@ public class PriceQuotationService {
 		return priceQuotationRepository.save(priceQuotation);
 	}
 	
-	public PriceQuotation save2(PriceQuotationInput priceQuotationInput) {
+	public PriceQuotation save2(PriceQuotationInput priceQuotationInput, int idSpendingUnitRequest) {
 		PriceQuotation actPriceQuotation = new PriceQuotation();
 		actPriceQuotation.setWayOfPayment(priceQuotationInput.getWayOfPayment());
 		actPriceQuotation.setGarantyTerm(priceQuotationInput.getGarantyTerm());
@@ -88,13 +90,17 @@ public class PriceQuotationService {
 		actPriceQuotation.setTotal(priceQuotationInput.getTotal());
 		actPriceQuotation.setPriceQuotationDetail(priceQuotationInput.getPriceQuotationDetail());
 		
-		System.out.println("****************************////"+priceQuotationInput.getBusinessId());
-		Business actBusiness = businessService.getByIdBusiness(priceQuotationInput.getBusinessId());
+		System.out.println("**************************** business ////"+priceQuotationInput.getIdBusiness());
+		Business actBusiness = businessService.getByIdBusiness(priceQuotationInput.getIdBusiness());
 		//Optional<Business> actBusiness = businessRepository.findById(id);
 		System.out.println("**********************************");
 		//System.out.println(actBusiness.toString());
 		actPriceQuotation.setBusiness(actBusiness);
-	
+		
+		System.out.println("****************************spendinUnitRequest////"+idSpendingUnitRequest);
+		SpendingUnitRequest request = spedingUnitRequestService.getSpendingUnitRequestNormal(idSpendingUnitRequest);
+		actPriceQuotation.setPriceQuotationRequest(request.getPriceQuotation());
+		
 		return priceQuotationRepository.save(actPriceQuotation);
 		
 		

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.umss.dev.entity.Business;
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.entity.User;
@@ -138,6 +139,12 @@ public class SpendingUnitRequestService {
 		Optional<SpendingUnitRequest> spendingUnitRequest = spendingUnitRequestRepository.findById(id);
 		
 		return getAtributes(spendingUnitRequest.get());
+	}
+	
+	public SpendingUnitRequest getSpendingUnitRequestNormal(int id) {
+		Optional<SpendingUnitRequest> actRequest = spendingUnitRequestRepository.findById(id);
+		
+		return actRequest.get();
 	}
 	
 	private SpendingUnitRequesteOutputAtributes getAtributes(SpendingUnitRequest spendingUnitRequest) {
