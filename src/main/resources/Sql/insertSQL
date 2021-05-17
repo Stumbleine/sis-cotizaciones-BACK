@@ -325,7 +325,7 @@ INSERT INTO `document_quotation` (`id_document_quotaion`, `content`, `name_docum
 						(2, LOAD_FILE('C:/INFORME-DE-APROBACION.pdf'), 'Informe de Aprobacion' , 6200, 2),
 						(3, LOAD_FILE('C:/INFORME-DE-APROBACION.pdf'), 'Informe de Aprobacion' , '1620',3),
 						(4, LOAD_FILE('C:/INFORME-DE-RECHAZO.pdf'), 'Informe de Rechazo', 1620, 4),
-						(5, LOAD_FILE('C:/INFORME-DE-RECHAZO.pdf''), 'Informe de Rechazo', 1620, 5);		
+						(5, LOAD_FILE('C:/INFORME-DE-RECHAZO.pdf'), 'Informe de Rechazo', 1620, 5);		
 
 						UPDATE report r SET r.id_file=1 WHERE r.id_report=1;						
 UPDATE report r SET r.id_file=2 WHERE r.id_report=2;		
