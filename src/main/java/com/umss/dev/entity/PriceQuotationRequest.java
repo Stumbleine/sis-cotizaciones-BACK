@@ -23,16 +23,13 @@ import lombok.Data;
 
 //@Data
 @Entity(name = "PriceQuotationRequest" )
-@Table(name = "PRICE_QUOTATION_REQUEST")
+@Table(name = "PRICE_QUOTATON_REQUEST")
 
 public class PriceQuotationRequest {
 	
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idPriceQuotationRequest;
-	
-	@Column(length = 1000)
-	private String link;
 	
 	@Column
 	private LocalDate deadline;
@@ -77,13 +74,6 @@ public class PriceQuotationRequest {
 		this.idPriceQuotationRequest = idPriceQuotationRequest;
 	}
 
-	public String getLink() {
-		return link;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
-	}
 
 	public UserRole getUserRole() {
 		return userRole;

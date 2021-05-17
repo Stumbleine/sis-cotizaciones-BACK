@@ -95,7 +95,7 @@ INSERT INTO `user` (`id_user`, `email`, `name`, `password`) VALUES
 					('49', 'venta de madera', '50', 'pieza', '11'),
 					('50', 'mesa de madrea para 3 personas', '200', 'pieza', '11');
 
-	INSERT INTO `price_quotaton_request` (`id_price_quotation_request`, `link`, `id_spending_unit_request`, `id_user_role`) VALUES  
+	INSERT INTO `price_quotaton_request` (`id_price_quotation_request`, `deadline`, `id_spending_unit_request`, `id_user_role`) VALUES  
 				('3', NULL, '3', '2'),
 				('4', NULL, '4', '2'),
 				('5', NULL, '5', '2'),
@@ -106,7 +106,18 @@ INSERT INTO `user` (`id_user`, `email`, `name`, `password`) VALUES
 				('10', NULL, '10', '2'),
 				('11', NULL, '11', '2');
 
-	INSERT INTO `area` (`id_area`, `name`) VALUES 
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=3 WHERE s.id_spending_unit_request=3;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=4 WHERE s.id_spending_unit_request=4;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=5 WHERE s.id_spending_unit_request=5;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=6 WHERE s.id_spending_unit_request=6;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=7 WHERE s.id_spending_unit_request=7;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=8 WHERE s.id_spending_unit_request=8;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=9 WHERE s.id_spending_unit_request=9;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=10 WHERE s.id_spending_unit_request=10;	
+	UPDATE spending_unit_request s SET s.id_price_quotation_request=11 WHERE s.id_spending_unit_request=11;	
+
+
+	INSERT INTO `area` (`id_area`, `name_area`) VALUES
 				('1', 'Electrónica'), 
 				('2', 'Inmuebles');
 
@@ -118,178 +129,206 @@ INSERT INTO `user` (`id_user`, `email`, `name`, `password`) VALUES
 						('5', 'Av. martin cardenas entre calle cochabamba', 'empresa que distribuye muebles', 'NOELIA@gmail.com', 'MUEBLES NOELIA', '123756989102', '67125289', '2'),
 						('6', 'Av. calle pando entre madre de DiosII', 'empresa que distribuye muebles', 'jheyson@gmail.com', 'MUEBLES JHEYSON', '658716989102', '72325412', '2');
 
-	INSERT INTO `price_quotation` (`id_price_quotation`, `delivery_term`, `garanty_term`, `off_validation`, `state`, `total`, `way_of_payment`, `id_business`, `id_price_quotation_request`) VALUES 
-												('1', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '1', '6'),
-												('2', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '2', '6'),
-												('3', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '3', '6'),
-												('4', '24', '32', '2020-06-12', 'SIN COTIZAR', '300', 'Al Contado y a credito', '4', '6'),
-												('14', '14', '22', '2020-06-12', 'EXPIRADO', '860', 'A Creadito', '5', '6'),
+	INSERT INTO `price_quotation` (`id_price_quotation`, `delivery_term`, `garanty_term`, `off_validation`, `state`, `total`, `way_of_payment`, `id_business`, `id_price_quotation_request`,`selected`) VALUES 
+						('1', '24', '12', '2020-06-12', 'COTIZADO', 	'10600',	'Al Contado', 			'1', '6','1'),
+						('2', '14', '22', '2020-06-12', 'COTIZADO', 	'7500', 	'A Creadito', 			'2', '6',0),
+						('3', '34', '42', '2020-06-12', 'COTIZADO', 	'8750', 	'A Creadito', 			'3', '6',0),
+						('4', '24', '32', '2020-06-12', 'EXPIRADO', 	null, 		'Al Contado y a credito','4', '6',0),
+						('14', '14', '22', '2020-06-12', 'EXPIRADO', 	null, 		'A Creadito', 			'5', '6',0),
 
-												('5', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '1', '7'),
-												('6', '14', '23', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '2', '7'),
-												('7', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '3', '7'),
+						('5', '24', '32', '2020-06-12', 'COTIZADO', 	'10600', 	'Al Contado y a credito', 	'1', '7',0),
+						('6', '14', '23', '2020-06-12', 'COTIZADO', 	'7500', 	'Al Contado y a credito',	'2', '7',0),
+						('7', '24', '12', '2020-06-12', 'COTIZADO', 	'8750',	'Al Contado',			 	'3', '7',0),
 
-												('8', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '1', '8'),
-												('9', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '2', '8'),
-												('10', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '3', '8'),
-												('11', '24', '12', '2020-06-12', 'INCOMPLETO', '600', 'Al Contado', '4', '8'),
-												('12', '14', '22', '2020-06-12', 'SIN COTIZAR', '860', 'A Creadito', '5', '8'),
-												('13', '24', '32', '2020-06-12', 'SIN COTIZAR', '300', 'Al Contado y a credito', '6', '8'),
+						('8', '14', '22', '2020-06-12', 'COTIZADO', '10600', 'A Creadito', '1', '8',0),
+						('9', '34', '42', '2020-06-12', 'COTIZADO', '7500', 'A Creadito', '2', '8',0),
+						('10', '24', '32', '2020-06-12', 'COTIZADO', '8750', 'Al Contado y a credito', '3', '8',0),
+						('11', '24', '12', '2020-06-12', 'INCOMPLETO', '6450', 'Al Contado', '4', '8',0),
+						('12', '14', '22', '2020-06-12', 'SIN COTIZAR', '860', 'A Creadito', '5', '8',0),
+						('13', '24', '32', '2020-06-12', 'SIN COTIZAR', '300', 'Al Contado y a credito', '6', '8',0),
 
 												
 
 											
-												('15', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '1', '9'),
-												('16', '14', '22', '2020-06-12', 'COTIZADO', '860', 'A Creadito', '2', '9'),
-												('17', '34', '42', '2020-06-12', 'COTIZADO', '900', 'A Creadito', '3', '9'),
-												('18', '24', '32', '2020-06-12', 'COTIZADO', '300', 'Al Contado y a credito', '4', '9'),
+						('15', '24', '12', '2020-06-12', 'COTIZADO', '10600', 'Al Contado', '1', '9',0),
+						('16', '14', '22', '2020-06-12', 'COTIZADO', '7500', 'A Creadito', '2', '9',0),
+						('17', '34', '42', '2020-06-12', 'COTIZADO', '8750', 'A Creadito', '3', '9',0),
+						('18', '24', '32', '2020-06-12', 'COTIZADO', '12800', 'Al Contado y a credito', '4', '9',0),
 
-												('19', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '4', '5'),
-												('20', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '6', '5'),
+						('19', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '4', '5',0),
+						('20', '34', '42', '2020-06-12', 'SIN COTIZAR', '900', 'A Creadito', '6', '5',0),
 												
-												('21', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '3', '10'),
-												('22', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '4', '11'),
-												('23', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '6', '11');
-												
+						('21', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '3', '10',1),
+						('22', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '4', '11',0),
+						('23', '24', '12', '2020-06-12', 'COTIZADO', '600', 'Al Contado', '6', '11',1);
 
-	INSERT INTO `price_qoutation_detail` (`id_price_quotation_detail`, `description`, `quantity`, `total_price`, `unit`, `unit_price`, `id_price_quotation`) VALUES
-														('1', 'sillas de madera', '20','200', 'pieza', '4000', '1'),
-														('2', 'estante de madera', '1', '400', null, '400', '1'),
-														('3', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '1'),
-														('4', 'venta de madera  ', '50','100', 'unidades', '5000', '1'),
-														('5', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '1'),
+	INSERT INTO `price_qoutation_detail` (`id_price_quotation_detail`, `description`, `quantity`, `unit_price` , `unit`,  `total_price`, `id_price_quotation`) VALUES
+						( null, 'sillas de madera', 				'20',	'200', 'pieza', 	'4000', '1'),
+						(null, 'estante de madera', 				'1', 	'400', 'pieza', 	'400', 	'1'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '1'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '1'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '1'),
 
-														('6', 'sillas de madera', '20','200', 'pieza', '4000', '2'),
-														('7', 'estante de madera', '1', '400', null, '400', '2'),
-														('8', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '2'),
-														('9', 'venta de madera  ', '50','100', 'unidades', '5000', '2'),
-														('10', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '2'),
+						( null, 'sillas de madera', 				'20',	'100', 'pieza', 	'2000', '2'),
+						(null, 'estante de madera', 				'1', 	'300', 'pieza', 	'300', 	'2'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '2'),
+						( null, 'venta de madera  ',				'50',	'80',	'unidades', '4000', '2'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '2'),
 														
-														('11', 'sillas de madera', '20','200', 'pieza', '4000', '3'),
-														('12', 'estante de madera', '1', '400', null, '400', '3'),
-														('13', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '3'),
-														('14', 'venta de madera  ', '50','100', 'unidades', '5000', '3'),
-														('15', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '3'),
+						( null, 'sillas de madera', 				'20',	'200', 'pieza', 	'2000', '3'),
+						(null, 'estante de madera', 				'1', 	'250', 'pieza', 	'250', 	'3'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'600', 	'pieza', 	'1200', '3'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '3'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'300', 	'pieza',	 '300', '3'),
 
-														('16', 'sillas de madera', '20',null, 'pieza', null, '4'),
-														('17', 'estante de madera', '1', null, null, null, '4'),
-														('18', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '4'),
-														('19', 'venta de madera  ', '50',null, 'unidades', null, '4'),
-														('20', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '4'),
+						( null, 'sillas de madera', 				'20',	'250', 'pieza', 	'5000', '3'),
+						(null, 'estante de madera', 				'1', 	'200', 'pieza', 	'200', 	'3'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'700', 	'pieza', 	'1400', '3'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '3'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '3'),
 
-														('21', 'sillas de madera', '20','200', 'pieza', '4000', '5'),
-														('22', 'estante de madera', '1', '400', null, '400', '5'),
-														('23', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '5'),
-														('24', 'venta de madera  ', '50','100', 'unidades', '5000', '5'),
-														('25', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '5'),
+						( null, 'sillas de madera', 				'20',	null, 'pieza', 	null, '4'),
+						(null, 'estante de madera', 				'1', 	null, 'pieza', 	null, 	'4'),
+						( null, 'mesa de madera para 10 personas', 	'2',	null, 'pieza', 	null, '4'),
+						( null, 'venta de madera  ',				'50',	null, 'unidades', null, '4'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	null, 'pieza',	 null, '4'),
 
-														('26', 'sillas de madera', '20','200', 'pieza', '4000', '6'),
-														('27', 'estante de madera', '1', '400', null, '400', '6'),
-														('28', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '6'),
-														('29', 'venta de madera  ', '50','100', 'unidades', '5000', '6'),
-														('30', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '6'),
+						( null, 'sillas de madera', 				'20',	'200', 'pieza', 	'4000', '5'),
+						(null, 'estante de madera', 				'1', 	'400', 'pieza', 	'400', 	'5'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '5'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '5'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '5'),
 
-														('31', 'sillas de madera', '20','200', 'pieza', '4000', '7'),
-														('32', 'estante de madera', '1', '400', null, '400', '7'),
-														('33', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '7'),
-														('34', 'venta de madera  ', '50','100', 'unidades', '5000', '7'),
-														('35', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '7'),
+						( null, 'sillas de madera', 				'20',	'100', 'pieza', 	'2000', '6'),
+						(null, 'estante de madera', 				'1', 	'300', 'pieza', 	'300', 	'6'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '6'),
+						( null, 'venta de madera  ',				'50',	'80',	'unidades', '4000', '6'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '6'),
 
-														('36', 'sillas de madera', '20','200', 'pieza', '4000', '8'),
-														('37', 'estante de madera', '1', '400', null, '400', '8'),
-														('38', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '8'),
-														('39', 'venta de madera  ', '50','100', 'unidades', '5000', '8'),
-														('40', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '8'),
+						( null, 'sillas de madera', 				'20',	'200', 'pieza', 	'2000', '7'),
+						(null, 'estante de madera', 				'1', 	'250', 'pieza', 	'250', 	'7'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'600', 	'pieza', 	'1200', '7'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '7'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'300', 	'pieza',	 '300', '7'),
 
-														('41', 'sillas de madera', '20','200', 'pieza', '4000', '9'),
-														('42', 'estante de madera', '1', '400', null, '400', '9'),
-														('43', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '9'),
-														('44', 'venta de madera  ', '50','100', 'unidades', '5000', '9'),
-														('45', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '9'),
+						( null, 'sillas de madera', 				'20',	'200', 'pieza', 	'4000', '8'),
+						(null, 'estante de madera', 				'1', 	'400', 'pieza', 	'400', 	'8'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '8'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '8'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '8'),
+						
+						( null, 'sillas de madera', 				'20',	'100', 'pieza', 	'2000', '9'),
+						(null, 'estante de madera', 				'1', 	'300', 'pieza', 	'300', 	'9'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '9'),
+						( null, 'venta de madera  ',				'50',	'80',	'unidades', '4000', '9'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '9'),
 
-														('46', 'sillas de madera', '20','200', 'pieza', '4000', '10'),
-														('47', 'estante de madera', '1', '400', null, '400', '10'),
-														('48', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '10'),
-														('49', 'venta de madera  ', '50','100', 'unidades', '5000', '10'),
-														('50', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '10'),
+															
+						( null, 'sillas de madera', 				'20',	'200', 'pieza', 	'2000', '10'),
+						(null, 'estante de madera', 				'1', 	'250', 'pieza', 	'250', 	'10'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'600', 	'pieza', 	'1200', '10'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '10'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'300', 	'pieza',	 '300', '10'),
 
-														('51', 'sillas de madera', '20','200', 'pieza', '4000', '11'),
-														('52', 'estante de madera', '1', '400', null, '400', '11'),
-														('53', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '11'),
-														('54', 'venta de madera  ', '50','100', 'unidades', '5000', '11'),
-														('55', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '11'),
-
-														('56', 'sillas de madera', '20',null, 'pieza', null, '12'),
-														('57', 'estante de madera', '1', null, null, null, '12'),
-														('58', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '12'),
-														('59', 'venta de madera  ', '50',null, 'unidades', null, '12'),
-														('60', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '12'),
-
-														('61', 'sillas de madera', '20',null, 'pieza', null, '13'),
-														('62', 'estante de madera', '1', null, null, null, '13'),
-														('63', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '13'),
-														('64', 'venta de madera  ', '50',null, 'unidades', null, '13'),
-														('65', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '13'),
-
-														('66', 'sillas de madera', '20',null, 'pieza', null, '14'),
-														('67', 'estante de madera', '1', null, null, null, '14'),
-														('68', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '14'),
-														('69', 'venta de madera  ', '50',null, 'unidades', null, '14'),
-														('70', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '14'),
-
-														('71', 'sillas de madera', '20','200', 'pieza', '4000', '15'),
-														('72', 'estante de madera', '1', '400', null, '400', '15'),
-														('73', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '15'),
-														('74', 'venta de madera  ', '50','100', 'unidades', '5000', '15'),
-														('75', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '15'),
-
-														('76', 'sillas de madera', '20','200', 'pieza', '4000', '16'),
-														('77', 'estante de madera', '1', '400', null, '400', '16'),
-														('78', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '16'),
-														('79', 'venta de madera  ', '50','100', 'unidades', '5000', '16'),
-														('80', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '16'),
-
-														('81', 'sillas de madera', '20','200', 'pieza', '4000', '17'),
-														('82', 'estante de madera', '1', '400', null, '400', '17'),
-														('83', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '17'),
-														('84', 'venta de madera  ', '50','100', 'unidades', '5000', '17'),
-														('85', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '17'),
-
-														('86', 'sillas de madera', '20','200', 'pieza', '4000', '18'),
-														('87', 'estante de madera', '1', '400', null, '400', '18'),
-														('88', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '18'),
-														('89', 'venta de madera  ', '50','100', 'unidades', '5000', '18'),
-														('90', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '18'),
-
-														('91', 'sillas de madera', '20',null, 'pieza', null, '19'),
-														('92', 'estante de madera', '1', null, null, null, '19'),
-														('93', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '19'),
-														('94', 'venta de madera  ', '50',null, 'unidades', null, '19'),
-														('95', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '19'),
+						( null, 'sillas de madera', 				'20',	null, 'pieza', 		null, '11'),
+						(null, 'estante de madera', 				'1', 	'250', 'pieza', 	'250', 	'11'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'600', 	'pieza', 	'1200', '11'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '11'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	null, 	'pieza',	 null, '11'),
 														
-														('96', 'sillas de madera', '20',null, 'pieza', null, '20'),
-														('97', 'estante de madera', '1', null, null, null, '20'),
-														('98', 'mesa de madera para 10 personas', '2',null, 'pieza', null, '20'),
-														('99', 'venta de madera  ', '50',null, 'unidades', null, '20'),
-														('100', 'mesa de madrea para 3 personas', '200',null, 'pieza', null, '20'),
+						( null, 'sillas de madera', 				'20',	null, 'pieza', 	null, '12'),
+						(null, 'estante de madera', 				'1', 	null, 'pieza', 	null, 	'12'),
+						( null, 'mesa de madera para 10 personas', 	'2',	null, 'pieza', 	null, '12'),
+						( null, 'venta de madera  ',				'50',	null, 'unidades', null, '12'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	null, 'pieza',	 null, '12'),
+													
+						( null, 'sillas de madera', 				'20',	null, 'pieza', 	null, '13'),
+						(null, 'estante de madera', 				'1', 	null, 'pieza', 	null, 	'13'),
+						( null, 'mesa de madera para 10 personas', 	'2',	null, 'pieza', 	null, '13'),
+						( null, 'venta de madera  ',				'50',	null, 'unidades', null, '13'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	null, 'pieza',	 null, '13'),
 
-														('101', 'sillas de madera', '20','200', 'pieza', '4000', '21'),
-														('102', 'estante de madera', '1', '400', null, '400', '21'),
-														('103', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '21'),
-														('104', 'venta de madera  ', '50','100', 'unidades', '5000', '21'),
-														('105', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '21'),
+						( null, 'sillas de madera', 				'20',	null, 'pieza', 	null, '14'),
+						(null, 'estante de madera', 				'1', 	null, 'pieza', 	null, 	'14'),
+						( null, 'mesa de madera para 10 personas', 	'2',	null, 'pieza', 	null, '14'),
+						( null, 'venta de madera  ',				'50',	null, 'unidades', null, '14'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	null, 'pieza',	 null, '14'),
+								
+						( null, 'sillas de madera', 				'20',	'200', 'pieza', 	'4000', '15'),
+						(null, 'estante de madera', 				'1', 	'400', 'pieza', 	'400', 	'15'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '15'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '15'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '15'),
 
-														('106', 'sillas de madera', '20','200', 'pieza', '4000', '22'),
-														('107', 'estante de madera', '1', '400', null, '400', '22'),
-														('108', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '22'),
-														('109', 'venta de madera  ', '50','100', 'unidades', '5000', '22'),
-														('110', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '22'),
+						( null, 'sillas de madera', 				'20',	'100', 'pieza', 	'2000', '16'),
+						(null, 'estante de madera', 				'1', 	'300', 'pieza', 	'300', 	'16'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '16'),
+						( null, 'venta de madera  ',				'50',	'80',	'unidades', '4000', '16'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '16'),
 
-														('111', 'sillas de madera', '20','200', 'pieza', '4000', '23'),
-														('112', 'estante de madera', '1', '400', null, '400', '23'),
-														('113', 'mesa de madera para 10 personas', '2','500', 'pieza', '1000', '23'),
-														('114', 'venta de madera  ', '50','100', 'unidades', '5000', '23'),
-														('115', 'mesa de madrea para 3 personas', '200','1', 'pieza', '200', '23');
+						( null, 'sillas de madera', 				'20',	'250', 'pieza', 	'5000', '17'),
+						(null, 'estante de madera', 				'1', 	'200', 'pieza', 	'200', 	'17'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'700', 	'pieza', 	'1400', '17'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '17'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '17'),
+
+						( null, 'sillas de madera', 				'20',	'300', 'pieza', 	'6000', '18'),
+						(null, 'estante de madera', 				'1', 	'200', 'pieza', 	'200', 	'18'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'700', 	'pieza', 	'1400', '18'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '18'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '18'),
+
+
+						( null, 'sillas de madera', 				'20',	null, 'pieza', 	null, '19'),
+						(null, 'estante de madera', 				'1', 	null, 'pieza', 	null, 	'19'),
+						( null, 'mesa de madera para 10 personas', 	'2',	null, 'pieza', 	null, '19'),
+						( null, 'venta de madera  ',				'50',	null, 'unidades', null, '19'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	null, 'pieza',	 null, '19'),
+													
+						( null, 'sillas de madera', 				'20',	null, 'pieza', 	null, '20'),
+						(null, 'estante de madera', 				'1', 	null, 'pieza', 	null, 	'20'),
+						( null, 'mesa de madera para 10 personas', 	'2',	null, 'pieza', 	null, '20'),
+						( null, 'venta de madera  ',				'50',	null, 'unidades', null, '20'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	null, 'pieza',	 null, '20'),
+
+						( null, 'sillas de madera', 				'20',	'200', 'pieza', 	'4000', '21'),
+						(null, 'estante de madera', 				'1', 	'400', 'pieza', 	'400', 	'21'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '21'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '21'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '21'),
+
+						( null, 'sillas de madera', 				'20',	'100', 'pieza', 	'2000', '22'),
+						(null, 'estante de madera', 				'1', 	'300', 'pieza', 	'300', 	'22'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'500', 	'pieza', 	'1000', '22'),
+						( null, 'venta de madera  ',				'50',	'80',	'unidades', '4000', '22'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'200', 	'pieza',	 '200', '22'),
 														
+						( null, 'sillas de madera', 				'20',	'200', 'pieza', 	'2000', '23'),
+						(null, 'estante de madera', 				'1', 	'250', 'pieza', 	'250', 	'23'),
+						( null, 'mesa de madera para 10 personas', 	'2',	'600', 	'pieza', 	'1200', '23'),
+						( null, 'venta de madera  ',				'50',	'100',	'unidades', '5000', '23'),
+						( null, 'mesa de madrea para 3 personas', 	'1',	'300', 	'pieza',	 '300', '23');							
 														
-														
+	
+
+	
+	INSERT INTO `report` (`id_report`, `commentary`, `id_file`, `id_price_quotation_request`) VALUES 
+						(1, 'Se elegio comprar los productos de esta empresa porque cumple con lo requerido y los precios son accesible', null, 6),
+						(2, 'Se elegio comprar los productos de esta empresa porque cumple con lo requerido y los precios son accesible', null, 10),
+						(3, 'Se elegio comprar los productos de esta empresa porque cumple con lo requerido y los precios son accesible', null, 11),
+						(4, 'se rechaza porque el monto estimado supera el tope',														  null, 3),
+						(5, 'Rechazado porque ninguna cotizacion cumple con lo requerido', 												  null, 7);
+
+
+INSERT INTO `document_quotation` (`id_document_quotaion`, `content`, `name_documen_quotaion`, `size_docuemnt_quotaion`, `id_report`) VALUES 
+						(1, LOAD_FILE('C:/INFORME-DE-APROBACION.pdf'), 'Informe de Aprobacion' , 1600, 1),
+						(2, LOAD_FILE('C:/INFORME-DE-APROBACION.pdf'), 'Informe de Aprobacion' , 6200, 2),
+						(3, LOAD_FILE('C:/INFORME-DE-APROBACION.pdf'), 'Informe de Aprobacion' , '1620',3),
+						(4, LOAD_FILE('C:/INFORME-DE-RECHAZO.pdf'), 'Informe de Rechazo', 1620, 4),
+						(5, LOAD_FILE('C:/INFORME-DE-RECHAZO.pdf''), 'Informe de Rechazo', 1620, 5);		
+
+						UPDATE report r SET r.id_file=1 WHERE r.id_report=1;						
+UPDATE report r SET r.id_file=2 WHERE r.id_report=2;		
+UPDATE report r SET r.id_file=3 WHERE r.id_report=3;		
+UPDATE report r SET r.id_file=4 WHERE r.id_report=4;		
+UPDATE report r SET r.id_file=5 WHERE r.id_report=5;							

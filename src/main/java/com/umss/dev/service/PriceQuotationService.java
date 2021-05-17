@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.exception.DtoNotFoundException;
-import com.umss.dev.output.CompletePriceQuotationOutput;
+import com.umss.dev.output.PriceQuotationIdOutput;
+import com.umss.dev.output.BusinessOutput;
+import com.umss.dev.output.CompletePriceQuotation;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.output.PriceQuotationOutput;
 import com.umss.dev.repository.PriceQuotationRepository;
@@ -32,14 +34,41 @@ public class PriceQuotationService {
 	
 	}
 	
-	/*public PriceQuotation findById(Integer priceQuotationId) {
+	public CompletePriceQuotation findPriceQuotationById(Integer priceQuotationId) {
+		CompletePriceQuotation mapQuotation = new CompletePriceQuotation();
 		PriceQuotation actPriceQuotation = priceQuotationRepository.findById(priceQuotationId).orElse(null);
 		if (null == actPriceQuotation) {
 			throw new DtoNotFoundException(PriceQuotation.class.toString(), priceQuotationId);
 		}
-		return actPriceQuotation;
+		
+		//CompletePriceQuotation mapQuotation = new CompletePriceQuotation();
+		mapQuotation.setIdPriceQuotation(actPriceQuotation.getIdPriceQuotation());;
+		mapQuotation.setState(actPriceQuotation.getState());
+		mapQuotation.setTotal(actPriceQuotation.getTotal());
+		mapQuotation.setWayOfPayment(actPriceQuotation.getWayOfPayment());
+		mapQuotation.setGarantyTerm(actPriceQuotation.getGarantyTerm());
+		mapQuotation.setOffValidation(actPriceQuotation.getOffValidation());
+		mapQuotation.setSelected(actPriceQuotation.getSelected());
+		mapQuotation.setPriceQuotationDetail(actPriceQuotation.getPriceQuotationDetail());
+		//mapQuotation.setPriceQuotationRequest(actPriceQuotation.getPriceQuotationRequest());
+		
+		BusinessOutput businessOutput = new BusinessOutput();
+		businessOutput.setIdBusiness(actPriceQuotation.getBusiness().getIdBusiness());
+		businessOutput.setName(actPriceQuotation.getBusiness().getName());
+		businessOutput.setAdress(actPriceQuotation.getBusiness().getAdress());
+		businessOutput.setPhone(actPriceQuotation.getBusiness().getPhone());
+		businessOutput.seteMail(actPriceQuotation.getBusiness().geteMail());
+		businessOutput.setNit(actPriceQuotation.getBusiness().getNit());
+		
+		
+		System.out.println("************************************************************************************");
+		businessOutput.setIdArea(actPriceQuotation.getBusiness().getArea().getIdArea());
+		businessOutput.setNameArea(actPriceQuotation.getBusiness().getArea().getName());
+		
+		mapQuotation.setBusiness(businessOutput);
+		return mapQuotation;
 		//information de la empresa
-	}*/
+	}
 	
 	/*public ComentarioResponse save2(PriceQuotation priceQuotation) {//post//create
 		System.out.println(priceQuotation.toString());

@@ -47,7 +47,6 @@ public class PriceQuotationRequestService {
 		PriceQuotationRequestOutput priceQuotationRequest=new PriceQuotationRequestOutput();
 		priceQuotationRequest.setIdPriceQuotationRequest(priceRequest.get().getIdPriceQuotationRequest());
 		priceQuotationRequest.setDeadline(priceRequest.get().getDeadline());
-		priceQuotationRequest.setLink(priceRequest.get().getLink());
 		return priceQuotationRequest;
 	}
 
@@ -68,5 +67,9 @@ public class PriceQuotationRequestService {
 	      }
 	       
 	   }
+	
+	public PriceQuotationRequest gitById(int id) {
+		return priceQuotationRequestRepository.findById(id).get();
+	}
 
 }

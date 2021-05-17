@@ -25,7 +25,7 @@ public class Area {
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idArea;
-	@Column
+	@Column(name = "nameArea")
 	private String name;
 	
 	@OneToMany(mappedBy = "area",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})	
@@ -45,6 +45,15 @@ public class Area {
 
 	public Area() {
 		super();
+	}
+
+
+	public int getIdArea() {
+		return idArea;
+	}
+
+	public void setIdArea(int idArea) {
+		this.idArea = idArea;
 	}
 
 	public String getName() {
