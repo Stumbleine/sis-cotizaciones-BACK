@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -29,6 +30,7 @@ public class Area {
 	private String name;
 	
 	@OneToMany(mappedBy = "area",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})	
+	@JsonManagedReference
 	private List<Business> business;
 
 	public Area(String name, List<Business> business) {

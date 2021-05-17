@@ -3,6 +3,7 @@ package com.umss.dev.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -89,8 +90,9 @@ public class PriceQuotationService {
 		
 		System.out.println("****************************////"+priceQuotationInput.getBusinessId());
 		Business actBusiness = businessService.getByIdBusiness(priceQuotationInput.getBusinessId());
+		//Optional<Business> actBusiness = businessRepository.findById(id);
 		System.out.println("**********************************");
-		System.out.println(actBusiness.toString());
+		//System.out.println(actBusiness.toString());
 		actPriceQuotation.setBusiness(actBusiness);
 	
 		return priceQuotationRepository.save(actPriceQuotation);
