@@ -20,6 +20,8 @@ import lombok.Data;
 @Table(name = "BUSINESS")
 public class Business {
 
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idBusiness;
@@ -132,6 +134,11 @@ public class Business {
 		this.area = area;
 	}
 	
-
+	@Override
+	public String toString() {
+		return "Business [idBusiness=" + idBusiness + ", name=" + name + ", description=" + description + ", adress="
+				+ adress + ", phone=" + phone + ", eMail=" + eMail + ", nit=" + nit + ", area=" + area
+				+ ", priceQuotations=" + priceQuotations + "]";
+	}
 	
 }

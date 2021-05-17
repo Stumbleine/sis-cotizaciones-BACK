@@ -9,9 +9,12 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.umss.dev.entity.Business;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.exception.DtoNotFoundException;
+import com.umss.dev.input.PriceQuotationInput;
 import com.umss.dev.output.PriceQuotationIdOutput;
 import com.umss.dev.output.BusinessOutput;
 import com.umss.dev.output.CompletePriceQuotation;
@@ -24,12 +27,13 @@ public class PriceQuotationService {
 
 	@Autowired
 	private PriceQuotationRepository priceQuotationRepository;
-
 	private ModelMapper modelMapper;
+	private BusinessService businessService;
 	
-	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper) {
+	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService) {
 		super();
 		this.priceQuotationRepository = priceQuotationRepository;
+		this.businessService = businessService;
 		this.modelMapper = modelMapper;
 	
 	}
@@ -70,22 +74,28 @@ public class PriceQuotationService {
 		//information de la empresa
 	}
 	
-	/*public ComentarioResponse save2(PriceQuotation priceQuotation) {//post//create
-		System.out.println(priceQuotation.toString());
-	
-	 priceQuotation converted = modelMapper.map(priceQuotation,PriceQuotation.class);
-	 
-	 System.out.println(converted.toString());
-	 
-     Comentario persistedUser = comentarioRepository.save(converted);
-    
-     ComentarioResponse comentarioResponse = modelMapper.map(persistedUser, ComentarioResponse.class);
-   
-     return comentarioResponse;
-	}*/
-	
 	public PriceQuotation save(PriceQuotation priceQuotation) {
 		return priceQuotationRepository.save(priceQuotation);
+	}
+	
+	public PriceQuotation save2(PriceQuotationInput priceQuotationInput) {
+		PriceQuotation actPriceQuotation = new PriceQuotation();
+		actPriceQuotation.setWayOfPayment(priceQuotationInput.getWayOfPayment());
+		actPriceQuotation.setGarantyTerm(priceQuotationInput.getGarantyTerm());
+		actPriceQuotation.setDeliveryTerm(priceQuotationInput.getDeliveryTerm());
+		actPriceQuotation.setOffValidation(priceQuotationInput.getOffValidation());
+		actPriceQuotation.setTotal(priceQuotationInput.getTotal());
+		actPriceQuotation.setPriceQuotationDetail(priceQuotationInput.getPriceQuotationDetail());
+		
+		System.out.println("****************************////"+priceQuotationInput.getBusinessId());
+		Business actBusiness = businessService.getByIdBusiness(priceQuotationInput.getBusinessId());
+		System.out.println("**********************************");
+		System.out.println(actBusiness.toString());
+		actPriceQuotation.setBusiness(actBusiness);
+	
+		return priceQuotationRepository.save(actPriceQuotation);
+		
+		
 	}
 	
 	//Alison

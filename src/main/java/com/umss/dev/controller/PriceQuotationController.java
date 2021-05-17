@@ -16,14 +16,20 @@ import org.modelmapper.ModelMapper;
 import java.util.Optional;
 
 import javax.annotation.security.PermitAll;
+import javax.validation.Valid;
 
+import com.umss.dev.entity.Business;
 import com.umss.dev.entity.PriceQuotation;
+import com.umss.dev.input.PriceQuotationInput;
 import com.umss.dev.output.PriceQuotationIdOutput;
 import com.umss.dev.output.CompletePriceQuotation;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.output.PriceQuotationOutput;
 import com.umss.dev.repository.PriceQuotationRepository;
+import com.umss.dev.service.BusinessService;
 import com.umss.dev.service.PriceQuotationService;
+import javax.validation.Valid;
+//import org.json.JSONObject;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.PUT})
@@ -37,7 +43,7 @@ public class PriceQuotationController {
 	private PriceQuotationRepository priceQuotationRepository;
 	private ModelMapper modelMapper;
 	
-	public PriceQuotationController(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper) {
+	public PriceQuotationController(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService) {
 		this.priceQuotationRepository = priceQuotationRepository;
 		this.modelMapper = modelMapper;
 		lastPriceQuotationSaved = new PriceQuotation();
@@ -51,11 +57,11 @@ public class PriceQuotationController {
 	
 	@PermitAll
 	@PostMapping()
-	public ResponseEntity<PriceQuotation> create(@RequestBody PriceQuotation priceQuotation){
-		//priceQuotation.
-		PriceQuotation request = priceQuotation;
+	public ResponseEntity<PriceQuotation> create(@Valid @RequestBody PriceQuotationInput priceQuotationInput){
+		
+		PriceQuotation request = priceQuotationService.save2(priceQuotationInput);
 		lastPriceQuotationSaved = request;
-		priceQuotationService.saveOther(priceQuotation);
+		//priceQuotationService.saveOther(actPriceQuotation);
 		return ResponseEntity.ok(request);
 	}
 	
@@ -66,23 +72,22 @@ public class PriceQuotationController {
 		return newQuotation;
 	}
 	
-	@PutMapping("/updateQuotation")
-	public ResponseEntity<Object> updateQuotation(@RequestBody PriceQuotation newQuotation) {
-		int id = lastPriceQuotationSaved.getIdPriceQuotation();
-		Optional<PriceQuotation> quotationOptional = priceQuotationRepository.findById(id);
+	@PutMapping("/updateQuotation/{id}")
+	public ResponseEntity<Object> updateQuotation(@RequestBody PriceQuotation newQuotation, @PathVariable (value = "id") Integer idPriceQuotation) {
+		//int id = lastPriceQuotationSaved.getIdPriceQuotation();
+		Optional<PriceQuotation> quotationOptional = priceQuotationRepository.findById(idPriceQuotation);
 
 		if (!quotationOptional.isPresent())
 			return ResponseEntity.notFound().build();
 
-		newQuotation.setIdPriceQuotation(id);
+		newQuotation.setIdPriceQuotation(idPriceQuotation);
 		
 		priceQuotationRepository.save(newQuotation);
 
 		return ResponseEntity.noContent().build();
 	}
 	
-	
-	@GetMapping("getById/{id}")
+	@GetMapping("/getById/{id}")
 	public ResponseEntity<CompletePriceQuotation> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		
 		return ResponseEntity.ok( priceQuotationService.findPriceQuotationById(idPriceQuotation));
