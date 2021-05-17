@@ -23,7 +23,7 @@ import lombok.Data;
 
 //@Data
 @Entity(name = "PriceQuotationRequest" )
-@Table(name = "PRICE_QUOTATON_REQUEST")
+@Table(name = "PRICE_QUOTATION_REQUEST")
 
 public class PriceQuotationRequest {
 	
