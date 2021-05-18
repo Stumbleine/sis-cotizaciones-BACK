@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.umss.dev.entity.Business;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.SpendingUnitRequest;
@@ -134,7 +133,13 @@ public class PriceQuotationService {
 	public void relatePriceQuotitionToDetails() {
 		List<PriceQuotation> list = priceQuotationRepository.findAll();
 		int size = list.size();
-		PriceQuotation act = priceQuotationRepository.getOne(size);
+		System.out.println("-----------------------------------Number of quotations: "+ size);
+		//PriceQuotation act = priceQuotationRepository.getOne(size);
+		/*Student studentAct = studentRepository.findById(studentId).orElse(null);
+	    if (null == studentAct) {
+	        throw new DtoNotFoundException(StudentResponse.class.toString(), studentId);
+	    }*/
+		PriceQuotation act = list.get(size-1);
 		System.out.println("*******************************// toConfirm : "+act.getIdPriceQuotation());
 		priceQuotationDetailsService.getAllWithNull(act);
 		
