@@ -134,11 +134,7 @@ public class PriceQuotationService {
 		List<PriceQuotation> list = priceQuotationRepository.findAll();
 		int size = list.size();
 		System.out.println("-----------------------------------Number of quotations: "+ size);
-		//PriceQuotation act = priceQuotationRepository.getOne(size);
-		/*Student studentAct = studentRepository.findById(studentId).orElse(null);
-	    if (null == studentAct) {
-	        throw new DtoNotFoundException(StudentResponse.class.toString(), studentId);
-	    }*/
+		
 		PriceQuotation act = list.get(size-1);
 		System.out.println("*******************************// toConfirm : "+act.getIdPriceQuotation());
 		priceQuotationDetailsService.getAllWithNull(act);
