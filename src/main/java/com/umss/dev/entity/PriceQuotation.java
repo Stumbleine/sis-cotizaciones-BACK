@@ -36,6 +36,8 @@ public class PriceQuotation {
 	private String offValidation;
 	@Column
 	private Double total;
+	@Column
+	private String commentary;
 
 	/***/
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
@@ -173,6 +175,15 @@ public class PriceQuotation {
 
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+	}
+
+	public String getCommentary() {
+		return commentary;
+	}
+
+	public void setCommentary(String commentary) {
+		this.commentary = commentary;
 	}	
+	
 	
 }

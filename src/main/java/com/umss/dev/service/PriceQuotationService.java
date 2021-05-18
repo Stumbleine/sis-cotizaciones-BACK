@@ -57,6 +57,8 @@ public class PriceQuotationService {
 		mapQuotation.setOffValidation(actPriceQuotation.getOffValidation());
 		mapQuotation.setSelected(actPriceQuotation.getSelected());
 		mapQuotation.setPriceQuotationDetail(actPriceQuotation.getPriceQuotationDetail());
+		mapQuotation.setCommentary(actPriceQuotation.getCommentary());
+		mapQuotation.setDeliveryTerm(actPriceQuotation.getDeliveryTerm());
 		//mapQuotation.setPriceQuotationRequest(actPriceQuotation.getPriceQuotationRequest());
 		
 		BusinessOutput businessOutput = new BusinessOutput();
@@ -88,6 +90,8 @@ public class PriceQuotationService {
 		actPriceQuotation.setDeliveryTerm(priceQuotationInput.getDeliveryTerm());
 		actPriceQuotation.setOffValidation(priceQuotationInput.getOffValidation());
 		actPriceQuotation.setTotal(priceQuotationInput.getTotal());
+		actPriceQuotation.setCommentary(priceQuotationInput.getCommentary());
+		actPriceQuotation.setState(priceQuotationInput.getState());
 		actPriceQuotation.setPriceQuotationDetail(priceQuotationInput.getPriceQuotationDetail());
 		
 		System.out.println("**************************** business ////"+priceQuotationInput.getIdBusiness());
