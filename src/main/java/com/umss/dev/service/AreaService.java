@@ -37,6 +37,17 @@ public class AreaService {
 	    return studentAct;
 	}*/
 	
+	public Area getAreaByName(String name){
+		List<Area> allArea = areaRepository.findAll();
+		Area found = new Area();
+		for (Area areaAct: allArea) {
+			if(areaAct.getName().equals(name)) {
+				found = areaAct;
+			}
+		}
+		return found;
+	}
+	
 	public Iterable<BusinessOutput> getBusinessByIdArea(int idArea){
 		Area areaAct = areaRepository.findById(idArea).orElse(null);
 		List<BusinessOutput> businessFound = new ArrayList<>();
@@ -63,7 +74,7 @@ public class AreaService {
 	    
 	}
 	
-	public Iterable<BusinessOutput> getBusinessByArea(String areaName){
+	public Iterable<BusinessOutput> getBusinessByAreaName(String areaName){
 		List<BusinessOutput> businessFound = new ArrayList<>();
 		List<Area> allArea = areaRepository.findAll();
 		for (Area actArea : allArea ) {

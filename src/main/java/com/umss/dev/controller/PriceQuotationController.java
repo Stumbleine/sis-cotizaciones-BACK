@@ -20,6 +20,8 @@ import javax.validation.Valid;
 
 import com.umss.dev.entity.Business;
 import com.umss.dev.entity.PriceQuotation;
+import com.umss.dev.entity.PriceQuotationRequest;
+import com.umss.dev.input.NewBusinessInput;
 import com.umss.dev.input.PriceQuotationInput;
 import com.umss.dev.output.PriceQuotationIdOutput;
 import com.umss.dev.output.CompletePriceQuotation;
@@ -42,10 +44,12 @@ public class PriceQuotationController {
 	private PriceQuotationService priceQuotationService;
 	private PriceQuotationRepository priceQuotationRepository;
 	private ModelMapper modelMapper;
+	private BusinessService businessService;
 	
 	public PriceQuotationController(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService) {
 		this.priceQuotationRepository = priceQuotationRepository;
 		this.modelMapper = modelMapper;
+		this.businessService = businessService;
 		lastPriceQuotationSaved = new PriceQuotation();
 	}
 	
@@ -77,16 +81,37 @@ public class PriceQuotationController {
 	public ResponseEntity<Object> updateQuotation(@RequestBody PriceQuotation newQuotation, @PathVariable (value = "id") Integer idPriceQuotation) {
 		//int id = lastPriceQuotationSaved.getIdPriceQuotation();
 		Optional<PriceQuotation> quotationOptional = priceQuotationRepository.findById(idPriceQuotation);
-
+		PriceQuotationRequest act = priceQuotationService.getPriceQuotationRequestOfLastQuotation();
+		//Business actBusiness = businessService.getByIdBusiness(newQuotation.);
 		if (!quotationOptional.isPresent())
 			return ResponseEntity.notFound().build();
 
 		newQuotation.setIdPriceQuotation(idPriceQuotation);
+		newQuotation.setPriceQuotationRequest(act);
 		
 		priceQuotationRepository.save(newQuotation);
 
 		return ResponseEntity.noContent().build();
 	}
+	
+	@PutMapping("/updateQuotationAddingBusiness/{id}")
+	public ResponseEntity<Object> updateQuotation(@Valid @RequestBody NewBusinessInput newBusiness, @PathVariable (value = "id") Integer idPriceQuotation) {
+		Optional<PriceQuotation> quotationOptional = priceQuotationRepository.findById(idPriceQuotation);
+		PriceQuotationRequest act = priceQuotationService.getPriceQuotationRequestOfLastQuotation();
+		Business actBusiness = businessService.getByIdBusiness(newBusiness.getIdBusiness());
+		PriceQuotation actQuotation= priceQuotationService.getByIdPriceQuotation(idPriceQuotation);
+		
+		if (!quotationOptional.isPresent())
+			return ResponseEntity.notFound().build();
+
+		actQuotation.setIdPriceQuotation(idPriceQuotation);
+		actQuotation.setBusiness(actBusiness);
+		
+		priceQuotationRepository.save(actQuotation);
+
+		return ResponseEntity.noContent().build();
+	}
+	
 	
 	@PutMapping("/RelatingPriceQuotationToDetails")
 	public void relatePriceQuotationToDetails(@RequestBody PriceQuotation newQuotation) {
