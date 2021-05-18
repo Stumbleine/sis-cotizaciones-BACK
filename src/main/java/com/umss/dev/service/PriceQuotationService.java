@@ -91,12 +91,19 @@ public class PriceQuotationService {
 		actPriceQuotation.setPriceQuotationDetail(priceQuotationInput.getPriceQuotationDetail());
 		
 		System.out.println("**************************** business ////"+priceQuotationInput.getIdBusiness());
-		Business actBusiness = businessService.getByIdBusiness(priceQuotationInput.getIdBusiness());
-		//Optional<Business> actBusiness = businessRepository.findById(id);
-		System.out.println("**********************************");
-		//System.out.println(actBusiness.toString());
-		actPriceQuotation.setBusiness(actBusiness);
+		Integer id = new Integer(priceQuotationInput.getIdBusiness());
 		
+		if(!(id.equals(null)|| priceQuotationInput.getIdBusiness()== 0)) {
+			
+			Business actBusiness = businessService.getByIdBusiness(priceQuotationInput.getIdBusiness());
+			//Optional<Business> actBusiness = businessRepository.findById(id);
+			System.out.println("**********************************");
+			//System.out.println(actBusiness.toString());
+			actPriceQuotation.setBusiness(actBusiness);
+
+			
+		}
+				
 		System.out.println("****************************spendinUnitRequest////"+idSpendingUnitRequest);
 		SpendingUnitRequest request = spedingUnitRequestService.getSpendingUnitRequestNormal(idSpendingUnitRequest);
 		actPriceQuotation.setPriceQuotationRequest(request.getPriceQuotation());
