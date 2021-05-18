@@ -21,7 +21,7 @@ import com.umss.dev.output.PriceQuotationRequestOutput;
 import com.umss.dev.service.PriceQuotationRequestService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/req-content")  // api/req-content
 public class PriceQuotationRequestController {
 	
