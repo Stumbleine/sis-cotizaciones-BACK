@@ -88,6 +88,11 @@ public class PriceQuotationController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PutMapping("/RelatingPriceQuotationToDetails")
+	public void relatePriceQuotationToDetails() {
+		priceQuotationService.relatePriceQuotitionToDetails();
+	}
+	
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<CompletePriceQuotation> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		

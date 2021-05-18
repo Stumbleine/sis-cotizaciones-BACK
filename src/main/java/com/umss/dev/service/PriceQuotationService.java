@@ -31,12 +31,16 @@ public class PriceQuotationService {
 	private ModelMapper modelMapper;
 	private BusinessService businessService;
 	private SpendingUnitRequestService spedingUnitRequestService;
+	private PriceQuotation LastPriceQuotation;
+	private PriceQoutationDetailService priceQuotationDetailsService;
 	
-	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService, SpendingUnitRequestService spedingUnitRequestService) {
+	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService, SpendingUnitRequestService spedingUnitRequestService, PriceQoutationDetailService priceQuotationDetailsService) {
 		super();
 		this.priceQuotationRepository = priceQuotationRepository;
 		this.businessService = businessService;
 		this.spedingUnitRequestService = spedingUnitRequestService;
+		this.priceQuotationDetailsService = priceQuotationDetailsService;
+		LastPriceQuotation = new PriceQuotation();
 		this.modelMapper = modelMapper;
 	
 	}
@@ -112,7 +116,7 @@ public class PriceQuotationService {
 		SpendingUnitRequest request = spedingUnitRequestService.getSpendingUnitRequestNormal(idSpendingUnitRequest);
 		actPriceQuotation.setPriceQuotationRequest(request.getPriceQuotation());
 		
-		return priceQuotationRepository.save(actPriceQuotation);
+		return saveOther(actPriceQuotation);
 		
 		
 	}
@@ -122,6 +126,29 @@ public class PriceQuotationService {
 	public PriceQuotation saveOther(PriceQuotation priceQuotation) {
 		return priceQuotationRepository.save(priceQuotation);
 	}
+	
+	public void relatePriceQuotitionToDetails() {
+		List<PriceQuotation> list = priceQuotationRepository.findAll();
+		int size = list.size();
+		PriceQuotation act = priceQuotationRepository.getOne(size);
+		System.out.println("*******************************// toConfirm : "+act.getIdPriceQuotation());
+		priceQuotationDetailsService.getAllWithNull(act);
+		
+	}
+	
+	/*public Iterable<Student> getAll(){
+	List<Student> allStudentResponse = studentRepository.findAll();
+			/*.stream()
+			.sorted(Comparator.comparing(Student::getStudentId))
+			.map(student->{
+				StudentResponse response = modelMapper.map(student, StudentResponse.class);
+				response.setStudentId(student.getStudentId());
+				return response;
+	})    
+      		.collect(Collectors.toList());//
+return allStudentResponse;
+	
+}*/
 
 	/*public CompletePriceQuotationOutput getPriceQuotation(Integer idPriceQuotation) {
 		PriceQuotation priceQuotation=priceQuotationRepository.findById(idPriceQuotation).get();
