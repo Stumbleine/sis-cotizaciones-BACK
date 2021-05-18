@@ -41,12 +41,39 @@ public class PriceQuotationInput {
 	private int deliveryTerm;
 	private String offValidation;
 	private Double total;
+	private String commentary;
+	private String state;
 	private List<PriceQuotationDetail> priceQuotationDetail;
 	
 	public PriceQuotationInput() {}
 
 	
-	
+	public String getState() {
+		return state;
+	}
+
+
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+
+
+	public String getCommentary() {
+		return commentary;
+	}
+
+
+
+	public void setCommentary(String commentary) {
+		this.commentary = commentary;
+	}
+
+
+
 	public int getIdBusiness() {
 		return idBusiness;
 	}

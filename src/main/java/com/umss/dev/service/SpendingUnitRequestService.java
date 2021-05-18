@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.umss.dev.entity.Business;
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.entity.User;
