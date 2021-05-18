@@ -42,7 +42,6 @@ public class ComparativeTableOfQuotesService {
 
 	@Transactional
 	public ComparativeTableOfQuotes save(ComparativeTableOfQuotes comparativeTableOfQuotes,Integer id) {
-		
 		Optional<SpendingUnitRequest> srequest= spendingUnitRequestRepository.findById(id);
 		Optional<PriceQuotationRequest> request= priceQuotationRequestRepository.findById(srequest.get().getPriceQuotation().getIdPriceQuotationRequest());
 		comparativeTableOfQuotes.setPriceQuotationRequest(request.get());
@@ -61,52 +60,12 @@ public class ComparativeTableOfQuotesService {
 		return comparativeTableOfQuotes;
 	}
 	
+	/*public ComparativeTableOfQuotes update(Integer id, ComparativeTableOfQuotes comparativeTableOfQuotes) {
+		Optional<SpendingUnitRequest> srequest= spendingUnitRequestRepository.findById(id);
+		Optional<PriceQuotationRequest> request= priceQuotationRequestRepository.findById(srequest.get().getPriceQuotation().getIdPriceQuotationRequest());
+		comparativeTableOfQuotes.setPriceQuotationRequest(request.get());
+		return comparativeTableOfQuotesRepository.save(comparativeTableOfQuotes);
+	}*/
 
-	   /* public Iterable<ComparativeTableOfQuotes> savePost(Integer idPriceQuotation, List<Integer> Ids){
-	    	System.out.println("LLega aqui 222");
-			Optional<PriceQuotationRequest> request= priceQuotationRequestRepository.findById(idPriceQuotation);
-			
-			List <PriceQuotationOutput> allQ= new ArrayList<PriceQuotationOutput>();
-			List <PriceQuotation> allQuotations= new ArrayList<PriceQuotation>();
-			Optional<PriceQuotation> quotation;
-			Optional<PriceQuotation> quotation1;
-			quotation = priceQuotationRepository.findById(Ids.get(0)); //los ids existen
-			System.out.println("LLega aqui 333");
-			
-			if (quotation.get().getPriceQuotationRequest().getIdPriceQuotationRequest() == request.get()
-					.getIdPriceQuotationRequest()) {
-
-				for (int i = 0; i < quotation.get().getPriceQuotationDetail().size(); i++) {
-
-					System.out.println("LLega aqui");
-					ComparativeTableOfQuotes newComparative = new ComparativeTableOfQuotes();
-					newComparative.setUnit(quotation.get().getPriceQuotationDetail().get(i).getUnit());
-					newComparative.setQuantity(quotation.get().getPriceQuotationDetail().get(i).getQuantity());
-					newComparative.setDescription(quotation.get().getPriceQuotationDetail().get(i).getDescription());
-
-					for (Integer idQ : Ids) {
-
-						quotation1 = priceQuotationRepository.findById(idQ);
-						if (idQ == quotation.get().getIdPriceQuotation() && request.get().getIdPriceQuotationRequest() == quotation.get().getPriceQuotationRequest().getIdPriceQuotationRequest()) {
-							newComparative.setSubtotalBussiness1(quotation.get().getPriceQuotationDetail().get(i).getTotalPrice());
-						}
-					}
-				}
-			}
-			return allQ;
-		}*/
-
-	    //getPriceQuotation
-	    /*public Iterable<ComparativeTableOfQuotes> getComparativeTableOfQuotes(List <PriceQuotation> quotations, PriceQuotationRequest request){
-	    	List <ComparativeTableOfQuotes> allQuotations= new ArrayList<ComparativeTableOfQuotes>();
-	    	for (PriceQuotation req: quotations) {
-	    		        ComparativeTableOfQuotes quotation = new ComparativeTableOfQuotes();
-						quotation.setQuantity(request.getSpendingUnitRequest().getRequestDetail().get(0).getQuantity());
-						quotation.setUnit(request.getSpendingUnitRequest().getRequestDetail().get(0).getUnit());
-						quotation.setDescription(null);
-						allSpendingUnitReqWithoutDetail.add(newReq);
-				
-			}
-	    }*/
-
+	  
 }
