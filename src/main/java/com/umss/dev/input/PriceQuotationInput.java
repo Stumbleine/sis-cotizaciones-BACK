@@ -9,6 +9,7 @@ public class PriceQuotationInput {
 	/*
 {
     "idBusiness":1,
+    "idSpendingUnitRequest":1,
     "wayOfPayment" : "",
     "garantyTerm" : ,
     "deliveryTerm" : ,
@@ -21,7 +22,6 @@ public class PriceQuotationInput {
             "description" : "maquinaria industrial",
             "unitPrice" : 500,
             "totalPrice" : 50000
-
         },
         {
             "quantity" : 15,
@@ -29,14 +29,13 @@ public class PriceQuotationInput {
             "description" : "practicas de futbol",
             "unitPrice" : 10,
             "totalPrice" : 150
-
         }
     ]
      
-
 }*/
 
 	private int idBusiness;
+	private int idSpendingUnitRequest;
 	private String wayOfPayment;
 	private int garantyTerm;
 	private int deliveryTerm;
@@ -46,13 +45,19 @@ public class PriceQuotationInput {
 	
 	public PriceQuotationInput() {}
 
-	public int getBusinessId() {
+	
+	
+	public int getIdBusiness() {
 		return idBusiness;
 	}
 
-	public void setBusinessId(int businessId) {
-		this.idBusiness = businessId;
+
+
+	public void setIdBusiness(int idBusiness) {
+		this.idBusiness = idBusiness;
 	}
+
+
 
 	public String getWayOfPayment() {
 		return wayOfPayment;
@@ -100,6 +105,14 @@ public class PriceQuotationInput {
 
 	public void setPriceQuotationDetail(List<PriceQuotationDetail> priceQuotationDetail) {
 		this.priceQuotationDetail = priceQuotationDetail;
+	}
+
+	public int getIdSpendingUnitRequest() {
+		return idSpendingUnitRequest;
+	}
+
+	public void setIdSpendingUnitRequest(int idSpendingUnitRequest) {
+		this.idSpendingUnitRequest = idSpendingUnitRequest;
 	}
 	
 	
