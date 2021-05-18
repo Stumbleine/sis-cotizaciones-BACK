@@ -82,7 +82,7 @@ public class PriceQuotationController {
 	}
 	
 	
-	@GetMapping("getById/{id}")
+	@GetMapping("/getById/{id}")
 	public ResponseEntity<CompletePriceQuotation> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		
 		return ResponseEntity.ok( priceQuotationService.findPriceQuotationById(idPriceQuotation));
