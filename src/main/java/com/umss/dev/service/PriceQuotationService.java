@@ -186,8 +186,11 @@ return allStudentResponse;
 				reqIds.add(req.getIdPriceQuotation());					
 				newReq.setState(req.getState());
 				if(req.getBusiness()!=null) {
-				newReq.setNameBussiness(req.getBusiness().getName());
-				newReq.setNameArea(req.getBusiness().getArea().getName());
+					newReq.setNameBussiness(req.getBusiness().getName());
+					newReq.setNameArea(req.getBusiness().getArea().getName());
+				}else {
+					newReq.setNameBussiness("SIN NOMBRE");
+					newReq.setNameArea("Sin área");
 				}
 				newReq.setTotal(req.getTotal());
 				newReq.setPriceQuotationDetail(req.getPriceQuotationDetail());
