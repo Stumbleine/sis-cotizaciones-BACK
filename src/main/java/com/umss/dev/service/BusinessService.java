@@ -1,12 +1,16 @@
 package com.umss.dev.service;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.umss.dev.entity.Business;
+import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.exception.DtoNotFoundException;
 import com.umss.dev.repository.BusinessRepository;
@@ -23,16 +27,22 @@ public class BusinessService {
 		this.businessRepository = businessRepository;
 		this.modelMapper = modelMapper;
 	}
+	/*//Alison
+	@Transactional
+	public PriceQuotation saveOther(PriceQuotation priceQuotation) {
+		return priceQuotationRepository.save(priceQuotation);
+	}*/
 	
-	/*public Student getById(Integer studentId) {
-	Student studentAct = studentRepository.findById(studentId).orElse(null);
-    if (null == studentAct) {
-        throw new DtoNotFoundException(StudentResponse.class.toString(), studentId);
-    }
-    //StudentResponse foundStudent = modelMapper.map(studentAct, StudentResponse.class);
-    //foundStudent.setStudentId(studentAct.getStudentId());
-    return studentAct;
-}*/
+	@Transactional
+	public Business save(Business business) {
+		return businessRepository.save(business);
+	}
+	
+	public Business getLastBusiness() {
+		List<Business> list = businessRepository.findAll();
+		System.out.println("///************** id of last Business: "+ list.size());
+		return list.get(list.size()-1);
+	}
 	
 	public Business getByIdBusiness(int id) {
 		
@@ -47,5 +57,7 @@ public class BusinessService {
 		
 		
 	}
+	
+	
 	
 }

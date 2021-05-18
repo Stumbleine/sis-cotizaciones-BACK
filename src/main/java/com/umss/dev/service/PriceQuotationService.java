@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.umss.dev.entity.Business;
 import com.umss.dev.entity.PriceQuotation;
+import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.exception.DtoNotFoundException;
 import com.umss.dev.input.PriceQuotationInput;
@@ -32,6 +33,7 @@ public class PriceQuotationService {
 	private SpendingUnitRequestService spedingUnitRequestService;
 	private PriceQuotation LastPriceQuotation;
 	private PriceQoutationDetailService priceQuotationDetailsService;
+	private PriceQuotationRequest last;
 	
 	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService, SpendingUnitRequestService spedingUnitRequestService, PriceQoutationDetailService priceQuotationDetailsService) {
 		super();
@@ -40,6 +42,7 @@ public class PriceQuotationService {
 		this.spedingUnitRequestService = spedingUnitRequestService;
 		this.priceQuotationDetailsService = priceQuotationDetailsService;
 		LastPriceQuotation = new PriceQuotation();
+		last = new PriceQuotationRequest();
 		this.modelMapper = modelMapper;
 	
 	}
@@ -118,10 +121,16 @@ public class PriceQuotationService {
 		System.out.println("****************************spendinUnitRequest////"+idSpendingUnitRequest);
 		SpendingUnitRequest request = spedingUnitRequestService.getSpendingUnitRequestNormal(idSpendingUnitRequest);
 		actPriceQuotation.setPriceQuotationRequest(request.getPriceQuotation());
+		last = request.getPriceQuotation();
 		
 		return saveOther(actPriceQuotation);
 		
 		
+	}
+	
+	public PriceQuotationRequest getPriceQuotationRequestOfLastQuotation() {
+		System.out.println("idLastPriceQuotaitonRequest"+last.getIdPriceQuotationRequest());
+		return last;
 	}
 	
 	//Alison
@@ -203,6 +212,20 @@ return allStudentResponse;
 		}
 		
 		return allPriceQuotationByOrder;	
+	}
+	
+public PriceQuotation getByIdPriceQuotation(int id) {
+		
+		Optional<PriceQuotation> actQuotation = priceQuotationRepository.findById(id);
+		
+		return actQuotation.get();
+		/*Business actBusiness = businessRepository.findById(id).orElse(null);
+		if(null == actBusiness) {
+			 new DtoNotFoundException(Business.class.toString(), id);
+		}
+		return actBusiness;*/
+		
+		
 	}
 	
 }

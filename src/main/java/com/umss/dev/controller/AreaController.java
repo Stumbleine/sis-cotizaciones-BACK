@@ -49,7 +49,7 @@ public class AreaController {
 	@GetMapping("/getBusinessesByAreaName/{name}")
 	public Iterable<BusinessOutput> getBusinessByAreaName(@PathVariable (value = "name") String areaName){
 		
-		return areaService.getBusinessByArea(areaName);
+		return areaService.getBusinessByAreaName(areaName);
 		
 	}
 	
