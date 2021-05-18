@@ -8,7 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
+import com.umss.dev.exception.DtoNotFoundException;
 import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.output.PriceQuotationOutput;
@@ -50,6 +50,23 @@ public class PriceQuotationRequestService {
 		return priceQuotationRequest;
 	}
 
+	/*public Student getById(Integer studentId) {
+		Student studentAct = studentRepository.findById(studentId).orElse(null);
+	    if (null == studentAct) {
+	        throw new DtoNotFoundException(StudentResponse.class.toString(), studentId);
+	    }
+	    //StudentResponse foundStudent = modelMapper.map(studentAct, StudentResponse.class);
+	    //foundStudent.setStudentId(studentAct.getStudentId());
+	    return studentAct;
+	}*/
+	
+	public PriceQuotationRequest getPriceQuotationRequestById (int id) {
+		PriceQuotationRequest actRequest = priceQuotationRequestRepository.findById(id).orElse(null);
+		if(null == actRequest) {
+			throw new DtoNotFoundException(PriceQuotationRequest.class.toString(),id);
+		}
+		return actRequest;
+	}
 						//S/M/H/D/M
 	//@Scheduled(cron = "0 * * * * ?")
 	@Scheduled(cron = "0 * * * * ?")

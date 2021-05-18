@@ -3,15 +3,19 @@ package com.umss.dev.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.umss.dev.entity.Business;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.exception.DtoNotFoundException;
+import com.umss.dev.input.PriceQuotationInput;
 import com.umss.dev.output.PriceQuotationIdOutput;
 import com.umss.dev.output.BusinessOutput;
 import com.umss.dev.output.CompletePriceQuotation;
@@ -24,12 +28,15 @@ public class PriceQuotationService {
 
 	@Autowired
 	private PriceQuotationRepository priceQuotationRepository;
-
 	private ModelMapper modelMapper;
+	private BusinessService businessService;
+	private SpendingUnitRequestService spedingUnitRequestService;
 	
-	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper) {
+	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService, SpendingUnitRequestService spedingUnitRequestService) {
 		super();
 		this.priceQuotationRepository = priceQuotationRepository;
+		this.businessService = businessService;
+		this.spedingUnitRequestService = spedingUnitRequestService;
 		this.modelMapper = modelMapper;
 	
 	}
@@ -70,22 +77,40 @@ public class PriceQuotationService {
 		//information de la empresa
 	}
 	
-	/*public ComentarioResponse save2(PriceQuotation priceQuotation) {//post//create
-		System.out.println(priceQuotation.toString());
-	
-	 priceQuotation converted = modelMapper.map(priceQuotation,PriceQuotation.class);
-	 
-	 System.out.println(converted.toString());
-	 
-     Comentario persistedUser = comentarioRepository.save(converted);
-    
-     ComentarioResponse comentarioResponse = modelMapper.map(persistedUser, ComentarioResponse.class);
-   
-     return comentarioResponse;
-	}*/
-	
 	public PriceQuotation save(PriceQuotation priceQuotation) {
 		return priceQuotationRepository.save(priceQuotation);
+	}
+	
+	public PriceQuotation save2(PriceQuotationInput priceQuotationInput, int idSpendingUnitRequest) {
+		PriceQuotation actPriceQuotation = new PriceQuotation();
+		actPriceQuotation.setWayOfPayment(priceQuotationInput.getWayOfPayment());
+		actPriceQuotation.setGarantyTerm(priceQuotationInput.getGarantyTerm());
+		actPriceQuotation.setDeliveryTerm(priceQuotationInput.getDeliveryTerm());
+		actPriceQuotation.setOffValidation(priceQuotationInput.getOffValidation());
+		actPriceQuotation.setTotal(priceQuotationInput.getTotal());
+		actPriceQuotation.setPriceQuotationDetail(priceQuotationInput.getPriceQuotationDetail());
+		
+		System.out.println("**************************** business ////"+priceQuotationInput.getIdBusiness());
+		Integer id = new Integer(priceQuotationInput.getIdBusiness());
+		
+		if(!(id.equals(null)|| priceQuotationInput.getIdBusiness()== 0)) {
+			
+			Business actBusiness = businessService.getByIdBusiness(priceQuotationInput.getIdBusiness());
+			//Optional<Business> actBusiness = businessRepository.findById(id);
+			System.out.println("**********************************");
+			//System.out.println(actBusiness.toString());
+			actPriceQuotation.setBusiness(actBusiness);
+
+			
+		}
+				
+		System.out.println("****************************spendinUnitRequest////"+idSpendingUnitRequest);
+		SpendingUnitRequest request = spedingUnitRequestService.getSpendingUnitRequestNormal(idSpendingUnitRequest);
+		actPriceQuotation.setPriceQuotationRequest(request.getPriceQuotation());
+		
+		return priceQuotationRepository.save(actPriceQuotation);
+		
+		
 	}
 	
 	//Alison
@@ -120,7 +145,6 @@ public class PriceQuotationService {
 				newReq.setNameArea(req.getBusiness().getArea().getName());
 				newReq.setTotal(req.getTotal());
 				newReq.setPriceQuotationDetail(req.getPriceQuotationDetail());
-				newReq.setDeadline(req.getPriceQuotationRequest().getDeadline());
 				pricequotations.add(newReq);
 				
 				}

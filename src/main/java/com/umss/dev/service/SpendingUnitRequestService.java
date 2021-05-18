@@ -155,5 +155,11 @@ public class SpendingUnitRequestService {
 		return outputAtributes;
 	}
 	
+	public SpendingUnitRequest getSpendingUnitRequestNormal(int id) {
+		Optional<SpendingUnitRequest> actRequest = spendingUnitRequestRepository.findById(id);
+		
+		return actRequest.get();
+	}
+	
 }
 
