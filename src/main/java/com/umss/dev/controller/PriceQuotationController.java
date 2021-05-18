@@ -89,7 +89,7 @@ public class PriceQuotationController {
 	}
 	
 	@PutMapping("/RelatingPriceQuotationToDetails")
-	public void relatePriceQuotationToDetails() {
+	public void relatePriceQuotationToDetails(@RequestBody PriceQuotation newQuotation) {
 		priceQuotationService.relatePriceQuotitionToDetails();
 	}
 	
