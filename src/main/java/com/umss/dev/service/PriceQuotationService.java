@@ -65,6 +65,8 @@ public class PriceQuotationService {
 		mapQuotation.setDeliveryTerm(actPriceQuotation.getDeliveryTerm());
 		//mapQuotation.setPriceQuotationRequest(actPriceQuotation.getPriceQuotationRequest());
 		
+		if(!(actPriceQuotation.getBusiness() == null)) {
+		
 		BusinessOutput businessOutput = new BusinessOutput();
 		businessOutput.setIdBusiness(actPriceQuotation.getBusiness().getIdBusiness());
 		businessOutput.setName(actPriceQuotation.getBusiness().getName());
@@ -79,6 +81,8 @@ public class PriceQuotationService {
 		businessOutput.setNameArea(actPriceQuotation.getBusiness().getArea().getName());
 		
 		mapQuotation.setBusiness(businessOutput);
+		}
+		
 		return mapQuotation;
 		//information de la empresa
 	}
