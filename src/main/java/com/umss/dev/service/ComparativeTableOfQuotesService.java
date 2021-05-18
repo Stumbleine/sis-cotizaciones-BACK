@@ -19,6 +19,7 @@ import com.umss.dev.output.PriceQuotationOutput;
 import com.umss.dev.repository.ComparativeTableOfQuotesRepository;
 import com.umss.dev.repository.PriceQuotationRepository;
 import com.umss.dev.repository.PriceQuotationRequestRepository;
+import com.umss.dev.repository.SpendingUnitRequestRepository;
 
 @Service
 public class ComparativeTableOfQuotesService {
@@ -28,7 +29,8 @@ public class ComparativeTableOfQuotesService {
 	private PriceQuotationRequestRepository priceQuotationRequestRepository;
 	private PriceQuotationRepository priceQuotationRepository;
 	private ModelMapper modelMapper;
-	
+	@Autowired
+	private SpendingUnitRequestRepository spendingUnitRequestRepository;
 	
 	public ComparativeTableOfQuotesService(ComparativeTableOfQuotesRepository comparativeTableOfQuotesRepository, ModelMapper modelMapper, PriceQuotationRequestRepository priceQuotationRequestRepository, PriceQuotationRepository priceQuotationRepository) {
 		this.comparativeTableOfQuotesRepository = comparativeTableOfQuotesRepository;
@@ -40,7 +42,9 @@ public class ComparativeTableOfQuotesService {
 
 	@Transactional
 	public ComparativeTableOfQuotes save(ComparativeTableOfQuotes comparativeTableOfQuotes,Integer id) {
-		Optional<PriceQuotationRequest> request= priceQuotationRequestRepository.findById(id);
+		
+		Optional<SpendingUnitRequest> srequest= spendingUnitRequestRepository.findById(id);
+		Optional<PriceQuotationRequest> request= priceQuotationRequestRepository.findById(srequest.get().getPriceQuotation().getIdPriceQuotationRequest());
 		comparativeTableOfQuotes.setPriceQuotationRequest(request.get());
 		return comparativeTableOfQuotesRepository.save(comparativeTableOfQuotes);
 	}
@@ -50,7 +54,7 @@ public class ComparativeTableOfQuotesService {
 		List <ComparativeTableOfQuotes> allComparativeTableOfQuotes = comparativeTableOfQuotesRepository.findAll();
 		List <ComparativeTableOfQuotes> comparativeTableOfQuotes = new ArrayList<ComparativeTableOfQuotes>();
 		for(ComparativeTableOfQuotes allTable :allComparativeTableOfQuotes) {
-			if(allTable.getPriceQuotationRequest().getIdPriceQuotationRequest()==id) {
+			if(allTable.getPriceQuotationRequest().getSpendingUnitRequest().getIdSpendingUnitRequest()==id) {
 				comparativeTableOfQuotes.add(allTable);
 			}
 		}

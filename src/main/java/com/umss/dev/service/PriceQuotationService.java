@@ -145,6 +145,7 @@ public class PriceQuotationService {
 				newReq.setNameArea(req.getBusiness().getArea().getName());
 				newReq.setTotal(req.getTotal());
 				newReq.setPriceQuotationDetail(req.getPriceQuotationDetail());
+				newReq.setDeadline(req.getPriceQuotationRequest().getDeadline());
 				pricequotations.add(newReq);
 				
 				}
