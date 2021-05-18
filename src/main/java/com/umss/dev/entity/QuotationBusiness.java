@@ -29,6 +29,14 @@ public class QuotationBusiness {
 	@JoinColumn(name="idComparativeTableOfQuotes")
 	@JsonBackReference
 	private ComparativeTableOfQuotes comparativeTableOfQuotes;
+    
+	public int getIdQuotationBusiness() {
+		return idQuotationBusiness;
+	}
+
+	public void setIdQuotationBusiness(int idQuotationBusiness) {
+		this.idQuotationBusiness = idQuotationBusiness;
+	}
 
 	public String getNameBusiness() {
 		return nameBusiness;

@@ -56,19 +56,12 @@ public class ComparativeTablesOfQuotesController {
 		return comparativeTableOfQuotesService.getComparativeTable(id);
 	}
     
-    /*@PutMapping("/{id}")
+    @PutMapping("/{id}")
 	public ResponseEntity<?> updateComparativeTableOfQuotes(@PathVariable Integer id, @RequestBody List<ComparativeTableOfQuotes> comparativeTableOfQuotes) {
 		
     	List<ComparativeTableOfQuotes> comparativeTable=comparativeTableOfQuotes;
-    	for(ComparativeTableOfQuotes quotations:comparativeTable) {
-    		comparativeTableOfQuotesService.update(id, quotations);
-    	}
-		
+    	comparativeTable=comparativeTableOfQuotesService.update(id, comparativeTable);		
 		return ResponseEntity.ok(comparativeTable);
-    	
-		PriceQuotationRequestOutput updateRequets=priceQuotationRequestService.save(id,PriceQuotationRequest);
-
-		return ResponseEntity.ok(updateRequets);
 	}
     /*
 	@GetMapping()
