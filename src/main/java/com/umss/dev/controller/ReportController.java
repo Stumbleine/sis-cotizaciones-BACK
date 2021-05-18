@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.umss.dev.output.CompletePriceQuotationOutput;
+import com.umss.dev.output.PriceQuotationIdOutput;
 import com.umss.dev.output.ReportOutput;
 import com.umss.dev.service.ReportService;
 

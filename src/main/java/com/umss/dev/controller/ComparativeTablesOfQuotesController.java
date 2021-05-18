@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,7 @@ import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.output.PriceQuotationOutput;
+import com.umss.dev.output.PriceQuotationRequestOutput;
 import com.umss.dev.service.ComparativeTableOfQuotesService;
 
 @RestController
@@ -54,6 +56,20 @@ public class ComparativeTablesOfQuotesController {
 		return comparativeTableOfQuotesService.getComparativeTable(id);
 	}
     
+    /*@PutMapping("/{id}")
+	public ResponseEntity<?> updateComparativeTableOfQuotes(@PathVariable Integer id, @RequestBody List<ComparativeTableOfQuotes> comparativeTableOfQuotes) {
+		
+    	List<ComparativeTableOfQuotes> comparativeTable=comparativeTableOfQuotes;
+    	for(ComparativeTableOfQuotes quotations:comparativeTable) {
+    		comparativeTableOfQuotesService.update(id, quotations);
+    	}
+		
+		return ResponseEntity.ok(comparativeTable);
+    	
+		PriceQuotationRequestOutput updateRequets=priceQuotationRequestService.save(id,PriceQuotationRequest);
+
+		return ResponseEntity.ok(updateRequets);
+	}
     /*
 	@GetMapping()
 	@ResponseBody

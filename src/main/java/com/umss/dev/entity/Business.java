@@ -13,12 +13,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Data
 @Entity(name = "Business")
 @Table(name = "BUSINESS")
 public class Business {
+
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +42,7 @@ public class Business {
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idArea")
+	@JsonBackReference
 	private Area area;
 	
 	@OneToMany(mappedBy = "business",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
@@ -132,6 +137,11 @@ public class Business {
 		this.area = area;
 	}
 	
-
+	@Override
+	public String toString() {
+		return "Business [idBusiness=" + idBusiness + ", name=" + name + ", description=" + description + ", adress="
+				+ adress + ", phone=" + phone + ", eMail=" + eMail + ", nit=" + nit + ", area=" + area
+				+ ", priceQuotations=" + priceQuotations + "]";
+	}
 	
 }
