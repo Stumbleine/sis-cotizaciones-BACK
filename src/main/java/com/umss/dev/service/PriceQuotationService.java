@@ -176,8 +176,10 @@ return allStudentResponse;
 				newReq.setIdPriceQuotation(req.getIdPriceQuotation());					
 				reqIds.add(req.getIdPriceQuotation());					
 				newReq.setState(req.getState());
+				if(req.getBusiness()!=null) {
 				newReq.setNameBussiness(req.getBusiness().getName());
 				newReq.setNameArea(req.getBusiness().getArea().getName());
+				}
 				newReq.setTotal(req.getTotal());
 				newReq.setPriceQuotationDetail(req.getPriceQuotationDetail());
 				newReq.setDeadline(req.getPriceQuotationRequest().getDeadline());
