@@ -122,14 +122,15 @@ public class PriceQuotationService {
 		System.out.println("****************************spendinUnitRequest////"+idSpendingUnitRequest);
 		SpendingUnitRequest request = spedingUnitRequestService.getSpendingUnitRequestNormal(idSpendingUnitRequest);
 		actPriceQuotation.setPriceQuotationRequest(request.getPriceQuotation());
-		last = request.getPriceQuotation();
+		//last = request.getPriceQuotation();
 		
 		return saveOther(actPriceQuotation);
 		
 		
 	}
 	
-	public PriceQuotationRequest getPriceQuotationRequestOfLastQuotation() {
+	public PriceQuotationRequest getPriceQuotationRequestOfQuotation(int priceQuotationId) {
+		last = this.getByIdPriceQuotation(priceQuotationId).getPriceQuotationRequest();
 		System.out.println("idLastPriceQuotaitonRequest"+last.getIdPriceQuotationRequest());
 		return last;
 	}

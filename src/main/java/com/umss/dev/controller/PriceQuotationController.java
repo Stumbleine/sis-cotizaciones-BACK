@@ -81,7 +81,7 @@ public class PriceQuotationController {
 	public ResponseEntity<Object> updateQuotation(@RequestBody PriceQuotation newQuotation, @PathVariable (value = "id") Integer idPriceQuotation) {
 		//int id = lastPriceQuotationSaved.getIdPriceQuotation();
 		Optional<PriceQuotation> quotationOptional = priceQuotationRepository.findById(idPriceQuotation);
-		PriceQuotationRequest act = priceQuotationService.getPriceQuotationRequestOfLastQuotation();
+		PriceQuotationRequest act = priceQuotationService.getPriceQuotationRequestOfQuotation(idPriceQuotation);
 		//Business actBusiness = businessService.getByIdBusiness(newQuotation.);
 		if (!quotationOptional.isPresent())
 			return ResponseEntity.notFound().build();
@@ -97,7 +97,7 @@ public class PriceQuotationController {
 	@PutMapping("/updateQuotationAddingBusiness/{id}")
 	public ResponseEntity<Object> updateQuotation(@Valid @RequestBody NewBusinessInput newBusiness, @PathVariable (value = "id") Integer idPriceQuotation) {
 		Optional<PriceQuotation> quotationOptional = priceQuotationRepository.findById(idPriceQuotation);
-		PriceQuotationRequest act = priceQuotationService.getPriceQuotationRequestOfLastQuotation();
+		PriceQuotationRequest act = priceQuotationService.getPriceQuotationRequestOfQuotation(idPriceQuotation);
 		Business actBusiness = businessService.getByIdBusiness(newBusiness.getIdBusiness());
 		PriceQuotation actQuotation= priceQuotationService.getByIdPriceQuotation(idPriceQuotation);
 		
