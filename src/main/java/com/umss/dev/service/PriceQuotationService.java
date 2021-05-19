@@ -143,7 +143,7 @@ public class PriceQuotationService {
 	public void relatePriceQuotitionToDetails() {
 		List<PriceQuotation> list = priceQuotationRepository.findAll();
 		int size = list.size();
-		PriceQuotation act = priceQuotationRepository.getOne(size);
+		PriceQuotation act = list.get(size-1);
 		System.out.println("*******************************// toConfirm : "+act.getIdPriceQuotation());
 		priceQuotationDetailsService.getAllWithNull(act);
 		
