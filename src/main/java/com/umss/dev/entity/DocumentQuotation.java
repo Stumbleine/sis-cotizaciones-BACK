@@ -31,7 +31,9 @@ public class DocumentQuotation {
 	@JoinColumn(name = "idReport",unique = true)
 	private Report report;
 
-
+	@JoinColumn(name = "idPriceQuotation",unique = true)
+	@OneToOne(cascade =CascadeType.ALL)
+	private PriceQuotation priceQuotation;
 	
 	public DocumentQuotation(int idDocumentQuotaion, String nameDocumenQuotaion, long sizeDocuemntQuotaion,
 			byte[] content, Report report) {
@@ -85,6 +87,14 @@ public class DocumentQuotation {
 
 	public void setNameDocumenQuotaion(String nameDocumenQuotaion) {
 		this.nameDocumenQuotaion = nameDocumenQuotaion;
+	}
+
+	public PriceQuotation getPriceQuotation() {
+		return priceQuotation;
+	}
+
+	public void setPriceQuotation(PriceQuotation priceQuotation) {
+		this.priceQuotation = priceQuotation;
 	}
 	
 }
