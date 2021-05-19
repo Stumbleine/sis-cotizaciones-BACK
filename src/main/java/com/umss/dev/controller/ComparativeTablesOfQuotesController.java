@@ -26,7 +26,7 @@ import com.umss.dev.output.PriceQuotationRequestOutput;
 import com.umss.dev.service.ComparativeTableOfQuotesService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/quotation_comparative") // api/quotation_comparative
 public class ComparativeTablesOfQuotesController {
 	
