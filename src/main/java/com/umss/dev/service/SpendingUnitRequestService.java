@@ -161,6 +161,12 @@ public class SpendingUnitRequestService {
 		
 		return actRequest.get();
 	}
-	
+
+
+	public void updateState(Integer spendingUnitRequestId, String state) {
+		SpendingUnitRequest request=spendingUnitRequestRepository.findById(spendingUnitRequestId).get();
+		request.setStatus(state);
+		spendingUnitRequestRepository.save(request);
+	}
 }
 
