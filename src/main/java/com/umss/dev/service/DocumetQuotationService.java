@@ -26,5 +26,10 @@ public class DocumetQuotationService {
 		
 		documentQuotationRepository.save(documentQuotation);
 	}
+	
+	public DocumentQuotation getById(int id) {
+		
+		return documentQuotationRepository.findById(id).get();
+	}
 }
 	

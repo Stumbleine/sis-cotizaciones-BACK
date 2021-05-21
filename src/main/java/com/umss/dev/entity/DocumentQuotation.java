@@ -18,7 +18,7 @@ import lombok.Data;
 public class DocumentQuotation {
 
 	@Id
-	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@GeneratedValue(strategy  = GenerationType.AUTO)
 	private int idDocumentQuotaion;
 	@Column
 	private String nameDocumenQuotaion;

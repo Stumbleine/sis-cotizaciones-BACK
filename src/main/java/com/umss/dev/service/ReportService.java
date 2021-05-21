@@ -87,4 +87,9 @@ public class ReportService {
 		reportOutput.setNameArea(priceQuotation.getBusiness().getNameArea());;
 		
 	}
+	
+	public Report getById(int id) {
+		return reportRepository.findById(id).get();
+		
+	}
 }
