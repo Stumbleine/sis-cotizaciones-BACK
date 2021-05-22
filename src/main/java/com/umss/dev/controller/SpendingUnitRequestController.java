@@ -101,7 +101,7 @@ public class SpendingUnitRequestController {
 			else {
 				if(request.getStatus().compareTo("Cotizando")==0) {
 					if(state.compareTo("Rechazado")==0 || state.compareTo("Aprobado")==0) {
-						idPriceQuotation= priceQuotationRequestService.createPriceQuotationRequest(spendingUnitReqService.getSpendingUnitRequestNormal(spendingUnitRequestId));
+						idPriceQuotation=spendingUnitReqService.getSpendingUnitRequestNormal(spendingUnitRequestId).getPriceQuotation().getIdPriceQuotationRequest();
 						idReport=reportService.createReport(idPriceQuotation,comentary);
 						documetQuotationService.createDocument(file,idReport);
 					}
