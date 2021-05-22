@@ -2,7 +2,10 @@ package com.umss.dev.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -27,5 +30,9 @@ public interface ReportRepository extends JpaRepository<Report, Integer>{
 			+ "	AND p.id_price_quotation_request= r.id_price_quotation_request",nativeQuery = true )
 	int idReport(@Param("id")int id);
 	
+	@Modifying
+	@Transactional
+	@Query(value ="UPDATE report r SET r.id_price_quotation_request=:idPriceQuotationRequest WHERE r.id_report=:idReport",nativeQuery = true)
+	void updateSpendingRequest(@Param("idPriceQuotationRequest")int idPriceQuotationRequest,@Param("idReport")int  idReport);
 	
 }

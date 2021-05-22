@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,20 +30,11 @@ public class DocumetQuotationController {
 	private DocumetQuotationService documentService;
 	
 	@PostMapping
-	public void uploadDocument(@RequestParam("document")MultipartFile file) {
+	public ResponseEntity<DocumentQuotation> uploadDocument(@RequestParam("document")MultipartFile file) {
 		
-			try {
-				String nameFile=file.getOriginalFilename();
-				
-				DocumentQuotation documentQuotation= new DocumentQuotation();
-				documentQuotation.setNameDocumenQuotaion(nameFile);
-				documentQuotation.setContent(file.getBytes());
-				documentQuotation.setSizeDocuemntQuotaion(file.getSize());
-				
-				documentService.saveDocumentQuotation(documentQuotation);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+		return ResponseEntity.ok( documentService.saveDocumentQuotation(file));	
+		
+		
 	}
 	
 	@GetMapping("/{id}")
@@ -52,7 +44,7 @@ public class DocumetQuotationController {
 			
 			reponse.setContentType("application/force-download");
 			String headerKey= "Content-Disposition";
-			String headerValue="attachment; fileName="+"INFORME-DE-RECHAZO.pdf";
+			String headerValue="attachment; fileName="+documentQuotation.getNameDocumenQuotaion();
 			
 			reponse.setHeader(headerKey, headerValue);
 			

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.entity.Report;
+import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.output.CompletePriceQuotation;
 import com.umss.dev.output.DocumentQuotationAtributesOutput;
 import com.umss.dev.output.PriceQuotationOutput;
@@ -30,6 +31,7 @@ public class ReportService {
 	private ModelMapper modelMapper;
 	@Autowired
 	private PriceQuotationService priceQuotationService;
+
 	
 	public ReportService(ReportRepository reportRepository, PriceQuotationRequestService priceQuotationRequestService,
 			ModelMapper modelMapper, PriceQuotationService priceQuotationService) {
@@ -91,5 +93,19 @@ public class ReportService {
 	public Report getById(int id) {
 		return reportRepository.findById(id).get();
 		
+	}
+	
+	public void saveReport(Report report) {
+		reportRepository.save(report);
+	}
+
+	public int createReport(int idPriceQuotation, String comentary) {
+		
+		Report report=new Report();
+		report.setCommentary(comentary);
+		reportRepository.save(report);
+		reportRepository.updateSpendingRequest(idPriceQuotation, report.getIdReport());
+		
+		return report.getIdReport();
 	}
 }

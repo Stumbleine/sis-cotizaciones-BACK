@@ -24,7 +24,7 @@ public class DocumentQuotation {
 	private String nameDocumenQuotaion;
 	@Column
 	private long sizeDocuemntQuotaion;
-	@Column
+	@Column(columnDefinition = "Mediumblob")
 	private byte[] content;
 	
 	@OneToOne(cascade =CascadeType.ALL)
@@ -35,10 +35,9 @@ public class DocumentQuotation {
 	@OneToOne(cascade =CascadeType.ALL)
 	private PriceQuotation priceQuotation;
 	
-	public DocumentQuotation(int idDocumentQuotaion, String nameDocumenQuotaion, long sizeDocuemntQuotaion,
+	public DocumentQuotation(String nameDocumenQuotaion, long sizeDocuemntQuotaion,
 			byte[] content, Report report) {
 		super();
-		this.idDocumentQuotaion = idDocumentQuotaion;
 		this.nameDocumenQuotaion = nameDocumenQuotaion;
 		this.sizeDocuemntQuotaion = sizeDocuemntQuotaion;
 		this.content = content;

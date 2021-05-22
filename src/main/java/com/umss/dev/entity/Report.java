@@ -20,20 +20,32 @@ import lombok.Data;
 public class Report {
 	
 	@Id
-	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@GeneratedValue(strategy  = GenerationType.AUTO)
 	private int idReport;
 	
 	@Column(length = 1000)
 	private String commentary;
 	
 	@JoinColumn(name = "idPriceQuotationRequest" ,nullable = true)
-	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
+	@OneToOne(cascade =CascadeType.ALL )
 	private PriceQuotationRequest priceQuotation;
 
 	@OneToOne(cascade =CascadeType.ALL)
 	@JoinColumn(name = "idFile",unique = true)
 	private DocumentQuotation documentQuotation;
 	
+	
+	
+	public Report() {
+	
+	}
+
+	public Report(String commentary, PriceQuotationRequest priceQuotation) {
+		super();
+		this.commentary = commentary;
+		this.priceQuotation = priceQuotation;
+	}
+
 	public int getIdReport() {
 		return idReport;
 	}

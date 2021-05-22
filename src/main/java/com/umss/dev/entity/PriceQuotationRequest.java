@@ -28,7 +28,7 @@ import lombok.Data;
 public class PriceQuotationRequest {
 	
 	@Id
-	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@GeneratedValue(strategy  = GenerationType.AUTO)
 	private int idPriceQuotationRequest;
 	
 	@Column
@@ -58,6 +58,21 @@ public class PriceQuotationRequest {
 	@OneToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH} )
 	private Report report;
 	
+	
+	
+	
+	public PriceQuotationRequest() {
+
+	}
+
+	public PriceQuotationRequest(LocalDate deadline, UserRole userRole, SpendingUnitRequest spendingUnitRequest) {
+		super();
+		this.deadline = deadline;
+		this.userRole = userRole;
+		this.spendingUnitRequest = spendingUnitRequest;
+	
+	}
+
 	public SpendingUnitRequest getSpendingUnitRequest() {
 		return spendingUnitRequest;
 	}
@@ -98,4 +113,21 @@ public class PriceQuotationRequest {
 	public void setDeadline(LocalDate  deadline) {
 		this.deadline = deadline;
 	}
+
+	public List<PriceQuotation> getPriceQuotations() {
+		return priceQuotations;
+	}
+
+	public void setPriceQuotations(List<PriceQuotation> priceQuotations) {
+		this.priceQuotations = priceQuotations;
+	}
+
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
+	}
+	
 }

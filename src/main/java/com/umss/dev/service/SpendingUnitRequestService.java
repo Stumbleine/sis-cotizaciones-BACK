@@ -1,5 +1,6 @@
 package com.umss.dev.service;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,14 +16,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.umss.dev.entity.Business;
+import com.umss.dev.entity.DocumentQuotation;
+import com.umss.dev.entity.PriceQuotationRequest;
+import com.umss.dev.entity.Report;
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.entity.User;
 import com.umss.dev.entity.UserRole;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.output.SpendingUnitRequesteOutputAtributes;
+import com.umss.dev.repository.DocumentQuotationRepository;
+import com.umss.dev.repository.ReportRepository;
 import com.umss.dev.repository.SpendingUnitRequestRepository;
 
 @Service
@@ -161,7 +168,12 @@ public class SpendingUnitRequestService {
 		
 		return actRequest.get();
 	}
-
+	
+	public Optional<SpendingUnitRequest> getSpendingUnitRequest(int id) {
+		Optional<SpendingUnitRequest> actRequest = spendingUnitRequestRepository.findById(id);
+		
+		return actRequest;
+	}
 
 	public void updateState(Integer spendingUnitRequestId, String state) {
 		SpendingUnitRequest request=spendingUnitRequestRepository.findById(spendingUnitRequestId).get();

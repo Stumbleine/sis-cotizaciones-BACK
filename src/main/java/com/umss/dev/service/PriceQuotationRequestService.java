@@ -88,5 +88,24 @@ public class PriceQuotationRequestService {
 	public PriceQuotationRequest gitById(int id) {
 		return priceQuotationRequestRepository.findById(id).get();
 	}
+	
+	public void saveNormalPriceQuotationRequest(PriceQuotationRequest priceQuotationRequest) {
+		
+		priceQuotationRequestRepository.save(priceQuotationRequest);
+	}
 
+	public int createPriceQuotationRequest(SpendingUnitRequest spendingUnitRequestNormal) {
+		
+		PriceQuotationRequest priceQuotationRequest=new PriceQuotationRequest();
+		priceQuotationRequest.setSpendingUnitRequest(spendingUnitRequestNormal);
+		priceQuotationRequestRepository.save(priceQuotationRequest);
+		//System.out.println(spendingUnitRequestNormal.getIdSpendingUnitRequest()+"---------------->"+priceQuotationRequest.getIdPriceQuotationRequest());
+		priceQuotationRequestRepository.updateSpendingRequest(priceQuotationRequest.getIdPriceQuotationRequest(), spendingUnitRequestNormal.getIdSpendingUnitRequest());
+		
+		return priceQuotationRequest.getIdPriceQuotationRequest();
+	}
+
+	public Optional<PriceQuotationRequest> getByIOptional(int id){
+		return priceQuotationRequestRepository.findById(id);
+	}
 }
