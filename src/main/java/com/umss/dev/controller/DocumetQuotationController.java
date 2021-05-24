@@ -24,7 +24,7 @@ import antlr.StringUtils;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
-@RequestMapping("/DocumentQuotation")
+@RequestMapping("/Document")
 public class DocumetQuotationController {
 
 	@Autowired
@@ -62,9 +62,15 @@ public class DocumetQuotationController {
 	
 	} 
 	
-	@GetMapping("{id}")
-	public ResponseEntity<DocumentQuotationAtributesOutput> report(@PathVariable (value = "id") Integer id) {
+	@GetMapping("/Quotation/{id}")
+	public ResponseEntity<DocumentQuotationAtributesOutput> priceQuotation(@PathVariable (value = "id") Integer id) {
 		
 		return  ResponseEntity.ok( documentService.getDocumneByIdPriceQuotation(id));
+	}
+	
+	@GetMapping("/Report/{id}")
+	public ResponseEntity<DocumentQuotationAtributesOutput> report(@PathVariable (value = "id") Integer id) {
+		
+		return  ResponseEntity.ok(documentService.getDocumneByIdReport(id));
 	}
 }

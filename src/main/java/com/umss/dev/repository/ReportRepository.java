@@ -35,4 +35,10 @@ public interface ReportRepository extends JpaRepository<Report, Integer>{
 	@Query(value ="UPDATE report r SET r.id_price_quotation_request=:idPriceQuotationRequest WHERE r.id_report=:idReport",nativeQuery = true)
 	void updateSpendingRequest(@Param("idPriceQuotationRequest")int idPriceQuotationRequest,@Param("idReport")int  idReport);
 	
+	
+	@Modifying
+	@Transactional
+	@Query(value ="UPDATE price_quotaton_request r SET r.id_report=:idReport WHERE r.id_price_quotation_request=:idPriceQuotationRequest",nativeQuery = true)
+	void updatePriceQuotation(@Param("idPriceQuotationRequest")int idPriceQuotationRequest,@Param("idReport")int  idReport);
+	
 }

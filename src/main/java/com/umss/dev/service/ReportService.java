@@ -105,6 +105,7 @@ public class ReportService {
 		report.setCommentary(comentary);
 		reportRepository.save(report);
 		reportRepository.updateSpendingRequest(idPriceQuotation, report.getIdReport());
+		reportRepository.updatePriceQuotation(idPriceQuotation, report.getIdReport());
 		
 		return report.getIdReport();
 	}

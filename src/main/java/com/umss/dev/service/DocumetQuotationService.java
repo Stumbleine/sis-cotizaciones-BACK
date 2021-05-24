@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.umss.dev.entity.DocumentQuotation;
 import com.umss.dev.entity.PriceQuotation;
+import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.output.DocumentQuotationAtributesOutput;
 import com.umss.dev.repository.DocumentQuotationRepository;
 import com.umss.dev.repository.PriceQuotationRepository;
@@ -22,18 +23,20 @@ public class DocumetQuotationService {
 	private DocumentQuotationRepository documentQuotationRepository;
 	@Autowired
 	private PriceQuotationService priceQuotationService;
-	
+	@Autowired
+	private SpendingUnitRequestService requestService;
 	private ModelMapper mapper ;
 
-	
 	
 
 
 	public DocumetQuotationService(DocumentQuotationRepository documentQuotationRepository,
-			PriceQuotationService priceQuotationService, ModelMapper mapper) {
+			PriceQuotationService priceQuotationService, SpendingUnitRequestService requestService,
+			ModelMapper mapper) {
 		super();
 		this.documentQuotationRepository = documentQuotationRepository;
 		this.priceQuotationService = priceQuotationService;
+		this.requestService = requestService;
 		this.mapper = mapper;
 	}
 
@@ -107,6 +110,20 @@ public class DocumetQuotationService {
 		}
 		
 		return quotationAtributesOutput;
+	}
+
+	public DocumentQuotationAtributesOutput getDocumneByIdReport(Integer id) {
+		SpendingUnitRequest request= requestService.getSpendingUnitRequestNormal(id);
+		DocumentQuotation documentQuotation=request.getPriceQuotation().getReport().getDocumentQuotation();
+		
+		DocumentQuotationAtributesOutput documentQuotationAtributesOutput=new DocumentQuotationAtributesOutput();
+		
+		documentQuotationAtributesOutput.setContent(documentQuotation.getContent());
+		documentQuotationAtributesOutput.setNameDocumenQuotaion(documentQuotation.getNameDocumenQuotaion());
+		documentQuotationAtributesOutput.setSizeDocuemntQuotaion(documentQuotation.getSizeDocuemntQuotaion());
+		
+		
+		return documentQuotationAtributesOutput;
 	}
 }
 	
