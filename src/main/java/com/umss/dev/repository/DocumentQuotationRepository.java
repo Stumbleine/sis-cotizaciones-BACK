@@ -35,7 +35,6 @@ public interface DocumentQuotationRepository  extends JpaRepository<DocumentQuot
 	@Query(value ="UPDATE document_quotation r SET r.id_price_quotation=:idPriceQuotation WHERE r.id_document_quotaion=:idDocument",nativeQuery = true)
 	void upDateDocumentPriceQuotation(@Param("idPriceQuotation")int idPriceQuotation,@Param("idDocument")int  idDocument);
 	
-	@Modifying
 	@Transactional
 	@Query(value ="SELECT * \r\n"
 			+ "	FROM document_quotation d \r\n"
