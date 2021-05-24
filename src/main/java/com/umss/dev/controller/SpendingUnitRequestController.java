@@ -110,7 +110,7 @@ public class SpendingUnitRequestController {
 			}
 		}
 		
-			spendingUnitReqService.updateState(spendingUnitRequestId,state);
+		spendingUnitReqService.updateState(spendingUnitRequestId,state);
 		
 		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
 	}

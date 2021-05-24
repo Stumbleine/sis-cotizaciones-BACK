@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.umss.dev.entity.DocumentQuotation;
+import com.umss.dev.output.DocumentQuotationAtributesOutput;
 import com.umss.dev.service.DocumetQuotationService;
 
 import antlr.StringUtils;
@@ -29,15 +30,15 @@ public class DocumetQuotationController {
 	@Autowired
 	private DocumetQuotationService documentService;
 	
-	@PostMapping
-	public ResponseEntity<DocumentQuotation> uploadDocument(@RequestParam("document")MultipartFile file) {
+	@PostMapping("/{id}")
+	public ResponseEntity<DocumentQuotation> uploadDocument(@PathVariable (value = "id") Integer id,@RequestParam("document")MultipartFile file) {
 		
-		return ResponseEntity.ok( documentService.saveDocumentQuotation(file));	
+		return ResponseEntity.ok( documentService.saveDocumentQuotation(file,id));	
 		
 		
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("downloadDocument/{id}")
 	public void report(@PathVariable (value = "id") Integer id, HttpServletResponse reponse){
 		try {
 			DocumentQuotation documentQuotation = documentService.getById(id);
@@ -60,4 +61,10 @@ public class DocumetQuotationController {
 		//System.out.println(documentQuotation.getNameDocumenQuotaion());
 	
 	} 
+	
+	@GetMapping("{id}")
+	public ResponseEntity<DocumentQuotationAtributesOutput> report(@PathVariable (value = "id") Integer id) {
+		
+		return  ResponseEntity.ok( documentService.getDocumneByIdPriceQuotation(id));
+	}
 }
