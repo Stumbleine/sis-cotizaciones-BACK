@@ -125,5 +125,17 @@ public class DocumetQuotationService {
 		
 		return documentQuotationAtributesOutput;
 	}
+
+	public DocumentQuotationAtributesOutput getDocumneByIdQuotation(Integer id) {
+		
+		
+		List<DocumentQuotation> list=documentQuotationRepository.documents(id);
+		
+		DocumentQuotationAtributesOutput documentQuotationAtributesOutput=new DocumentQuotationAtributesOutput();
+		
+		documentQuotationAtributesOutput.setContent(list.get(0).getContent());
+		
+		return documentQuotationAtributesOutput;
+	}
 }
 	
