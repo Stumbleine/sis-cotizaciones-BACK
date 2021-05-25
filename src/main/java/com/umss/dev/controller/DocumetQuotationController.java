@@ -73,4 +73,10 @@ public class DocumetQuotationController {
 		
 		return  ResponseEntity.ok(documentService.getDocumneByIdReport(id));
 	}
+	
+	@GetMapping("/blob/{id}")
+	public byte[] blob(@PathVariable (value = "id") Integer id) {
+		
+		return documentService.getDocumneByIdReport(id).getContent();
+	}
 }
