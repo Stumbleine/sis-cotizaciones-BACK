@@ -70,7 +70,7 @@ public class SpendingUnitRequestController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> spendingUnitRequest(@PathVariable (value = "id") Integer spendingUnitRequestId,@RequestParam("state")String state,
-												@RequestParam("comentary")String comentary,@RequestParam("document")MultipartFile file) throws IOException{
+												@RequestParam("comentary")String comentary,@RequestParam("document")MultipartFile file,@RequestParam("idQuotation")String idQuotation) throws IOException{
 		SpendingUnitRequest request=spendingUnitReqService.getSpendingUnitRequestNormal(spendingUnitRequestId);
 		int idPriceQuotation=0;
 		int idReport=0;
@@ -101,16 +101,21 @@ public class SpendingUnitRequestController {
 			else {
 				if(request.getStatus().compareTo("Cotizando")==0) {
 					if(state.compareTo("Rechazado")==0 || state.compareTo("Aprobado")==0) {
+						
 						idPriceQuotation=spendingUnitReqService.getSpendingUnitRequestNormal(spendingUnitRequestId).getPriceQuotation().getIdPriceQuotationRequest();
 						idReport=reportService.createReport(idPriceQuotation,comentary);
 						documetQuotationService.createDocument(file,idReport);
+						
+						if(idPriceQuotation>0) {
+							priceQuotationRequestService.upDateQuotationSelect(idPriceQuotation);
+						}
 					}
 					
 				}
 			}
 		}
 		
-		spendingUnitReqService.updateState(spendingUnitRequestId,state);
+		//spendingUnitReqService.updateState(spendingUnitRequestId,state);
 		
 		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
 	}

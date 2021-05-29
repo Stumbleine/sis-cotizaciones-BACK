@@ -24,7 +24,7 @@ public class DocumentQuotation {
 	private String nameDocumenQuotaion;
 	@Column
 	private long sizeDocuemntQuotaion;
-	@Column(columnDefinition = "Mediumblob")
+	@Column(columnDefinition = "longblob")
 	private byte[] content;
 	
 	@OneToOne(cascade =CascadeType.ALL)

@@ -108,4 +108,8 @@ public class PriceQuotationRequestService {
 	public Optional<PriceQuotationRequest> getByIOptional(int id){
 		return priceQuotationRequestRepository.findById(id);
 	}
+	
+	public void upDateQuotationSelect(int idQuotation) {
+		priceQuotationService.selecteQuotation(idQuotation);
+	}
 }
