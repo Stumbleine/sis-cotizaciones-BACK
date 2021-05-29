@@ -124,12 +124,12 @@ public class PriceQuotationController {
 		
 		return ResponseEntity.ok( priceQuotationService.findPriceQuotationById(idPriceQuotation));
 	}
-    
+/*    
 	@PutMapping("/updateSelectQuotation/{id}")
 	public void selectQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		
 		priceQuotationService.selecteQuotation(idPriceQuotation);
 		
 	}
-	
+	*/
 }
