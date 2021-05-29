@@ -25,7 +25,7 @@ import com.umss.dev.service.ReportService;
 import com.umss.dev.service.SpendingUnitRequestService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.PUT})
 @RequestMapping("/request") // api/request
 public class SpendingUnitRequestController { 
 	
