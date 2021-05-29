@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import org.modelmapper.ModelMapper;
 import java.util.Optional;
 
@@ -124,5 +125,11 @@ public class PriceQuotationController {
 		return ResponseEntity.ok( priceQuotationService.findPriceQuotationById(idPriceQuotation));
 	}
     
+	@PutMapping("/updateSelectQuotation/{id}")
+	public void selectQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
+		
+		priceQuotationService.selecteQuotation(idPriceQuotation);
+		
+	}
 	
 }

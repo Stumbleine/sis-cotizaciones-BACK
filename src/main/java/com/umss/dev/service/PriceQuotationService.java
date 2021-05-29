@@ -230,5 +230,15 @@ public PriceQuotation getByIdPriceQuotation(int id) {
 		
 		
 	}
+
+public void selecteQuotation(Integer idPriceQuotation) {
+	PriceQuotation priceQuotation=priceQuotationRepository.findById(idPriceQuotation).get();
+	priceQuotation.setSelected(true);
+	priceQuotationRepository.save(priceQuotation);
+	
+	CompletePriceQuotation completePriceQuotation =new CompletePriceQuotation();
+	
+	
+}
 	
 }
