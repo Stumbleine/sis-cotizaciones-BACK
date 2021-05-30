@@ -236,9 +236,6 @@ public void selecteQuotation(Integer idPriceQuotation) {
 	priceQuotation.setSelected(true);
 	priceQuotationRepository.save(priceQuotation);
 	
-	CompletePriceQuotation completePriceQuotation =new CompletePriceQuotation();
-	
-	
 }
 	
 }

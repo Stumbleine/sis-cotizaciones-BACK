@@ -70,7 +70,7 @@ public class SpendingUnitRequestController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> spendingUnitRequest(@PathVariable (value = "id") Integer spendingUnitRequestId,@RequestParam("state")String state,
-												@RequestParam("comentary")String comentary,@RequestParam("document")MultipartFile file,@RequestParam("idQuotation")String idQuotation) throws IOException{
+												@RequestParam("comentary")String comentary,@RequestParam("document")MultipartFile file,@RequestParam("idQuotation")int idQuotation) throws IOException{
 		SpendingUnitRequest request=spendingUnitReqService.getSpendingUnitRequestNormal(spendingUnitRequestId);
 		int idPriceQuotation=0;
 		int idReport=0;
@@ -107,7 +107,7 @@ public class SpendingUnitRequestController {
 						documetQuotationService.createDocument(file,idReport);
 						
 						if(idPriceQuotation>0) {
-							priceQuotationRequestService.upDateQuotationSelect(idPriceQuotation);
+							priceQuotationRequestService.upDateQuotationSelect(idQuotation);
 						}
 					}
 					
