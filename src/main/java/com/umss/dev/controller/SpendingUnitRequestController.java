@@ -106,7 +106,7 @@ public class SpendingUnitRequestController {
 						idReport=reportService.createReport(idPriceQuotation,comentary);
 						documetQuotationService.createDocument(file,idReport);
 						
-						if(idPriceQuotation>0) {
+						if(idQuotation>0) {
 							priceQuotationRequestService.upDateQuotationSelect(idQuotation);
 						}
 					}
