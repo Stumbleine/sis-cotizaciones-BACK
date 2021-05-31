@@ -52,6 +52,9 @@ public class PriceQuotation {
 	@Column
 	private String state;
 	
+	@Column
+	private String businessCompanyName;
+	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idBusiness")
 	private Business business;
@@ -184,6 +187,16 @@ public class PriceQuotation {
 	public void setCommentary(String commentary) {
 		this.commentary = commentary;
 	}
+
+	public String getBusinessCompanyName() {
+		return businessCompanyName;
+	}
+
+	public void setBusinessCompanyName(String businessCompanyName) {
+		this.businessCompanyName = businessCompanyName;
+	}
+
+	
 
 	
 }

@@ -16,6 +16,7 @@ public class CompletePriceQuotation {
 	private String offValidation;
 	private Boolean selected;
 	private String commentary;
+	private String businessCompanyName;
 	private int deliveryTerm;
 	private List<PriceQuotationDetail> priceQuotationDetail;
 	//private PriceQuotationRequest priceQuotationRequest;
@@ -109,6 +110,14 @@ public class CompletePriceQuotation {
 
 	public void setCommentary(String commentary) {
 		this.commentary = commentary;
+	}
+	
+	public String getBusinessCompanyName() {
+		return businessCompanyName;
+	}
+
+	public void setBusinessCompanyName(String businessCompanyName) {
+		this.businessCompanyName = businessCompanyName;
 	}
 
 	public int getDeliveryTerm() {

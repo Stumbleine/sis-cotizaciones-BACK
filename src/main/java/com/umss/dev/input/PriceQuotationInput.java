@@ -42,6 +42,7 @@ public class PriceQuotationInput {
 	private String offValidation;
 	private Double total;
 	private String commentary;
+	private String businessCompanyName;
 	private String state;
 	private List<PriceQuotationDetail> priceQuotationDetail;
 	
@@ -74,10 +75,19 @@ public class PriceQuotationInput {
 
 
 
+	public String getBusinessCompanyName() {
+		return businessCompanyName;
+	}
+
+
+	public void setBusinessCompanyName(String businessCompanyName) {
+		this.businessCompanyName = businessCompanyName;
+	}
+
+
 	public int getIdBusiness() {
 		return idBusiness;
 	}
-
 
 
 	public void setIdBusiness(int idBusiness) {
