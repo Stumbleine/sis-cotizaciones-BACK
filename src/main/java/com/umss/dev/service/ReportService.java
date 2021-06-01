@@ -56,7 +56,7 @@ public class ReportService {
 			reportOutput.setTotal(0);
 		}
 		
-		try {
+		try {	
 			
 			Report report=reportRepository.findById(reportRepository.idReport(id)).get();
 			getAtributesDocument(reportOutput, documentQuotationAtributesOutput, report);
@@ -85,8 +85,15 @@ public class ReportService {
 	private void getAtributesQuotaion(CompletePriceQuotation priceQuotation,ReportOutput reportOutput) {
 		
 		reportOutput.setTotal(priceQuotation.getTotal());
-		reportOutput.setNameBusiness(priceQuotation.getBusiness().getName());
-		reportOutput.setNameArea(priceQuotation.getBusiness().getNameArea());;
+		
+		if(priceQuotation.getBusinessCompanyName()!=null) {
+			reportOutput.setNameBusiness(priceQuotation.getBusinessCompanyName());
+		}
+		else {
+			reportOutput.setNameBusiness(priceQuotation.getBusiness().getName());
+			reportOutput.setNameArea(priceQuotation.getBusiness().getNameArea());	
+		}
+		
 		
 	}
 	
