@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Column;
+
 import com.umss.dev.entity.PriceQuotationDetail;
 
 public class PriceQuotationOutput {
@@ -16,6 +18,11 @@ public class PriceQuotationOutput {
 	private LocalDate deadline;
 	private List<PriceQuotationDetail> priceQuotationDetail;
 	private String selected;
+	private String wayOfPayment;
+	private int garantyTerm;
+	private int deliveryTerm;
+	private String offValidation;
+	private String commentary;
 	
 	public int getIdPriceQuotation() {
 		return idPriceQuotation;
@@ -80,6 +87,53 @@ public class PriceQuotationOutput {
 	public void setDeadline(LocalDate deadline) {
 		this.deadline = deadline;
 	}
-	
+
+	public String getSelected() {
+		return selected;
+	}
+
+	public void setSelected(String selected) {
+		this.selected = selected;
+	}
+
+	public String getWayOfPayment() {
+		return wayOfPayment;
+	}
+
+	public void setWayOfPayment(String wayOfPayment) {
+		this.wayOfPayment = wayOfPayment;
+	}
+
+	public int getGarantyTerm() {
+		return garantyTerm;
+	}
+
+	public void setGarantyTerm(int garantyTerm) {
+		this.garantyTerm = garantyTerm;
+	}
+
+	public int getDeliveryTerm() {
+		return deliveryTerm;
+	}
+
+	public void setDeliveryTerm(int deliveryTerm) {
+		this.deliveryTerm = deliveryTerm;
+	}
+
+	public String getOffValidation() {
+		return offValidation;
+	}
+
+	public void setOffValidation(String offValidation) {
+		this.offValidation = offValidation;
+	}
+
+	public String getCommentary() {
+		return commentary;
+	}
+
+	public void setCommentary(String commentary) {
+		this.commentary = commentary;
+	}
 	
 }

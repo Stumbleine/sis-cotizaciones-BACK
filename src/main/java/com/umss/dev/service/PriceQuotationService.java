@@ -198,6 +198,11 @@ return allStudentResponse;
 				newReq.setTotal(req.getTotal());
 				newReq.setPriceQuotationDetail(req.getPriceQuotationDetail());
 				newReq.setDeadline(req.getPriceQuotationRequest().getDeadline());
+				newReq.setDeliveryTerm(req.getDeliveryTerm());
+				newReq.setGarantyTerm(req.getGarantyTerm());
+				newReq.setOffValidation(req.getOffValidation());
+				newReq.setWayOfPayment(req.getWayOfPayment());
+				newReq.setCommentary(req.getCommentary());
 				pricequotations.add(newReq);
 				
 				}
