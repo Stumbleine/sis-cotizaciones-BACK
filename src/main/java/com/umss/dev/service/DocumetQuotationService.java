@@ -2,6 +2,7 @@ package com.umss.dev.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,8 @@ public class DocumetQuotationService {
 	@Autowired
 	private SpendingUnitRequestService requestService;
 	private ModelMapper mapper ;
-
+	@Autowired
+	private PriceQuotationRepository priceQuotationRepository;
 	
 
 
@@ -137,5 +139,27 @@ public class DocumetQuotationService {
 		
 		return documentQuotationAtributesOutput;
 	}
+	
+	public DocumentQuotationAtributesOutput deleteDocumentByIdPriceQuotation(Integer id) {
+		
+		List<DocumentQuotation> documentQuotation=documentQuotationRepository.documents(id);  
+		//Optional<PriceQuotation> priceQuotation = priceQuotationRepository.findById(id);
+		System.out.println("------------->" +documentQuotation.get(0).getNameDocumenQuotaion());
+		DocumentQuotationAtributesOutput documentQuotationOutput= new DocumentQuotationAtributesOutput();
+		if(!documentQuotation.isEmpty()) {
+			documentQuotation.get(0).setPriceQuotation(null);
+			documentQuotationOutput.setContent(documentQuotation.get(0).getContent());
+			documentQuotationOutput.setNameDocumenQuotaion(documentQuotation.get(0).getNameDocumenQuotaion());
+			documentQuotationOutput.setSizeDocuemntQuotaion(documentQuotation.get(0).getSizeDocuemntQuotaion());
+			documentQuotationRepository.delete(documentQuotation.get(0));
+		}
+		else {
+			documentQuotationOutput=null;
+		}
+		
+		return documentQuotationOutput;
+	}
+
+
 }
 	
