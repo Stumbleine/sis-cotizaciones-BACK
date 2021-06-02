@@ -192,8 +192,8 @@ return allStudentResponse;
 					newReq.setNameBussiness(req.getBusiness().getName());
 					newReq.setNameArea(req.getBusiness().getArea().getName());
 				}else {
-					newReq.setNameBussiness("SIN NOMBRE");
-					newReq.setNameArea("Sin área");
+					newReq.setNameBussiness(req.getBusinessCompanyName());
+					//newReq.setNameArea("Sin área");
 				}
 				newReq.setTotal(req.getTotal());
 				newReq.setPriceQuotationDetail(req.getPriceQuotationDetail());
