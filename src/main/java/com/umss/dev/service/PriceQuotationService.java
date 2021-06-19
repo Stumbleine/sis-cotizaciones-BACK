@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.umss.dev.entity.Business;
+import com.umss.dev.entity.DocumentQuotation;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.entity.SpendingUnitRequest;
@@ -21,6 +22,7 @@ import com.umss.dev.output.PriceQuotationIdOutput;
 import com.umss.dev.output.BusinessOutput;
 import com.umss.dev.output.CompletePriceQuotation;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
+import com.umss.dev.output.DocumentQuotationAtributesOutput;
 import com.umss.dev.output.PriceQuotationOutput;
 import com.umss.dev.repository.PriceQuotationRepository;
 
@@ -35,6 +37,7 @@ public class PriceQuotationService {
 	private PriceQuotation LastPriceQuotation;
 	private PriceQoutationDetailService priceQuotationDetailsService;
 	private PriceQuotationRequest last;
+	private DocumetQuotationService documentService;
 	
 	public PriceQuotationService(PriceQuotationRepository priceQuotationRepository, ModelMapper modelMapper, BusinessService businessService, SpendingUnitRequestService spedingUnitRequestService, PriceQoutationDetailService priceQuotationDetailsService) {
 		super();
@@ -244,5 +247,8 @@ public void selecteQuotation(Integer idPriceQuotation) {
 	priceQuotationRepository.save(priceQuotation);
 	
 }
-	
+
+	public void DeleteQuotation(int idPriceQuotation) {
+		priceQuotationRepository.deleteById(idPriceQuotation);
+	}	
 }

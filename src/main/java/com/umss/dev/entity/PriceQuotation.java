@@ -40,12 +40,12 @@ public class PriceQuotation {
 	private String commentary;
 
 	/***/
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idPriceQuotationRequest")
 	@JsonBackReference
 	private PriceQuotationRequest priceQuotationRequest;
 	
-	@OneToMany(mappedBy = "priceQuotation",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@OneToMany(mappedBy = "priceQuotation",cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<PriceQuotationDetail> priceQuotationDetail;
 	
@@ -55,7 +55,7 @@ public class PriceQuotation {
 	@Column
 	private String businessCompanyName;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idBusiness")
 	private Business business;
 	

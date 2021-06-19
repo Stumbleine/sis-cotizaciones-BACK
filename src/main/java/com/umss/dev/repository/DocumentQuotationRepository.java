@@ -39,6 +39,6 @@ public interface DocumentQuotationRepository  extends JpaRepository<DocumentQuot
 	@Query(value ="SELECT * \r\n"
 			+ "	FROM document_quotation d \r\n"
 			+ "	WHERE d.id_price_quotation=:idPriceQuotation",nativeQuery = true)
-	List<DocumentQuotation> documents(@Param("idPriceQuotation")int idPriceQuotation) ;
+	List<DocumentQuotation> documents(@Param("idPriceQuotation")int idPriceQuotation);
 	
 }
