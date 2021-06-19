@@ -1,5 +1,7 @@
 package com.umss.dev.controller;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -57,5 +59,10 @@ public class AreaController {
 	public Iterable<BusinessOutput> getAllBusiness(){
 		
 		return areaService.getAll();
+	}
+	
+	@GetMapping("/getAllNameArea")
+	public List<String> getAllNameArea(){
+		return areaService.getallNameArea();
 	}
 }

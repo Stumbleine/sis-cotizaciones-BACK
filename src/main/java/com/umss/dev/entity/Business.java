@@ -45,7 +45,7 @@ public class Business {
 	@JsonBackReference
 	private Area area;
 	
-	@OneToMany(mappedBy = "business",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@OneToMany(mappedBy = "business",cascade = CascadeType.ALL)
 	private List<PriceQuotation> priceQuotations;
 
 	public Business(String name, String description, String adress, String phone, String eMail, String nit, Area area) {

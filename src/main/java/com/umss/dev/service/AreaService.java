@@ -121,4 +121,14 @@ public class AreaService {
 		
 		return businessFound;
 	}
+	
+	public List<String> getallNameArea(){
+		List<Area> allArea=areaRepository.findAll();
+		List<String> allAreaName=new ArrayList<String>();
+		for(int i=0;i<allArea.size();i++) {
+			allAreaName.add(allArea.get(i).getName());
+		}
+		
+		return allAreaName;
+	}
 }
