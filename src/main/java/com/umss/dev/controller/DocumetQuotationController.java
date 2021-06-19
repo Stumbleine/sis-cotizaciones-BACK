@@ -24,7 +24,7 @@ import com.umss.dev.service.DocumetQuotationService;
 import antlr.StringUtils;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/Document")
 public class DocumetQuotationController {
 
