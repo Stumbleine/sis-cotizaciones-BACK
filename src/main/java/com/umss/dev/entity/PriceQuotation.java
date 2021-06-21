@@ -195,8 +195,5 @@ public class PriceQuotation {
 	public void setBusinessCompanyName(String businessCompanyName) {
 		this.businessCompanyName = businessCompanyName;
 	}
-
-	
-
 	
 }
