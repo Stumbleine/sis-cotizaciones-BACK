@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.umss.dev.input.CreateBusinessInput;
+import com.umss.dev.entity.Area;
 import com.umss.dev.entity.Business;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.SpendingUnitRequest;
@@ -21,6 +23,8 @@ public class BusinessService {
 	@Autowired
 	private BusinessRepository businessRepository;
 	private ModelMapper modelMapper;
+	@Autowired
+	private AreaService areaService;
 	
 	public BusinessService(BusinessRepository businessRepository, ModelMapper modelMapper) {
 		super();
@@ -54,10 +58,22 @@ public class BusinessService {
 			 new DtoNotFoundException(Business.class.toString(), id);
 		}
 		return actBusiness;*/
-		
-		
 	}
 	
+	public Business saveBusiness(CreateBusinessInput business) {
+		
+		Area areafound = areaService.getAreaByName(business.getNameArea());
+		Business newBusiness = new Business();
+		newBusiness.setName(business.getNameBusiness());
+		newBusiness.setAdress(business.getAddress());
+		newBusiness.setDescription(business.getDescription());
+		newBusiness.seteMail(business.geteMail());
+		newBusiness.setNit(business.getNit());
+		newBusiness.setPhone(business.getPhone());
+		newBusiness.setArea(areafound);
+		
+		return businessRepository.save(newBusiness);
+	}
 	
 	
 }
