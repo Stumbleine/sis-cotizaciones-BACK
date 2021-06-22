@@ -47,6 +47,7 @@ public class PriceQuotationRequestService {
 		PriceQuotationRequestOutput priceQuotationRequest=new PriceQuotationRequestOutput();
 		priceQuotationRequest.setIdPriceQuotationRequest(priceRequest.get().getIdPriceQuotationRequest());
 		priceQuotationRequest.setDeadline(priceRequest.get().getDeadline());
+		upDateQuotation(priceRequest.get().getIdPriceQuotationRequest());
 		return priceQuotationRequest;
 	}
 
@@ -70,20 +71,32 @@ public class PriceQuotationRequestService {
 						//S/M/H/D/M
 	//@Scheduled(cron = "0 * * * * ?")
 	@Scheduled(cron = "0 * * * * ?")
-	   public void cronJobSch() {
+	public void cronJobSch() {
 		
 		List<PriceQuotationRequest>priceQuotationRequests=priceQuotationRequestRepository.findAll();
-	    
-	      if(!priceQuotationRequests.isEmpty()) {
+	    	
+		  if(!priceQuotationRequests.isEmpty()) {
 	    	  for(int i=0;i<priceQuotationRequests.size();i++) {
 	    		 if(priceQuotationRequests.get(i).getDeadline()!=null) {
 	    			 priceQuotationRequestRepository.update("EXPIRADO",priceQuotationRequests.get(i).getDeadline().toString() ,priceQuotationRequests.get(i).getIdPriceQuotationRequest(), "SIN COTIZAR");
 	    		 }    		  
-	    	  }
-	    	 
+	    	  } 
 	      }
 	       
 	   }
+	
+	public void upDateQuotation(int id) {
+		List<PriceQuotationRequest>priceQuotationRequests=priceQuotationRequestRepository.findAll();
+    	if(!priceQuotationRequests.isEmpty()) {
+    	  for(int i=0;i<priceQuotationRequests.size();i++) {
+    		 if(priceQuotationRequests.get(i).getDeadline()!=null) {
+    			 priceQuotationRequestRepository.updateDeadLine("SIN COTIZAR",priceQuotationRequests.get(i).getDeadline().toString() ,id, "EXPIRADO");
+    		 }    		  
+    	  } 
+      }
+		
+	}
+	
 	
 	public PriceQuotationRequest gitById(int id) {
 		return priceQuotationRequestRepository.findById(id).get();

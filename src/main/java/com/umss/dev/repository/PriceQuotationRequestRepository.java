@@ -21,6 +21,11 @@ import com.umss.dev.entity.PriceQuotationRequest;
 
 		@Modifying
 		@Transactional
+		@Query(value = "UPDATE price_quotation r set r.state=:state where CURDATE()<:deadline and r.id_price_quotation_request=:idPriceQuotationRequest and r.state=:vacio",nativeQuery = true)
+		void updateDeadLine(@Param("state") String state,@Param("deadline")String deadline,@Param("idPriceQuotationRequest")int idPriceQuotationRequest,@Param("vacio")String vacio);
+		
+		@Modifying
+		@Transactional
 		@Query(value ="UPDATE spending_unit_request p SET p.id_price_quotation_request=:idPriceQuotationRequest WHERE p.id_spending_unit_request=:idSpendingRequest",nativeQuery = true)
 		void updateSpendingRequest(@Param("idPriceQuotationRequest")int idPriceQuotationRequest,@Param("idSpendingRequest")int  idSpendingRequest);
 	}
