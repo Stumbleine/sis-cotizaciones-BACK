@@ -16,6 +16,7 @@ import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.exception.DtoNotFoundException;
 import com.umss.dev.repository.BusinessRepository;
+import com.umss.dev.repository.PriceQuotationRepository;
 
 @Service
 public class BusinessService {
@@ -25,6 +26,8 @@ public class BusinessService {
 	private ModelMapper modelMapper;
 	@Autowired
 	private AreaService areaService;
+	@Autowired
+	private PriceQuotationRepository priceQuotationRepository;
 	
 	public BusinessService(BusinessRepository businessRepository, ModelMapper modelMapper) {
 		super();
@@ -71,8 +74,11 @@ public class BusinessService {
 		newBusiness.setNit(business.getNit());
 		newBusiness.setPhone(business.getPhone());
 		newBusiness.setArea(areafound);
-		
-		return businessRepository.save(newBusiness);
+		Business businessSaved= businessRepository.save(newBusiness);
+		PriceQuotation quotation=priceQuotationRepository.findById(business.getIdQuotation()).orElse(null);
+		quotation.setBusiness(businessSaved);
+		priceQuotationRepository.save(quotation);
+		return businessSaved;
 	}
 	
 	

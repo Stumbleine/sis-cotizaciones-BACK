@@ -143,5 +143,13 @@ public class Business {
 				+ adress + ", phone=" + phone + ", eMail=" + eMail + ", nit=" + nit + ", area=" + area
 				+ ", priceQuotations=" + priceQuotations + "]";
 	}
+
+	public List<PriceQuotation> getPriceQuotations() {
+		return priceQuotations;
+	}
+
+	public void setPriceQuotations(List<PriceQuotation> priceQuotations) {
+		this.priceQuotations = priceQuotations;
+	}
 	
 }
