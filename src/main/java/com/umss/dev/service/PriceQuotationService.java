@@ -249,6 +249,8 @@ public void selecteQuotation(Integer idPriceQuotation) {
 }
 
 	public void DeleteQuotation(int idPriceQuotation) {
+		//documentService.deleteDocumenByIdQuotation(idPriceQuotation);
 		priceQuotationRepository.deleteById(idPriceQuotation);
-	}	
+	}
+
 }
