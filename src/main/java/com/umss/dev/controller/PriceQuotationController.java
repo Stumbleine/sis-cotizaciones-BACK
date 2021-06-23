@@ -83,6 +83,7 @@ public class PriceQuotationController {
 	@PutMapping("/updateQuotation/{id}")
 	public ResponseEntity<Object> updateQuotation(@RequestBody PriceQuotation newQuotation, @PathVariable (value = "id") Integer idPriceQuotation) {
 		//int id = lastPriceQuotationSaved.getIdPriceQuotation();
+		System.out.println("********//********************//***********es esto 1");
 		Optional<PriceQuotation> quotationOptional = priceQuotationRepository.findById(idPriceQuotation);
 		PriceQuotationRequest act = priceQuotationService.getPriceQuotationRequestOfQuotation(idPriceQuotation);
 		//Business actBusiness = businessService.getByIdBusiness(newQuotation.);
@@ -99,6 +100,7 @@ public class PriceQuotationController {
 	
 	@PutMapping("/updateQuotationAddingBusiness/{id}")
 	public ResponseEntity<Object> updateQuotation(@Valid @RequestBody NewBusinessInput newBusiness, @PathVariable (value = "id") Integer idPriceQuotation) {
+		System.out.println("********//********************//***********es esto 2");
 		Optional<PriceQuotation> quotationOptional = priceQuotationRepository.findById(idPriceQuotation);
 		PriceQuotationRequest act = priceQuotationService.getPriceQuotationRequestOfQuotation(idPriceQuotation);
 		Business actBusiness = businessService.getByIdBusiness(newBusiness.getIdBusiness());

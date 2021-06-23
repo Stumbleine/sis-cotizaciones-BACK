@@ -36,6 +36,8 @@ public class PriceQuotationDetail {
 		@JoinColumn(name="idPriceQuotation")
 		@JsonBackReference
 		private PriceQuotation priceQuotation;
+		@Column(length = 1000)
+		private String features;
 		
 		public int getIdPriceQuotationDetail() {
 			return idPriceQuotationDetail;
@@ -91,6 +93,14 @@ public class PriceQuotationDetail {
 		
 		public void setPriceQuotation(PriceQuotation priceQuotation) {
 			this.priceQuotation = priceQuotation;
+		}
+
+		public String getFeatures() {
+			return features;
+		}
+
+		public void setFeatures(String features) {
+			this.features = features;
 		}
 			
 }

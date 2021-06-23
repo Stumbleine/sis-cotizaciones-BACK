@@ -89,6 +89,8 @@ public class AreaService {
 			    			newBusiness.seteMail(actBusiness.geteMail());
 			    			newBusiness.setNit(actBusiness.getNit());
 			    			newBusiness.setPhone(actBusiness.getPhone());
+			    			newBusiness.setIdArea(actBusiness.getArea().getIdArea());
+			    			newBusiness.setNameArea(actBusiness.getArea().getName());
 			    			businessFound.add(newBusiness);
 			    		}
 			    }
@@ -113,6 +115,8 @@ public class AreaService {
 			    			newBusiness.seteMail(actBusiness.geteMail());
 			    			newBusiness.setNit(actBusiness.getNit());
 			    			newBusiness.setPhone(actBusiness.getPhone());
+			    			newBusiness.setIdArea(actBusiness.getArea().getIdArea());
+			    			newBusiness.setNameArea(actBusiness.getArea().getName());
 			    			businessFound.add(newBusiness);
 			    		}
 			    }

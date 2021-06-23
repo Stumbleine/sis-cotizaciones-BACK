@@ -18,14 +18,16 @@ import javax.validation.Valid;
 
 import com.umss.dev.entity.Area;
 import com.umss.dev.entity.Business;
+import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.input.BusinessInput;
+import com.umss.dev.input.CreateBusinessInput;
 import com.umss.dev.output.CompletePriceQuotation;
 import com.umss.dev.service.AreaService;
 import com.umss.dev.service.BusinessService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
-@RequestMapping("/business") // api/request
+@RequestMapping("/business") // api/
 public class BusinessController {
 
 	@Autowired
@@ -62,6 +64,14 @@ public class BusinessController {
 		newBusiness.setName(business.getNameBusiness());
 		newBusiness.setArea(areafound);
 		return businessService.save(newBusiness);
+	}
+	
+	@PostMapping("/registerBusiness")
+	public ResponseEntity<?> create(@RequestBody CreateBusinessInput business){
+
+		Business newBusiness= businessService.saveBusiness(business);
+		
+		return ResponseEntity.ok(newBusiness);
 	}
 	
 }
