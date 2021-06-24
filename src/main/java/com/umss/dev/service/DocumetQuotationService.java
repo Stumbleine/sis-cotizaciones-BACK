@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.umss.dev.entity.DocumentQuotation;
 import com.umss.dev.entity.PriceQuotation;
+import com.umss.dev.entity.PriceQuotationDetail;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.output.DocumentQuotationAtributesOutput;
 import com.umss.dev.repository.DocumentQuotationRepository;
@@ -29,6 +30,8 @@ public class DocumetQuotationService {
 	private ModelMapper mapper ;
 	@Autowired
 	private PriceQuotationRepository priceQuotationRepository;
+	@Autowired
+	private PriceQoutationDetailService detailService;
 	
 
 
@@ -161,5 +164,23 @@ public class DocumetQuotationService {
 	}
 
 
+	public DocumentQuotation saveDocumentQuotationDetail(MultipartFile file,int idQuotationDetail) {
+		DocumentQuotation documentQuotation= new DocumentQuotation();
+		PriceQuotationDetail detail= detailService.getDetail(idQuotationDetail);
+		try {
+			String nameFile=file.getOriginalFilename();
+			documentQuotation.setNameDocumenQuotaion(nameFile);
+			documentQuotation.setContent(file.getBytes());
+			documentQuotation.setSizeDocuemntQuotaion(file.getSize());
+			documentQuotation.setPriceQuotationDetail(detail);
+			documentQuotationRepository.save(documentQuotation);
+			detailService.upDateDetailDocument(idQuotationDetail,documentQuotation.getIdDocumentQuotaion());
+			detailService.upDateDetailExistence(idQuotationDetail,1);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return documentQuotation;
+	}
 }
 	

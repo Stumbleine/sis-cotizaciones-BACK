@@ -92,4 +92,12 @@ public class DocumetQuotationController {
 
         return  ResponseEntity.ok(documentService.deleteDocumentByIdPriceQuotation(id));
     }
+	
+	@PostMapping("/uploadDetail")
+	public ResponseEntity<DocumentQuotation> uploadDocumentDetail(@RequestParam (value = "idRow") Integer id,@RequestParam("document")MultipartFile file) {
+		
+		return ResponseEntity.ok( documentService.saveDocumentQuotationDetail(file,id));	
+		
+		
+	}
 }

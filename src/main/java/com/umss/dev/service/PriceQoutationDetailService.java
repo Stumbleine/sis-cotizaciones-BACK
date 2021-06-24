@@ -53,4 +53,16 @@ public class PriceQoutationDetailService {
 		}
 	}
 	
+	public PriceQuotationDetail getDetail(int id) {
+		return priceQoutationDetailRepository.findById(id).get();
+	}
+	
+	public void upDateDetailDocument(int idDetail,int idDocument) {
+		priceQoutationDetailRepository.updateDocument(idDetail, idDocument);
+	}
+	
+	public void upDateDetailExistence(int idQuotationDetail, int state) {
+		priceQoutationDetailRepository.updateDetailExistence(idQuotationDetail,state);
+		
+	}
 }
