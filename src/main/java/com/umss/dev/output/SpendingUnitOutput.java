@@ -6,6 +6,7 @@ public class SpendingUnitOutput {
 	private String nameUnit;
 	private String description;
 	private String faculty;
+	private String responsable;
 	
 	public int getIdSpendingUnit() {
 		return idSpendingUnit;
@@ -30,5 +31,11 @@ public class SpendingUnitOutput {
 	}
 	public void setFaculty(String faculty) {
 		this.faculty = faculty;
+	}
+	public String getResponsable() {
+		return responsable;
+	}
+	public void setResponsable(String responsable) {
+		this.responsable = responsable;
 	}	
 }

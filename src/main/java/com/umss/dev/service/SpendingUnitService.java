@@ -121,6 +121,7 @@ public class SpendingUnitService {
 					newSpendingUnit.setNameUnit(found.getNameUnit());
 					newSpendingUnit.setDescription(found.getDescription());
 					newSpendingUnit.setFaculty(found.getFaculty());
+					//newSpendingUnit.setResponsable(found.getUserRole());
 					allSpendingUnitsByOrder.add(newSpendingUnit);
 				//}
 				
