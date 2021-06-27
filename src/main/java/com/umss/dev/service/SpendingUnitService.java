@@ -10,8 +10,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.umss.dev.entity.SpendingUnit;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
+import com.umss.dev.output.SpendingUnitOutput;
 import com.umss.dev.repository.SpendingUnitRepository;
 import com.umss.dev.repository.SpendingUnitRequestRepository;
 
@@ -96,5 +99,50 @@ public class SpendingUnitService {
 		
 		return allSpendingUnitReqWithoutDetailByOrder;		
 	}
+	
+	@Transactional
+	public SpendingUnit save(SpendingUnit spendingUnit) {
+	
+		return spendingUnitRepository.save(spendingUnit);
+	}
+	
+	public Iterable<SpendingUnitOutput>  getAllSpendingUnitsByOrder(){
+		List <SpendingUnit> allSpendingUnits = spendingUnitRepository.findAll();
+		List <SpendingUnitOutput> allSpendingUnitsByOrder = new ArrayList<SpendingUnitOutput>();
+		List<Integer> reqIds = new ArrayList<Integer>();
 		
+		for (SpendingUnit found: allSpendingUnits) {
+			//if (!req.getUserRole().getRole().equals(null)) {
+				//if(!req.getUserRole().getSpendingUnitRequest().isEmpty() || !req.getUserRole().getSpendingUnitRequest().equals(null)) {
+					
+					SpendingUnitOutput newSpendingUnit = new SpendingUnitOutput();
+					newSpendingUnit.setIdSpendingUnit(found.getIdSpendingUnit());
+					//reqIds.add(found.getIdSpendingUnit());
+					newSpendingUnit.setNameUnit(found.getNameUnit());
+					newSpendingUnit.setDescription(found.getDescription());
+					newSpendingUnit.setFaculty(found.getFaculty());
+					allSpendingUnitsByOrder.add(newSpendingUnit);
+				//}
+				
+			//}
+			
+		}
+		
+		//Collections.sort(allSpendingUnitsByOrder);
+		Collections.reverse(allSpendingUnitsByOrder);
+		/*List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetailByOrder = new ArrayList<CompleteSpendingUnitRequestOutput>();
+		
+		for(Integer actId: reqIds) {
+			for(CompleteSpendingUnitRequestOutput actReq: allSpendingUnitsByOrder) {
+				if(actId == actReq.getIdSpendingUnitRequest()) {
+					
+					allSpendingUnitReqWithoutDetailByOrder.add(actReq);
+				}
+				
+			}
+			
+		}*/
+		
+		return allSpendingUnitsByOrder;	
+	}
 }
