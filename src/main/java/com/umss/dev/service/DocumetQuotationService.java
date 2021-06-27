@@ -182,5 +182,10 @@ public class DocumetQuotationService {
 		
 		return documentQuotation;
 	}
+	
+	public byte[] bobItemDocument(int idPriceQuotationDetail) {
+		
+		return documentQuotationRepository.itemDocuments(idPriceQuotationDetail).get(0).getContent();
+	}
 }
 	

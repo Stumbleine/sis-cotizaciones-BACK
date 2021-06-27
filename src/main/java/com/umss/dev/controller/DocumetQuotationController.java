@@ -96,8 +96,12 @@ public class DocumetQuotationController {
 	@PostMapping("/uploadDetail")
 	public ResponseEntity<DocumentQuotation> uploadDocumentDetail(@RequestParam (value = "idRow") Integer id,@RequestParam("document")MultipartFile file) {
 		
-		return ResponseEntity.ok( documentService.saveDocumentQuotationDetail(file,id));	
+		return ResponseEntity.ok( documentService.saveDocumentQuotationDetail(file,id));		
+	}
+	
+	@GetMapping("/blob/ItemDocument/{id}")
+	public byte[] blobItemDocument(@PathVariable (value = "id") Integer id) {
 		
-		
+		return  documentService.bobItemDocument(id);
 	}
 }
