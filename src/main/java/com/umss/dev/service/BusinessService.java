@@ -15,6 +15,7 @@ import com.umss.dev.entity.Business;
 import com.umss.dev.entity.PriceQuotation;
 import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.exception.DtoNotFoundException;
+import com.umss.dev.repository.AreaRepository;
 import com.umss.dev.repository.BusinessRepository;
 import com.umss.dev.repository.PriceQuotationRepository;
 
@@ -28,6 +29,8 @@ public class BusinessService {
 	private AreaService areaService;
 	@Autowired
 	private PriceQuotationRepository priceQuotationRepository;
+	@Autowired
+	private AreaRepository areaRepository;
 	
 	public BusinessService(BusinessRepository businessRepository, ModelMapper modelMapper) {
 		super();
@@ -65,7 +68,7 @@ public class BusinessService {
 	
 	public Business saveBusiness(CreateBusinessInput business) {
 		
-		Area areafound = areaService.getAreaByName(business.getNameArea());
+		boolean isArea=isArea(business.getNameArea());
 		Business newBusiness = new Business();
 		newBusiness.setName(business.getNameBusiness());
 		newBusiness.setAdress(business.getAddress());
@@ -73,7 +76,17 @@ public class BusinessService {
 		newBusiness.seteMail(business.geteMail());
 		newBusiness.setNit(business.getNit());
 		newBusiness.setPhone(business.getPhone());
-		newBusiness.setArea(areafound);
+	
+		if(isArea) {
+			Area areafound = areaService.getAreaByName(business.getNameArea());
+			newBusiness.setArea(areafound);
+		}
+		else {
+			Area newArea=new Area();
+			newArea.setName(business.getNameArea());
+			newBusiness.setArea(areaRepository.save(newArea));
+			
+		}
 		Business businessSaved= businessRepository.save(newBusiness);
 		PriceQuotation quotation=priceQuotationRepository.findById(business.getIdQuotation()).orElse(null);
 		quotation.setBusiness(businessSaved);
@@ -81,5 +94,22 @@ public class BusinessService {
 		return businessSaved;
 	}
 	
-	
+	private boolean isArea(String name) {
+		boolean isArea=false;
+		int count=0;
+		List<Area> allArea = areaRepository.findAll();
+
+		for (Area areaAct: allArea) {
+			if(areaAct.getName().equals(name)) {
+				isArea=true;
+				count++;
+			}
+			else {
+				if(count==0) {
+					isArea=false;
+				}
+			}
+		}
+		return isArea;
+	}
 }
