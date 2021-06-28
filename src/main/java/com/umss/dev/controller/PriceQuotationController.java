@@ -125,9 +125,20 @@ public class PriceQuotationController {
 	
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<CompletePriceQuotation> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
+		CompletePriceQuotation completePriceQuotation=priceQuotationService.findPriceQuotationById(idPriceQuotation);
+		for(int i=0;i<completePriceQuotation.getPriceQuotationDetail().size();i++) {
+			completePriceQuotation.getPriceQuotationDetail().get(i).setDocumentQuotation(null);
+		}
+		
+		return ResponseEntity.ok(completePriceQuotation);
+	}
+/*
+ *@GetMapping("/getById/{id}")
+	public ResponseEntity<CompletePriceQuotation> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		
 		return ResponseEntity.ok( priceQuotationService.findPriceQuotationById(idPriceQuotation));
 	}
+ **/
 /*    
 	@PutMapping("/updateSelectQuotation/{id}")
 	public void selectQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
