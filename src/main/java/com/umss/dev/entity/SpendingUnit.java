@@ -33,7 +33,7 @@ public class SpendingUnit {
 	@Column
 	private String faculty;
 	@OneToMany(mappedBy = "spendingUnit",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
-	@JsonManagedReference
+	//@JsonManagedReference
 	private List<UserRole> userRole;
 	@Column
 	private String acronym;

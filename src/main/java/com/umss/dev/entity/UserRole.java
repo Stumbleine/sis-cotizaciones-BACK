@@ -28,15 +28,15 @@ public class UserRole {
 	private int idUserRole;	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idUser")
-	@JsonBackReference
+	//@JsonBackReference
 	private User user;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idRole")
-	@JsonBackReference
+	//@JsonBackReference
 	private Role role;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idSpendingUnit")
-	@JsonBackReference
+	//@JsonBackReference
 	private SpendingUnit spendingUnit;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idAdministration")

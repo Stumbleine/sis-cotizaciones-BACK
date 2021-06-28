@@ -34,7 +34,7 @@ public class User {
 	@Column
 	private LocalDate registrationDate;
 	@OneToMany(mappedBy = "user",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
-	@JsonManagedReference
+	//@JsonManagedReference
 	private List<UserRole> userRole;
 	
 	public String getName() {

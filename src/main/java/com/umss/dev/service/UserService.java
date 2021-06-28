@@ -59,7 +59,7 @@ public class UserService {
 			newUser.setRegistrationDate(a.getRegistrationDate());
 			
 			if(a.getUserRole().get(0).getSpendingUnit()!=null) {
-				newUser.setSpendingUnit(a.getUserRole().get(0).getSpendingUnit().getNameUnit());
+				newUser.setSpendingUnit(a.getUserRole().get(0).getSpendingUnit().getAcronym());
 			}
 			
 			if(a.getUserRole().get(0).getRole().getRoleName() !=null) {
