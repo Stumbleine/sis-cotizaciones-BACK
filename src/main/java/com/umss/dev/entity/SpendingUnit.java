@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,7 +33,10 @@ public class SpendingUnit {
 	@Column
 	private String faculty;
 	@OneToMany(mappedBy = "spendingUnit",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@JsonManagedReference
 	private List<UserRole> userRole;
+	@Column
+	private String acronym;
 
 	public SpendingUnit() {
 		
@@ -82,6 +89,12 @@ public class SpendingUnit {
 		this.faculty = faculty;
 	}
 
-	
+	public String getAcronym() {
+		return acronym;
+	}
+
+	public void setAcronym(String acronym) {
+		this.acronym = acronym;
+	}
 		
 }

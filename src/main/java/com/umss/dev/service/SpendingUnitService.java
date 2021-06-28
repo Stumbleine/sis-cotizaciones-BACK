@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.umss.dev.entity.SpendingUnit;
 import com.umss.dev.entity.SpendingUnitRequest;
+import com.umss.dev.entity.UserRole;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.output.SpendingUnitOutput;
 import com.umss.dev.repository.SpendingUnitRepository;
@@ -102,48 +103,47 @@ public class SpendingUnitService {
 	
 	@Transactional
 	public SpendingUnit save(SpendingUnit spendingUnit) {
+
+		SpendingUnit unit= spendingUnitRepository.save(spendingUnit);
+		unit.setAcronym("U"+idLastRegister());
+		return unit;
+	}
 	
-		return spendingUnitRepository.save(spendingUnit);
+	private int idLastRegister() {
+		List <SpendingUnit> allSpendingUnits = spendingUnitRepository.findAll();
+		int idLast=0;
+		for (SpendingUnit found: allSpendingUnits) {
+			idLast=found.getIdSpendingUnit();
+		}
+		return idLast;
 	}
 	
 	public Iterable<SpendingUnitOutput>  getAllSpendingUnitsByOrder(){
 		List <SpendingUnit> allSpendingUnits = spendingUnitRepository.findAll();
 		List <SpendingUnitOutput> allSpendingUnitsByOrder = new ArrayList<SpendingUnitOutput>();
-		List<Integer> reqIds = new ArrayList<Integer>();
 		
 		for (SpendingUnit found: allSpendingUnits) {
-			//if (!req.getUserRole().getRole().equals(null)) {
-				//if(!req.getUserRole().getSpendingUnitRequest().isEmpty() || !req.getUserRole().getSpendingUnitRequest().equals(null)) {
 					
 					SpendingUnitOutput newSpendingUnit = new SpendingUnitOutput();
 					newSpendingUnit.setIdSpendingUnit(found.getIdSpendingUnit());
-					//reqIds.add(found.getIdSpendingUnit());
 					newSpendingUnit.setNameUnit(found.getNameUnit());
 					newSpendingUnit.setDescription(found.getDescription());
-					newSpendingUnit.setFaculty(found.getFaculty());
-					//newSpendingUnit.setResponsable(found.getUserRole());
+					newSpendingUnit.setResponsable(foundResponsables(found));
 					allSpendingUnitsByOrder.add(newSpendingUnit);
-				//}
-				
-			//}
 			
 		}
 		
-		//Collections.sort(allSpendingUnitsByOrder);
 		Collections.reverse(allSpendingUnitsByOrder);
-		/*List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetailByOrder = new ArrayList<CompleteSpendingUnitRequestOutput>();
-		
-		for(Integer actId: reqIds) {
-			for(CompleteSpendingUnitRequestOutput actReq: allSpendingUnitsByOrder) {
-				if(actId == actReq.getIdSpendingUnitRequest()) {
-					
-					allSpendingUnitReqWithoutDetailByOrder.add(actReq);
-				}
-				
-			}
-			
-		}*/
 		
 		return allSpendingUnitsByOrder;	
+	}
+	
+	private List<String> foundResponsables(SpendingUnit found){
+		List<UserRole> userRoles=found.getUserRole();
+		List<String> responsables=new ArrayList<String>();
+		for(UserRole users: userRoles) {
+			responsables.add(users.getUser().getName());
+		}
+		return responsables;
 	}
 }
