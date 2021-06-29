@@ -39,8 +39,8 @@ public class PriceQuotationDetail {
 		private PriceQuotation priceQuotation;
 		@Column(length = 1000)
 		private String features;
-		@OneToOne(cascade =CascadeType.ALL)
-		@JoinColumn(name = "idFile",unique = true)
+		@OneToOne(cascade =CascadeType.ALL,orphanRemoval = true)
+		@JoinColumn(name = "idFile")
 		private DocumentQuotation documentQuotation;
 		@Column
 		private Integer state;

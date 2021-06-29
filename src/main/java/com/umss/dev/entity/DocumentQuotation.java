@@ -35,8 +35,8 @@ public class DocumentQuotation {
 	@OneToOne(cascade =CascadeType.ALL)
 	private PriceQuotation priceQuotation;
 	
-	@OneToOne(cascade =CascadeType.ALL)
-	@JoinColumn(name = "idPriceQuotationDetail",unique = true)
+	@OneToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "idPriceQuotationDetail")
 	private PriceQuotationDetail priceQuotationDetail;
 	
 	public DocumentQuotation(String nameDocumenQuotaion, long sizeDocuemntQuotaion,
