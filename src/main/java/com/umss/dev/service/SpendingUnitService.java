@@ -16,6 +16,8 @@ import com.umss.dev.entity.SpendingUnitRequest;
 import com.umss.dev.entity.UserRole;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.output.SpendingUnitOutput;
+import com.umss.dev.output.UserOutputAtributes;
+import com.umss.dev.output.UserOutputNormalAtributes;
 import com.umss.dev.repository.SpendingUnitRepository;
 import com.umss.dev.repository.SpendingUnitRequestRepository;
 
@@ -128,7 +130,8 @@ public class SpendingUnitService {
 					newSpendingUnit.setIdSpendingUnit(found.getIdSpendingUnit());
 					newSpendingUnit.setNameUnit(found.getNameUnit());
 					newSpendingUnit.setDescription(found.getDescription());
-					newSpendingUnit.setResponsable(foundResponsables(found));
+					newSpendingUnit.setResponsable(getResponsable(found));
+					newSpendingUnit.setEmployees(foundResponsables(found));
 					allSpendingUnitsByOrder.add(newSpendingUnit);
 			
 		}
@@ -137,12 +140,25 @@ public class SpendingUnitService {
 		
 		return allSpendingUnitsByOrder;	
 	}
-	
-	private List<String> foundResponsables(SpendingUnit found){
+	private String getResponsable(SpendingUnit found) {
 		List<UserRole> userRoles=found.getUserRole();
-		List<String> responsables=new ArrayList<String>();
+		String responsable=null;
 		for(UserRole users: userRoles) {
-			responsables.add(users.getUser().getName());
+			if(users.getUser().isSelected()==true) {
+			   responsable=users.getUser().getName();   
+			}
+		}
+		return responsable;
+	}
+	private List<UserOutputAtributes> foundResponsables(SpendingUnit found){
+		List<UserRole> userRoles=found.getUserRole();
+		List<UserOutputAtributes> responsables=new ArrayList<UserOutputAtributes>();
+		
+		for(UserRole users: userRoles) {
+			UserOutputAtributes employees=new UserOutputAtributes();
+			employees.setIdUser(users.getUser().getIdUser());
+			employees.setName(users.getUser().getName());
+			responsables.add(employees);
 		}
 		return responsables;
 	}

@@ -33,6 +33,8 @@ public class User {
 	private String password;
 	@Column
 	private LocalDate registrationDate;
+	@Column(columnDefinition = "boolean default false")
+	private boolean selected;
 	@OneToMany(mappedBy = "user",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	//@JsonManagedReference
 	private List<UserRole> userRole;
