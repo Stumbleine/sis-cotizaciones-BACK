@@ -196,7 +196,11 @@ return allStudentResponse;
 					newReq.setNameArea(req.getBusiness().getArea().getName());
 				}else {
 					newReq.setNameBussiness(req.getBusinessCompanyName());
-					//newReq.setNameArea("Sin área");
+					newReq.setNameArea("Sin área");
+					if(req.getState().equals("SIN COTIZAR")) {
+						newReq.setNameBussiness("SIN EMPRESA");
+						newReq.setNameArea("Sin área");
+					}
 				}
 				newReq.setTotal(req.getTotal());
 				newReq.setPriceQuotationDetail(req.getPriceQuotationDetail());

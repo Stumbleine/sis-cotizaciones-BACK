@@ -7,6 +7,7 @@ import javax.annotation.security.PermitAll;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,15 +17,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.umss.dev.entity.SpendingUnitRequest;
+import com.umss.dev.entity.SpendingUnit;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
-import com.umss.dev.service.SpendingUnitRequestService;
+import com.umss.dev.output.SpendingUnitOutput;
 import com.umss.dev.service.SpendingUnitService;
 
 
 
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
+//@RequestMapping(value="/spendingUnit",  produces={"application/json"},method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 @RequestMapping("/spendingUnit")
 public class SpendingUnitController {
 
@@ -36,8 +38,20 @@ public class SpendingUnitController {
 	}
 	
 	@GetMapping("/{id}")
-		public Iterable<CompleteSpendingUnitRequestOutput> getAllReqById(@PathVariable (value = "id") Integer UserId){
-			return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
-		}
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqById(@PathVariable (value = "id") Integer UserId){
+		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
+	}
+	
+	@PostMapping("/registerSpendingUnit")
+	public ResponseEntity<?> createSpendingUnit(@RequestBody SpendingUnit spendingUnit){
+		
+		return ResponseEntity.ok(spendingUnitService.save(spendingUnit));
+	}
+	
+	@GetMapping("/allSpendingUnits ")
+	public Iterable<SpendingUnitOutput> getSpendingUnits(){
+		return spendingUnitService.getAllSpendingUnitsByOrder();
+	}
+	
 	
 }

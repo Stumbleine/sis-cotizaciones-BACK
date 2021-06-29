@@ -10,8 +10,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.umss.dev.entity.SpendingUnit;
 import com.umss.dev.entity.SpendingUnitRequest;
+import com.umss.dev.entity.UserRole;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
+import com.umss.dev.output.SpendingUnitOutput;
 import com.umss.dev.repository.SpendingUnitRepository;
 import com.umss.dev.repository.SpendingUnitRequestRepository;
 
@@ -96,5 +100,50 @@ public class SpendingUnitService {
 		
 		return allSpendingUnitReqWithoutDetailByOrder;		
 	}
+	
+	@Transactional
+	public SpendingUnit save(SpendingUnit spendingUnit) {
+
+		SpendingUnit unit= spendingUnitRepository.save(spendingUnit);
+		unit.setAcronym("U"+idLastRegister());
+		return unit;
+	}
+	
+	private int idLastRegister() {
+		List <SpendingUnit> allSpendingUnits = spendingUnitRepository.findAll();
+		int idLast=0;
+		for (SpendingUnit found: allSpendingUnits) {
+			idLast=found.getIdSpendingUnit();
+		}
+		return idLast;
+	}
+	
+	public Iterable<SpendingUnitOutput>  getAllSpendingUnitsByOrder(){
+		List <SpendingUnit> allSpendingUnits = spendingUnitRepository.findAll();
+		List <SpendingUnitOutput> allSpendingUnitsByOrder = new ArrayList<SpendingUnitOutput>();
 		
+		for (SpendingUnit found: allSpendingUnits) {
+					
+					SpendingUnitOutput newSpendingUnit = new SpendingUnitOutput();
+					newSpendingUnit.setIdSpendingUnit(found.getIdSpendingUnit());
+					newSpendingUnit.setNameUnit(found.getNameUnit());
+					newSpendingUnit.setDescription(found.getDescription());
+					newSpendingUnit.setResponsable(foundResponsables(found));
+					allSpendingUnitsByOrder.add(newSpendingUnit);
+			
+		}
+		
+		Collections.reverse(allSpendingUnitsByOrder);
+		
+		return allSpendingUnitsByOrder;	
+	}
+	
+	private List<String> foundResponsables(SpendingUnit found){
+		List<UserRole> userRoles=found.getUserRole();
+		List<String> responsables=new ArrayList<String>();
+		for(UserRole users: userRoles) {
+			responsables.add(users.getUser().getName());
+		}
+		return responsables;
+	}
 }

@@ -13,6 +13,8 @@ import com.umss.dev.exception.DtoNotFoundException;
 import com.umss.dev.output.BusinessOutput;
 import com.umss.dev.repository.AreaRepository;
 
+import org.apache.commons.lang3.StringUtils;
+
 @Service
 public class AreaService {
 
@@ -77,8 +79,9 @@ public class AreaService {
 	public Iterable<BusinessOutput> getBusinessByAreaName(String areaName){
 		List<BusinessOutput> businessFound = new ArrayList<>();
 		List<Area> allArea = areaRepository.findAll();
+		//StringUtils.stripAccents(areaName);
 		for (Area actArea : allArea ) {
-			if(actArea.getName().equals(areaName)) {
+			if(actArea.getName().equals(areaName) || StringUtils.stripAccents(actArea.getName()).equals(areaName) || actArea.getName().equals(StringUtils.stripAccents(areaName)) ) {
 				 for (Business actBusiness: actArea.getBusiness()){
 			    		if(!(businessFound.contains(actBusiness))) {
 			    			BusinessOutput newBusiness = new BusinessOutput();

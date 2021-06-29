@@ -1,5 +1,6 @@
 package com.umss.dev.entity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,7 +31,10 @@ public class User {
 	private String email;
 	@Column
 	private String password;
+	@Column
+	private LocalDate registrationDate;
 	@OneToMany(mappedBy = "user",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	//@JsonManagedReference
 	private List<UserRole> userRole;
 	
 	public String getName() {
@@ -74,6 +80,15 @@ public class User {
 
 	public void setUserRole(List<UserRole> userRole) {
 		this.userRole = userRole;
+	}
+	
+
+	public LocalDate getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(LocalDate registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
 	@Override

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -28,6 +30,9 @@ public class Role {
 	private String description;
 	@OneToMany(mappedBy = "role",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private List<UserRole> userRole;
+	@OneToMany(mappedBy = "roles",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@JsonManagedReference
+	private List<Privilege> privileges;
 
 	public int getIdRole() {
 		
