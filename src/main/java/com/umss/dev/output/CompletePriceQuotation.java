@@ -86,6 +86,9 @@ public class CompletePriceQuotation {
 
 	public void setPriceQuotationDetail(List<PriceQuotationDetail> priceQuotationDetail) {
 		this.priceQuotationDetail = priceQuotationDetail;
+		for(int i=0;i<priceQuotationDetail.size();i++) {
+			priceQuotationDetail.get(i).setDocumentQuotation(null);
+		}
 	}
 
 	/*public PriceQuotationRequest getPriceQuotationRequest() {

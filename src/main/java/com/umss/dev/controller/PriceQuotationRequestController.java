@@ -33,6 +33,13 @@ public class PriceQuotationRequestController {
 		
 		return  priceQuotationRequestService.getPriceQuotation(idPriceQuotation);	
 	}
+	/*
+	 @GetMapping("/{id}/quotation")
+	public  Iterable<PriceQuotationOutput> getPriceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
+		
+		return  priceQuotationRequestService.getPriceQuotation(idPriceQuotation);	
+	}
+	 **/
 	
 	@PutMapping("/updateDeadLine/{id}")
 	public ResponseEntity<?> updateQuotation(@PathVariable Integer id, @RequestBody PriceQuotationRequest PriceQuotationRequest) {
