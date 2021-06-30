@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.security.PermitAll;
 
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +32,12 @@ public class SpendingUnitController {
 
 	@Autowired
 	SpendingUnitService spendingUnitService;
+	@Autowired
+	private ModelMapper modelMapper;
 	
-	public SpendingUnitController(SpendingUnitService spendingUnitServ){
+	public SpendingUnitController(SpendingUnitService spendingUnitServ, ModelMapper modelMapper){
 		spendingUnitService = spendingUnitServ;
+		this.modelMapper = modelMapper;
 	}
 	
 	@GetMapping("/{id}")
