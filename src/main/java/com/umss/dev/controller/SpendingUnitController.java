@@ -49,7 +49,7 @@ public class SpendingUnitController {
 		return ResponseEntity.ok(spendingUnitService.save(spendingUnit));
 	}
 	
-	@GetMapping("/allSpendingUnits ")
+	@GetMapping("/allSpendingUnits")
 	public Iterable<SpendingUnitOutput> getSpendingUnits(){
 		return spendingUnitService.getAllSpendingUnitsByOrder();
 	}
