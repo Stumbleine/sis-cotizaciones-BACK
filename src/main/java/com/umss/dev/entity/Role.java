@@ -77,4 +77,12 @@ public class Role {
 				+ userRole + "]";
 	}
 
+	public List<Privilege> getPrivileges() {
+		return privileges;
+	}
+
+	public void setPrivileges(List<Privilege> privileges) {
+		this.privileges = privileges;
+	}
+
 }
