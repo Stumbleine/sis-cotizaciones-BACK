@@ -7,7 +7,8 @@ public class SpendingUnitOutput {
 	private int idSpendingUnit;
 	private String nameUnit;
 	private String description;
-	private List<String> responsable;
+	private String responsable;
+	private List<UserOutputAtributes> employees;
 	
 	public int getIdSpendingUnit() {
 		return idSpendingUnit;
@@ -27,12 +28,17 @@ public class SpendingUnitOutput {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public List<String> getResponsable() {
+	public String getResponsable() {
 		return responsable;
 	}
-	public void setResponsable(List<String> responsable) {
+	public void setResponsable(String responsable) {
 		this.responsable = responsable;
 	}
- 
-	
+	public List<UserOutputAtributes> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(List<UserOutputAtributes> employees) {
+		this.employees = employees;
+	}
+
 }

@@ -33,6 +33,8 @@ public class User {
 	private String password;
 	@Column
 	private LocalDate registrationDate;
+	@Column(columnDefinition = "boolean default false")
+	private boolean selected;
 	@OneToMany(mappedBy = "user",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	//@JsonManagedReference
 	private List<UserRole> userRole;
@@ -96,6 +98,14 @@ public class User {
 		
 		return "User [idUser=" + idUser + ", name=" + name + ", email=" + email + ", password=" + password
 				+ ", userRole=" + userRole + "]";
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 		
 }
