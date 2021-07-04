@@ -120,12 +120,7 @@ public class SpendingUnitRequestController {
 		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
 	}
 	
-	/*@GetMapping("/getSpendingUnitRequestByStatus/{status}")
-	public Iterable<SpendingUnitRequest> getAllSpendingUnitRequestByStatus(@PathVariable (value = "status") String status){
-			
-		return spendingUnitReqService.getAllSpendingUnitRequestByStatus(status);
-		
-	}*/
+	
 	
 	
 }
