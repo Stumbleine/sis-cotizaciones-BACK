@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.umss.dev.entity.Business;
 import com.umss.dev.entity.DocumentQuotation;
 import com.umss.dev.entity.PriceQuotationRequest;
@@ -180,5 +179,19 @@ public class SpendingUnitRequestService {
 		request.setStatus(state);
 		spendingUnitRequestRepository.save(request);
 	}
+	
+	/*public Iterable<SpendingUnitRequest> getAllSpendingUnitRequestByStatus(String status){
+		List<SpendingUnitRequest> allSpendingUnitRequests = spendingUnitRequestRepository.findAll();
+		List <SpendingUnitRequest> allFound = new ArrayList<>();
+		
+		for(SpendingUnitRequest act: allSpendingUnitRequests) {
+			if(act.getStatus().equals(status)) {
+				allFound.add(act);	
+			}
+		}
+		
+		return allFound;
+		
+	}*/
 }
 
