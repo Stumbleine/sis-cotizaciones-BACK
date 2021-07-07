@@ -108,5 +108,11 @@ public class UserService {
 			
 	}
 	
+	public String setResponsable(int id) {
+		User user=userRepository.findById(id).get();
+		user.setSelected(true);
+		userRepository.save(user);
+		return "New Responsable is "+user.getName();
+	}
 	
 }
