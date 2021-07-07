@@ -70,7 +70,7 @@ public class PriceQuotationRequestService {
 	}
 						//S/M/H/D/M
 	//@Scheduled(cron = "0 * * * * ?")
-	@Scheduled(cron = "0 * * * * ?")
+	@Scheduled(cron = "0 0 * * * ?")
 	public void cronJobSch() {
 		
 		List<PriceQuotationRequest>priceQuotationRequests=priceQuotationRequestRepository.findAll();
