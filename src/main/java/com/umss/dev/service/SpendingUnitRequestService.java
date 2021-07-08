@@ -180,5 +180,19 @@ public class SpendingUnitRequestService {
 		request.setStatus(state);
 		spendingUnitRequestRepository.save(request);
 	}
+	
+	public Iterable<SpendingUnitRequest> getAllSpendingUnitRequestByStatus(String status){
+		List<SpendingUnitRequest> allSpendingUnitRequests = spendingUnitRequestRepository.findAll();
+		List <SpendingUnitRequest> allFound = new ArrayList<>();
+		
+		for(SpendingUnitRequest act: allSpendingUnitRequests) {
+			if(act.getStatus().equals(status)) {
+				allFound.add(act);	
+			}
+		}
+		
+		return allFound;
+		
+	}
 }
 
