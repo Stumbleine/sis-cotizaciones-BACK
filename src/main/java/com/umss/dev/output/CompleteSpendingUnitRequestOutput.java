@@ -10,11 +10,11 @@ public class CompleteSpendingUnitRequestOutput {
 
 	private int idSpendingUnitRequest;
 	private String initials;//
-	private LocalDate date;
-	private String status;
-	private String type;
-	private double estimatedAmount;
-	private String justification;
+	private LocalDate date;//
+	private String status;//
+	private String type;//
+	private double estimatedAmount;//
+	private String justification;//
 	private int userId;
 	private String username;
 	private int roleId;

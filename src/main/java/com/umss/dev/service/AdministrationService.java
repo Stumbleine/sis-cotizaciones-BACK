@@ -89,5 +89,53 @@ public class AdministrationService {
 		
 		return allSpendingUnitReqWithoutDetailByOrder;	
 	}
+	
+	public Iterable<CompleteSpendingUnitRequestOutput>getAllByIdWithoutDetailByOrder(Integer UserId){
+		Iterable <CompleteSpendingUnitRequestOutput> allByIdReq = getAllWithoutDetailByOrder();
+		List<CompleteSpendingUnitRequestOutput>listAllReqDesc= StreamSupport.stream(allByIdReq.spliterator(), false)
+        .collect(Collectors.toList());
+		List<CompleteSpendingUnitRequestOutput> listAllById = new ArrayList<CompleteSpendingUnitRequestOutput>();
+		
+		for(int i=0; i<listAllReqDesc.size();i++ ) {
+			
+			CompleteSpendingUnitRequestOutput actReq = listAllReqDesc.get(i);
+			
+			if(actReq.getUserId() == UserId) {
+				
+				listAllById.add(actReq);
+			}
+			
+		}
+		
+		return listAllById;
+	}
+	
+	// SpendingUnitRequests filtered by UserId & RequestStatus
+	public Iterable<CompleteSpendingUnitRequestOutput> getBySpendingUnitRequestStatusAndUserId(int userId, String status){
+		List <CompleteSpendingUnitRequestOutput> listSpendingUnitRequestByUserId = StreamSupport.stream(getAllByIdWithoutDetailByOrder(userId).spliterator(), false).collect(Collectors.toList());
+		List <CompleteSpendingUnitRequestOutput> filteredByStatus = new ArrayList<CompleteSpendingUnitRequestOutput>();
+		
+		for(CompleteSpendingUnitRequestOutput actRequest : listSpendingUnitRequestByUserId) {
+			if(actRequest.getStatus().equals(status)){
+				filteredByStatus.add(actRequest);
+			}
+		}
+		
+		return filteredByStatus;
+	}
+	
+	//SpendingUnitRequests filtered by RequestStatus only
+	public Iterable<CompleteSpendingUnitRequestOutput> getBySpendingUnitRequestStatus(String status){
+		List <CompleteSpendingUnitRequestOutput> listSpendingUnitRequest = StreamSupport.stream(getAllWithoutDetailByOrder().spliterator(), false).collect(Collectors.toList());
+		List <CompleteSpendingUnitRequestOutput> filteredByStatus = new ArrayList<CompleteSpendingUnitRequestOutput>();
+		
+		for(CompleteSpendingUnitRequestOutput actRequest : listSpendingUnitRequest) {
+			if(actRequest.getStatus().equals(status)){
+				filteredByStatus.add(actRequest);
+			}
+		}
+		
+		return filteredByStatus;
+	}
 
 }

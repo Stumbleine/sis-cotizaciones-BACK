@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.security.PermitAll;
-
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.umss.dev.entity.SpendingUnitRequest;
+import com.umss.dev.input.SpendingUnitRequestFilteredWithUserIdInput;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.service.AdministrationService;
 import com.umss.dev.service.SpendingUnitRequestService;
@@ -39,5 +40,18 @@ public class AdministrationController {
 		
 		return administrationService.getAllWithoutDetailByOrder();	
 	}
-
+	
+	@PermitAll
+	@GetMapping("/getFilteredByUserIdSpendingUnitRequest")
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequestsByUserId(@Valid @RequestBody SpendingUnitRequestFilteredWithUserIdInput filteredInput){
+		System.out.println("----------USER ID----------:"+ filteredInput.getUserId() + "----------REQUEST STATUS----------:" + filteredInput.getSpendingUnitRequestStatus());
+		return administrationService.getBySpendingUnitRequestStatusAndUserId(filteredInput.getUserId(), filteredInput.getSpendingUnitRequestStatus());
+	}
+	
+	@PermitAll
+	@GetMapping("/getFilteredSpendingUnitRequest/{status}")
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequestsBy(@PathVariable (value = "status") String status){
+		System.out.println("----------REQUEST STATUS----------:" + status);
+		return administrationService.getBySpendingUnitRequestStatus(status);
+	}
 }

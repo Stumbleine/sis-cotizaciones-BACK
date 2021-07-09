@@ -3,6 +3,7 @@ package com.umss.dev.controller;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.security.PermitAll;
+import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.umss.dev.entity.SpendingUnit;
+import com.umss.dev.input.BusinessInput;
+import com.umss.dev.input.SpendingUnitRequestFilteredWithUserIdInput;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.output.SpendingUnitOutput;
 import com.umss.dev.service.SpendingUnitService;
@@ -52,6 +55,13 @@ public class SpendingUnitController {
 	@GetMapping("/allSpendingUnits")
 	public Iterable<SpendingUnitOutput> getSpendingUnits(){
 		return spendingUnitService.getAllSpendingUnitsByOrder();
+	}
+	
+	@PermitAll
+	@GetMapping("/getFilteredSpendingUnitRequest")
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequests(@Valid @RequestBody SpendingUnitRequestFilteredWithUserIdInput filteredInput){
+		System.out.println("----------USER ID----------:"+ filteredInput.getUserId() + "----------REQUEST STATUS----------:" + filteredInput.getSpendingUnitRequestStatus());
+		return spendingUnitService.getBySpendingUnitRequestStatus(filteredInput.getUserId(), filteredInput.getSpendingUnitRequestStatus());
 	}
 	
 	
