@@ -27,6 +27,8 @@ public class User {
 	private int idUser;
 	@Column
 	private String name;
+	@Column(unique = true)
+	private String userName;
 	@Column
 	private String email;
 	@Column
@@ -108,4 +110,11 @@ public class User {
 		this.selected = selected;
 	}
 		
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }

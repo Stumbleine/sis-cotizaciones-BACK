@@ -62,6 +62,7 @@ public class UserService {
 	public UserInput save2(UserInput user) {
 		User newUser=new User();
 		newUser.setName(user.getName());
+		newUser.setUserName(user.getUserName());
 		newUser.setEmail(user.getEmail());
 		newUser.setPassword(user.getPassword());
 		newUser.setRegistrationDate(LocalDate.now());
@@ -113,6 +114,19 @@ public class UserService {
 		user.setSelected(true);
 		userRepository.save(user);
 		return "New Responsable is "+user.getName();
+	}
+	
+	public boolean noExistsUserName(String userName) {
+
+		boolean result=true;
+		List <User> allUser = userRepository.findAll();
+		for(User a:allUser) {
+			if(a.getUserName()!=null){
+			if(a.getUserName().equalsIgnoreCase(userName)) {
+				result=false;
+			}}
+		}
+		return result;
 	}
 	
 }
