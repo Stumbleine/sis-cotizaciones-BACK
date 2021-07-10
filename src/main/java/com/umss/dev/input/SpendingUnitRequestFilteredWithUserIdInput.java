@@ -2,17 +2,20 @@ package com.umss.dev.input;
 
 public class SpendingUnitRequestFilteredWithUserIdInput {
 	
-	private int userId;
+	private int userRolId;
 	private String spendingUnitRequestStatus;
 	
 	public SpendingUnitRequestFilteredWithUserIdInput () {}
 
-	public int getUserId() {
-		return userId;
+
+	public int getUserRolId() {
+		return userRolId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+
+
+	public void setUserRolId(int userRolId) {
+		this.userRolId = userRolId;
 	}
 
 	public String getSpendingUnitRequestStatus() {

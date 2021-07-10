@@ -60,8 +60,8 @@ public class SpendingUnitController {
 	@PermitAll
 	@GetMapping("/getFilteredSpendingUnitRequest")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequests(@Valid @RequestBody SpendingUnitRequestFilteredWithUserIdInput filteredInput){
-		System.out.println("----------USER ID----------:"+ filteredInput.getUserId() + "----------REQUEST STATUS----------:" + filteredInput.getSpendingUnitRequestStatus());
-		return spendingUnitService.getBySpendingUnitRequestStatus(filteredInput.getUserId(), filteredInput.getSpendingUnitRequestStatus());
+		System.out.println("----------USER ID----------:"+ filteredInput.getUserRolId() + "----------REQUEST STATUS----------:" + filteredInput.getSpendingUnitRequestStatus());
+		return spendingUnitService.getBySpendingUnitRequestStatus(filteredInput.getUserRolId(), filteredInput.getSpendingUnitRequestStatus());
 	}
 	
 	
