@@ -24,7 +24,7 @@ import com.umss.dev.entity.PriceQuotationRequest;
 import com.umss.dev.entity.Report;
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnitRequest;
-import com.umss.dev.entity.User;
+import com.umss.dev.entity.UserSis;
 import com.umss.dev.entity.UserRole;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.output.SpendingUnitRequesteOutputAtributes;

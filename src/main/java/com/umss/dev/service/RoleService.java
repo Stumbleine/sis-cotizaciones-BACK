@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnit;
-import com.umss.dev.entity.User;
+import com.umss.dev.entity.UserSis;
 import com.umss.dev.exception.DtoNotFoundException;
 import com.umss.dev.output.RoleOutput;
 import com.umss.dev.output.RoleOutputNormalAtributes;

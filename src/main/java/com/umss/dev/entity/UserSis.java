@@ -17,16 +17,18 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
+//@Data
 @Entity(name = "User")
 @Table(name = "USER")
-public class User {
+public class UserSis {
 
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idUser;
 	@Column
 	private String name;
+	@Column(unique = true)
+	private String userName;
 	@Column
 	private String email;
 	@Column
@@ -107,5 +109,13 @@ public class User {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
-		
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 }

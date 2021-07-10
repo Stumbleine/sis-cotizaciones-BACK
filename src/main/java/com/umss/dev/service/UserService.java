@@ -7,11 +7,12 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnit;
-import com.umss.dev.entity.User;
+import com.umss.dev.entity.UserSis;
 import com.umss.dev.entity.UserRole;
 import com.umss.dev.output.RoleOutput;
 import com.umss.dev.output.UserOutput;
@@ -34,7 +35,11 @@ public class UserService {
 	private UserRoleRepository userRoleRepository;
 	@Autowired
 	private SpendingUnitRepository spendingUnitRepository;
+	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
 	public UserService(UserRepository userRepository, ModelMapper modelMapper) {
 	    this.userRepository = userRepository;
@@ -42,8 +47,8 @@ public class UserService {
 	   
 	}
 	
-	public User getById(Integer userId) {
-		User userAct = userRepository.findById(userId).orElse(null);
+	public UserSis getById(Integer userId) {
+		UserSis userAct = userRepository.findById(userId).orElse(null);
 		
 	    if (null == userAct) {
 	    	
@@ -53,24 +58,25 @@ public class UserService {
 	    return userAct;
 	}
 	
-	public User save(User user) {
-	    User persistedUser = userRepository.save(user);
+	public UserSis save(UserSis user) {
+	    UserSis persistedUser = userRepository.save(user);
 	     
 	     return persistedUser;
 	}
 	
 	public UserInput save2(UserInput user) {
-		User newUser=new User();
+		UserSis newUser=new UserSis();
 		newUser.setName(user.getName());
+		newUser.setUserName(user.getUserName());
 		newUser.setEmail(user.getEmail());
-		newUser.setPassword(user.getPassword());
+		newUser.setPassword(encoder.encode(user.getPassword()));        System.out.println("The password's user is "+ newUser.getPassword());
 		newUser.setRegistrationDate(LocalDate.now());
 	    userRepository.save(newUser);
 	    putUserRole(user.getIdRole(),user.getIdSpendingUnit(),newUser);
 	    return user;
 	}
 	
-	private void putUserRole(int idRole,int idSpendingUnit, User user) {
+	private void putUserRole(int idRole,int idSpendingUnit, UserSis user) {
 		UserRole userRole=new UserRole();
 		Role role= roleRepository.findById(idRole).get();
 		SpendingUnit spendingUnit=spendingUnitRepository.findById(idSpendingUnit).get();
@@ -82,10 +88,10 @@ public class UserService {
 	
 	public Iterable<UserOutput> getAllUsers() {
 
-		List <User> allUser = userRepository.findAll();
+		List <UserSis> allUser = userRepository.findAll();
 		List <UserOutput> allUsersByOrder = new ArrayList<UserOutput>();
 		
-		for(User a:allUser) {
+		for(UserSis a:allUser) {
 			UserOutput newUser = new UserOutput();
 			newUser.setIdUser(a.getIdUser());
 			newUser.setName(a.getName());
@@ -109,7 +115,7 @@ public class UserService {
 	}
 	
 	public String setResponsable(int id) {
-		User user=userRepository.findById(id).get();
+		UserSis user=userRepository.findById(id).get();
 		user.setSelected(true);
 		userRepository.save(user);
 		return "New Responsable is "+user.getName();

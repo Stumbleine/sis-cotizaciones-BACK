@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.umss.dev.entity.User;
+import com.umss.dev.entity.UserSis;
 import com.umss.dev.input.UserInput;
 import com.umss.dev.output.UserOutput;
 import com.umss.dev.service.UserService;
@@ -46,7 +46,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/responsable/{id}")
-	public ResponseEntity<?> setResponsable(@PathVariable Integer id){
+	public ResponseEntity<?> setResponsable(@PathVariable Integer id,@RequestBody UserInput user){
 		return ResponseEntity.ok(userService.setResponsable(id));
 	}
 }

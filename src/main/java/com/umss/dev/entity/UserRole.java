@@ -29,7 +29,7 @@ public class UserRole {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idUser")
 	//@JsonBackReference
-	private User user;
+	private UserSis user;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idRole")
 	//@JsonBackReference
@@ -68,12 +68,12 @@ public class UserRole {
 		this.idUserRole = idUserRole;
 	}
 
-	public User getUser() {
+	public UserSis getUser() {
 		
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserSis user) {
 		this.user = user;
 	}
 

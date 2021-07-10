@@ -6,13 +6,13 @@ import com.umss.dev.entity.Administration;
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnit;
 import com.umss.dev.entity.SpendingUnitRequest;
-import com.umss.dev.entity.User;
+import com.umss.dev.entity.UserSis;
 
 public class UserRoleOutputNormalAtributes {
 
 private int idUserRole;
 	
-	private User user;
+	private UserSis user;
 	private Role role;
 	private SpendingUnit spendingUnit;
 	private Administration administration;
@@ -27,12 +27,12 @@ private int idUserRole;
 		this.idUserRole = idUserRole;
 	}
 	
-	public User getUser() {
+	public UserSis getUser() {
 		
 		return user;
 	}
 	
-	public void setUser(User user) {
+	public void setUser(UserSis user) {
 		this.user = user;
 	}
 	
