@@ -121,4 +121,17 @@ public class UserService {
 		return "New Responsable is "+user.getName();
 	}
 	
+	public boolean noExistsUserName(String userName) {
+		
+		boolean result=true;
+		List <UserSis> allUser = userRepository.findAll();
+		for(UserSis a:allUser) {
+			if(a.getUserName()!=null){
+			if(a.getUserName().equalsIgnoreCase(userName)) {
+				result=false;
+			}}
+		}
+		return result;
+	}
+	
 }

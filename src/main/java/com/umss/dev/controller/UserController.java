@@ -49,4 +49,11 @@ public class UserController {
 	public ResponseEntity<?> setResponsable(@PathVariable Integer id,@RequestBody UserInput user){
 		return ResponseEntity.ok(userService.setResponsable(id));
 	}
+	
+	@GetMapping("/uniqueUserName/{userName}")
+	public ResponseEntity<?> createUserName(@PathVariable String userName){
+		
+		return ResponseEntity.ok(userService.noExistsUserName(userName));
+	}
+	
 }
