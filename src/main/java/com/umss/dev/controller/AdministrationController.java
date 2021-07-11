@@ -44,8 +44,8 @@ public class AdministrationController {
 	@PermitAll
 	@GetMapping("/getFilteredByUserIdSpendingUnitRequest")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequestsByUserId(@Valid @RequestBody SpendingUnitRequestFilteredWithUserIdInput filteredInput){
-		System.out.println("----------USER ID----------:"+ filteredInput.getUserRolId() + "----------REQUEST STATUS----------:" + filteredInput.getSpendingUnitRequestStatus());
-		return administrationService.getBySpendingUnitRequestStatusAndUserId(filteredInput.getUserRolId(), filteredInput.getSpendingUnitRequestStatus());
+		System.out.println("----------USER ID----------:"+ filteredInput.getUserId() + "----------REQUEST STATUS----------:" + filteredInput.getSpendingUnitRequestStatus());
+		return administrationService.getBySpendingUnitRequestStatusAndUserId(filteredInput.getUserId(), filteredInput.getSpendingUnitRequestStatus());
 	}
 	
 	@PermitAll
