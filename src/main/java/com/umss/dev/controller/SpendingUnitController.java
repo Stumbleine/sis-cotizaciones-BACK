@@ -70,5 +70,12 @@ public class SpendingUnitController {
 		return spendingUnitService.getBySpendingUnitRequestStatus(filteredInput.getUserId(), filteredInput.getSpendingUnitRequestStatus());
 	}
 	
+	@PermitAll
+	@GetMapping("/getFilteredSpendingUnitRequest/{status}")
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequestsBy(@PathVariable (value = "status") String status){
+		System.out.println("----------REQUEST STATUS----------:" + status);
+		return spendingUnitService.getBySpendingUnitRequestStatus(status);
+	}
+	
 	
 }

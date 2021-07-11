@@ -105,6 +105,7 @@ public class SpendingUnitService {
 		return allSpendingUnitReqWithoutDetailByOrder;		
 	}
 	
+	// SpendingUnitRequests filtered by UserId & RequestStatus
 	public Iterable<CompleteSpendingUnitRequestOutput> getBySpendingUnitRequestStatus(int userId, String status){
 		List <CompleteSpendingUnitRequestOutput> listSpendingUnitRequestByUserId = StreamSupport.stream(getAllByIdWithoutDetailByOrder(userId).spliterator(), false).collect(Collectors.toList());
 		List <CompleteSpendingUnitRequestOutput> filteredByStatus = new ArrayList<CompleteSpendingUnitRequestOutput>();
@@ -118,6 +119,19 @@ public class SpendingUnitService {
 		return filteredByStatus;
 	}
 	
+	//SpendingUnitRequests filtered by RequestStatus only
+		public Iterable<CompleteSpendingUnitRequestOutput> getBySpendingUnitRequestStatus(String status){
+			List <CompleteSpendingUnitRequestOutput> listSpendingUnitRequest = StreamSupport.stream(getAllWithoutDetailByOrder().spliterator(), false).collect(Collectors.toList());
+			List <CompleteSpendingUnitRequestOutput> filteredByStatus = new ArrayList<CompleteSpendingUnitRequestOutput>();
+			
+			for(CompleteSpendingUnitRequestOutput actRequest : listSpendingUnitRequest) {
+				if(actRequest.getStatus().equals(status)){
+					filteredByStatus.add(actRequest);
+				}
+			}
+			
+			return filteredByStatus;
+		}
 	
 	@Transactional
 	public SpendingUnit save(SpendingUnit spendingUnit) {
@@ -166,6 +180,7 @@ public class SpendingUnitService {
 		}
 		return responsable;
 	}
+	
 	private List<UserOutputAtributes> foundResponsables(SpendingUnit found){
 		List<UserRole> userRoles=found.getUserRole();
 		List<UserOutputAtributes> responsables=new ArrayList<UserOutputAtributes>();
