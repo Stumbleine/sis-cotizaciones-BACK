@@ -38,9 +38,9 @@ public class UserRole {
 	@JoinColumn(name="idSpendingUnit")
 	//@JsonBackReference
 	private SpendingUnit spendingUnit;
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	/*@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="idAdministration")
-	private Administration administration;
+	private Administration administration;*/
 	
 	@OneToMany(mappedBy = "userRole",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	@JsonManagedReference
@@ -95,14 +95,14 @@ public class UserRole {
 		this.spendingUnit = spendingUnit;
 	}
 
-	public Administration getAdministration() {
+	/*public Administration getAdministration() {
 		
 		return administration;
 	}
 
 	public void setAdministration(Administration administration) {
 		this.administration = administration;
-	}
+	}*/
 
 	public List<SpendingUnitRequest> getSpendingUnitRequest() {
 		
@@ -117,7 +117,7 @@ public class UserRole {
 	public String toString() {
 		
 		return "UserRole [idUserRole=" + idUserRole + ", user=" + user + ", role=" + role + ", spendingUnit="
-				+ spendingUnit + ", administration=" + administration + ", spendingUnitRequest=" + spendingUnitRequest
+				+ spendingUnit + ", spendingUnitRequest=" + spendingUnitRequest
 				+ "]";
 	}
 	
