@@ -7,6 +7,7 @@ import javax.annotation.security.PermitAll;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,7 @@ public class SpendingUnitController {
 		this.modelMapper = modelMapper;
 	}
 	
+	@PreAuthorize("hasRole('RUG')")	
 	@GetMapping("/{id}")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqById(@PathVariable (value = "id") Integer UserId){
 		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);

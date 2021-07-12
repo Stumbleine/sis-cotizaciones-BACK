@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -41,7 +42,7 @@ public class SpendingUnitRequestController {
 	public SpendingUnitRequestController(SpendingUnitRequestService spendingUnitReqServ){
 		spendingUnitReqService = spendingUnitReqServ;
 	}
-	
+	@PreAuthorize("hasRole('RUG') or hasRole('RAF')")
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody SpendingUnitRequest spendingUnitRequest){
 		SpendingUnitRequest request=spendingUnitRequest;
@@ -49,7 +50,7 @@ public class SpendingUnitRequestController {
 		
 		return ResponseEntity.ok(request);
 	}
-	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping()
 	public Iterable<SpendingUnitRequest> getSpendingUnitRequests(){
 		
@@ -62,12 +63,14 @@ public class SpendingUnitRequestController {
 		return spendingUnitReqService.getAllWithoutDetailByOrder();
 	}
 	
+	@PreAuthorize("hasRole('RUG')")	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> spendingUnitRequest(@PathVariable (value = "id") Integer spendingUnitRequestId){	
 		
 		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
 	}
 	
+	@PreAuthorize("hasRole('RAF')")	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> spendingUnitRequest(@PathVariable (value = "id") Integer spendingUnitRequestId,@RequestParam("state")String state,
 												@RequestParam("comentary")String comentary,@RequestParam("document")MultipartFile file,@RequestParam("idQuotation")int idQuotation) throws IOException{

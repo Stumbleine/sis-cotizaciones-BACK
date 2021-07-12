@@ -5,6 +5,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,13 +42,15 @@ public class AreaController {
 		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
 	}*/
 	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/getBusinessesByAreaId/{id}")
 	public Iterable<BusinessOutput> getBusinessByIdArea(@PathVariable (value = "id") Integer areaId){
 		
 		return areaService.getBusinessByIdArea(areaId);
 		
 	}
-										
+	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/getBusinessesByAreaName/{name}")
 	public Iterable<BusinessOutput> getBusinessByAreaName(@PathVariable (value = "name") String areaName){
 		
@@ -55,12 +58,14 @@ public class AreaController {
 		
 	}
 	
+	@PreAuthorize("hasRole('RAF')")		
 	@GetMapping("/getAllBusiness")
 	public Iterable<BusinessOutput> getAllBusiness(){
 		
 		return areaService.getAll();
 	}
 	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/getAllNameArea")
 	public List<String> getAllNameArea(){
 		return areaService.getallNameArea();

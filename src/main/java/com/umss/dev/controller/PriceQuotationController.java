@@ -3,6 +3,7 @@ package com.umss.dev.controller;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,6 +81,7 @@ public class PriceQuotationController {
 		return newQuotation;
 	}
 	
+	@PreAuthorize("hasRole('RAF')")	
 	@PutMapping("/updateQuotation/{id}")
 	public ResponseEntity<Object> updateQuotation(@RequestBody PriceQuotation newQuotation, @PathVariable (value = "id") Integer idPriceQuotation) {
 		//int id = lastPriceQuotationSaved.getIdPriceQuotation();
@@ -98,6 +100,7 @@ public class PriceQuotationController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PreAuthorize("hasRole('RAF')")	
 	@PutMapping("/updateQuotationAddingBusiness/{id}")
 	public ResponseEntity<Object> updateQuotation(@Valid @RequestBody NewBusinessInput newBusiness, @PathVariable (value = "id") Integer idPriceQuotation) {
 		System.out.println("********//********************//***********es esto 2");
@@ -123,6 +126,7 @@ public class PriceQuotationController {
 		priceQuotationService.relatePriceQuotitionToDetails();
 	}
 
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<CompletePriceQuotation> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		

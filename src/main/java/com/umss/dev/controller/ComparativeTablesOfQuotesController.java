@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,7 @@ public class ComparativeTablesOfQuotesController {
 		this.comparativeTableOfQuotesService = comparativeTableOfQuotesService;
 	}
 
+    @PreAuthorize("hasRole('RAF')")	
     @PostMapping("/{id}")
 	public ResponseEntity<?> create(@RequestBody List<ComparativeTableOfQuotes> comparativeTableOfQuotes,@PathVariable Integer id){
     	
@@ -50,12 +52,14 @@ public class ComparativeTablesOfQuotesController {
 		return ResponseEntity.ok(comparativeTable);
 	}
 
+    @PreAuthorize("hasRole('RAF')")	
     @GetMapping("/{id}")
 	public Iterable<ComparativeTableOfQuotes> getComparativeTableOfQuotesService(@PathVariable Integer id){
 		
 		return comparativeTableOfQuotesService.getComparativeTable(id);
 	}
     
+    @PreAuthorize("hasRole('RAF')")	
     @PutMapping("/{id}")
 	public ResponseEntity<?> updateComparativeTableOfQuotes(@PathVariable Integer id, @RequestBody List<ComparativeTableOfQuotes> comparativeTableOfQuotes) {
 		

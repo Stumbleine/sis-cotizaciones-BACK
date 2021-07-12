@@ -26,7 +26,8 @@ public class PruebaUserService implements UserDetailsService {
 		UserSis us= userRepository.findByUserName(username);
 		
 		List <GrantedAuthority> roles=new ArrayList<>();
-		roles.add(new SimpleGrantedAuthority("ADMIN"));
+		roles.add(new SimpleGrantedAuthority(us.getUserRole().get(0).getRole().getRoleName()));
+		System.out.println("-------------------> "+us.getUserRole().get(0).getRole().getRoleName());
 		UserDetails userDetails=new User(us.getUserName(),us.getPassword(),roles);
 		return userDetails;
 	}

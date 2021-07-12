@@ -1,12 +1,17 @@
 package com.umss.dev.controller;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,8 +42,10 @@ public class AuthController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
             UserDetails userDetails = pruebaUserService.loadUserByUsername(request.getUsername());
             String jwt = jwtUtil.generateToken(userDetails);
-
-            return new ResponseEntity<>(new AuthenticationResponse(jwt), HttpStatus.OK);
+        	Collection<? extends GrantedAuthority> roles=userDetails.getAuthorities();
+        	
+        	//roles=(List<GrantedAuthority>) userDetails.getAuthorities();
+            return new ResponseEntity<>(new AuthenticationResponse(jwt,roles), HttpStatus.OK);
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }

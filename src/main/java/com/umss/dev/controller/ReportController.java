@@ -1,6 +1,7 @@
 package com.umss.dev.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class ReportController {
 		this.reportService = reportService;
 	}
 
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/{id}")
 	public ReportOutput report(@PathVariable (value = "id") Integer id){
 		return reportService.getReport(id);
