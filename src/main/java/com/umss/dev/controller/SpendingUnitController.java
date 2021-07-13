@@ -53,10 +53,7 @@ public class SpendingUnitController {
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqById(@PathVariable (value = "id") Integer UserId){
 		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
 	}
-	@GetMapping("/{id}")
-	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqById(@PathVariable (value = "id") Integer UserId){
-		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
-	}
+	
 	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
 	@PostMapping("/registerSpendingUnit")
 	public ResponseEntity<?> createSpendingUnit(@RequestBody SpendingUnit spendingUnit){
