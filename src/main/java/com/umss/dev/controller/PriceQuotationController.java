@@ -63,7 +63,7 @@ public class PriceQuotationController {
 		return ResponseEntity.ok( priceQuotationService.save(priceQuotation));
 	}*/
 	
-	@PermitAll
+	@PreAuthorize("hasRole('RAF')")	
 	@PostMapping("/createQuotation/{id}")
 	public ResponseEntity<PriceQuotation> create(@Valid @RequestBody PriceQuotationInput priceQuotationInput, @PathVariable (value = "id") Integer idSpendingUnitRequest){
 		System.out.println("********//********************//***********"+idSpendingUnitRequest);
@@ -73,7 +73,7 @@ public class PriceQuotationController {
 		//priceQuotationService.saveOther(actPriceQuotation);
 		return ResponseEntity.ok(request);
 	}
-	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/getIdOfNewQuotation")
 	public PriceQuotationIdOutput getIdOfNewQuotation(){
 		PriceQuotationIdOutput newQuotation = new PriceQuotationIdOutput();
@@ -120,13 +120,13 @@ public class PriceQuotationController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	
+	@PreAuthorize("hasRole('RAF')")	
 	@PutMapping("/RelatingPriceQuotationToDetails")
 	public void relatePriceQuotationToDetails(@RequestBody PriceQuotation newQuotation) {
 		priceQuotationService.relatePriceQuotitionToDetails();
 	}
 
-	@PreAuthorize("hasRole('RAF')")	
+	@PermitAll
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<CompletePriceQuotation> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		
@@ -141,6 +141,7 @@ public class PriceQuotationController {
 		
 	}
 	*/
+	@PreAuthorize("hasRole('RAF')")	
 	@DeleteMapping("/deleteQuotation/{id}")
 	public void deleteQuotataion(@PathVariable (value = "id") int idQuotation) throws Exception {
 		

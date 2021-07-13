@@ -42,7 +42,7 @@ public class SpendingUnitRequestController {
 	public SpendingUnitRequestController(SpendingUnitRequestService spendingUnitReqServ){
 		spendingUnitReqService = spendingUnitReqServ;
 	}
-	@PreAuthorize("hasRole('RUG') or hasRole('RAF')")
+	@PreAuthorize("hasRole('RUG')")	
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody SpendingUnitRequest spendingUnitRequest){
 		SpendingUnitRequest request=spendingUnitRequest;

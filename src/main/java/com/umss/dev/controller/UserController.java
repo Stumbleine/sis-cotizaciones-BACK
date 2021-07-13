@@ -3,6 +3,7 @@ package com.umss.dev.controller;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,24 +33,24 @@ public class UserController {
 	public UserController() {
 		
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")	
 	@GetMapping("/allUsers")
 	public Iterable<UserOutput> getAllUsers(){
 		
 		return userService.getAllUsers();
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")	
 	@PostMapping("/registerUser")
 	public ResponseEntity<?> createUser(@RequestBody UserInput user){
 		
 		return ResponseEntity.ok(userService.save2(user));
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/responsable/{id}")
 	public ResponseEntity<?> setResponsable(@PathVariable Integer id,@RequestBody UserInput user){
 		return ResponseEntity.ok(userService.setResponsable(id));
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/uniqueUserName/{userName}")
 	public ResponseEntity<?> createUserName(@PathVariable String userName){
 		

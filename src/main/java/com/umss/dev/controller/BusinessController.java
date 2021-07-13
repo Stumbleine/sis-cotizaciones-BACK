@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,18 +46,19 @@ public class BusinessController {
 		return ResponseEntity.ok( priceQuotationService.findPriceQuotationById(idPriceQuotation));
 	}*/
 	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<Business> getByIdBusiness(@PathVariable (value = "id") Integer idBusiness){
 			
 			return ResponseEntity.ok( businessService.getByIdBusiness(idBusiness));
 	}
-	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/getLastBusiness")
 	public Business getLastBusiness(){
 		return businessService.getLastBusiness();
 	}
 	
-	@PermitAll
+	@PreAuthorize("hasRole('RAF')")	
 	@PostMapping("/createEmpresa")
 	public 	Business createBusiness(@Valid @RequestBody BusinessInput business) {
 		Area areafound = areaService.getAreaByName(business.getNameArea());
@@ -65,7 +67,7 @@ public class BusinessController {
 		newBusiness.setArea(areafound);
 		return businessService.save(newBusiness);
 	}
-	
+	@PreAuthorize("hasRole('RAF')")	
 	@PostMapping("/registerBusiness")
 	public ResponseEntity<?> create(@RequestBody CreateBusinessInput business){
 

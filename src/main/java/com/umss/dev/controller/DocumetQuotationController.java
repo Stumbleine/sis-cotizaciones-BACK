@@ -32,6 +32,7 @@ public class DocumetQuotationController {
 	@Autowired
 	private DocumetQuotationService documentService;
 	
+	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
 	@PostMapping("/{id}")
 	public ResponseEntity<DocumentQuotation> uploadDocument(@PathVariable (value = "id") Integer id,@RequestParam("document")MultipartFile file) {
 		
@@ -70,31 +71,31 @@ public class DocumetQuotationController {
 		
 		return  ResponseEntity.ok( documentService.getDocumneByIdPriceQuotation(id));
 	}
-	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/Report/{id}")
 	public ResponseEntity<DocumentQuotationAtributesOutput> report(@PathVariable (value = "id") Integer id) {
 		
 		return  ResponseEntity.ok(documentService.getDocumneByIdReport(id));
 	}
-	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/blob/Report/{id}")
 	public byte[] blob(@PathVariable (value = "id") Integer id) {
 		
 		return documentService.getDocumneByIdReport(id).getContent();
 	}
-	
+	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
 	@GetMapping("/blob/Quotation/{id}")
 	public byte[] blobQuotation(@PathVariable (value = "id") Integer id) {
 		
 		return  documentService.getDocumneByIdQuotation(id).getContent();
 	}
-	
+	@PreAuthorize("hasRole('RAF')")
 	@DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<DocumentQuotationAtributesOutput> deleteDocumentQuotation(@PathVariable Integer id) {
 
         return  ResponseEntity.ok(documentService.deleteDocumentByIdPriceQuotation(id));
     }
-	
+	@PreAuthorize("hasRole('RAF')")
 	@PostMapping("/uploadDetail")
 	public ResponseEntity<DocumentQuotation> uploadDocumentDetail(@RequestParam (value = "idRow") Integer id,@RequestParam("document")MultipartFile file) {
 		
