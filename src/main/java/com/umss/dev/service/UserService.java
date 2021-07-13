@@ -96,13 +96,15 @@ public class UserService {
 			newUser.setIdUser(a.getIdUser());
 			newUser.setName(a.getName());
 			newUser.setRegistrationDate(a.getRegistrationDate());
-			if(a.getUserRole().get(0).getSpendingUnit()!=null) {
-				newUser.setSpendingUnit(a.getUserRole().get(0).getSpendingUnit().getAcronym());
-			}
-			
-			if(a.getUserRole().get(0).getRole().getRoleName() !=null) {
-				newUser.setRole(a.getUserRole().get(0).getRole().getRoleName());
-				newUser.setPrivileges(a.getUserRole().get(0).getRole().getPrivileges());
+			if (!a.getUserRole().isEmpty()) {
+				if(a.getUserRole().get(0).getSpendingUnit()!=null) {
+					newUser.setSpendingUnit(a.getUserRole().get(0).getSpendingUnit().getAcronym());
+				}
+
+				if(a.getUserRole().get(0).getRole().getRoleName() !=null) {
+					newUser.setRole(a.getUserRole().get(0).getRole().getRoleName());
+					newUser.setPrivileges(a.getUserRole().get(0).getRole().getPrivileges());
+				}
 			}
             allUsersByOrder.add(newUser);
 			
@@ -134,4 +136,14 @@ public class UserService {
 		return result;
 	}
 	
+	public UserInput setUser(int id,UserInput user) {
+		UserSis updateUser=userRepository.findById(id).get();
+		updateUser.setEmail(user.getEmail());
+		updateUser.setName(user.getName());
+		updateUser.setPassword(encoder.encode(user.getPassword()));
+		updateUser.setUserName(user.getUserName());
+		userRepository.save(updateUser);
+		return user;
+
+	}
 }
