@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.sun.el.stream.Optional;
 import com.umss.dev.entity.UserSis;
 import com.umss.dev.repository.UserRepository;
 
@@ -31,5 +32,8 @@ public class PruebaUserService implements UserDetailsService {
 		UserDetails userDetails=new User(us.getUserName(),us.getPassword(),roles);
 		return userDetails;
 	}
-
+	
+	public int getIdUser(String name) {
+		return userRepository.findByUserName(name).getIdUser();
+	}
 }

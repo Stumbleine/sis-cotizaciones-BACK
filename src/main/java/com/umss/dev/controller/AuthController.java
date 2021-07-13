@@ -45,7 +45,7 @@ public class AuthController {
         	Collection<? extends GrantedAuthority> roles=userDetails.getAuthorities();
         	
         	//roles=(List<GrantedAuthority>) userDetails.getAuthorities();
-            return new ResponseEntity<>(new AuthenticationResponse(jwt,roles), HttpStatus.OK);
+            return new ResponseEntity<>(new AuthenticationResponse(jwt,roles,pruebaUserService.getIdUser(request.getUsername())), HttpStatus.OK);
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }

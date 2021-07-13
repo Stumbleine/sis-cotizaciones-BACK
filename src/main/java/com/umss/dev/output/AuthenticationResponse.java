@@ -9,6 +9,17 @@ public class AuthenticationResponse {
 
 	private String jwt;
 	Collection<? extends GrantedAuthority> roles;
+	private int id;
+	
+	
+
+	public AuthenticationResponse(String jwt, Collection<? extends GrantedAuthority> roles, int id) {
+		super();
+		this.jwt = jwt;
+		this.roles = roles;
+		this.id = id;
+	}
+
 
 	public AuthenticationResponse(String jwt) {
 		this.jwt = jwt;
@@ -20,6 +31,8 @@ public class AuthenticationResponse {
 		this.jwt = jwt;
 		this.roles = roles;
 	}
+
+
 
 
 
@@ -41,6 +54,16 @@ public class AuthenticationResponse {
 
 	public void setJwt(String jwt) {
 		this.jwt = jwt;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }
