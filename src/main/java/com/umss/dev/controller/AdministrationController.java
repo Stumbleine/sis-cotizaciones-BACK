@@ -24,7 +24,7 @@ import com.umss.dev.service.SpendingUnitRequestService;
 import com.umss.dev.service.SpendingUnitService;
 
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/administration")
 public class AdministrationController {
 	
@@ -35,7 +35,7 @@ public class AdministrationController {
 		this.administrationService = administrationServ;
 	}
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
 	@GetMapping()
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllWithoutDetailByOrder(){
 		
