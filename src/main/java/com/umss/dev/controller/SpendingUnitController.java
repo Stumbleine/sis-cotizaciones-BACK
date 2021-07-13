@@ -50,7 +50,7 @@ public class SpendingUnitController {
 		
 		return ResponseEntity.ok(spendingUnitService.save(spendingUnit));
 	}
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
+	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")		
 	@GetMapping("/allSpendingUnits")
 	public Iterable<SpendingUnitOutput> getSpendingUnits(){
 		return spendingUnitService.getAllSpendingUnitsByOrder();

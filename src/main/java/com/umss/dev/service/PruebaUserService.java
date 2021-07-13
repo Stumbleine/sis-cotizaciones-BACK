@@ -33,6 +33,10 @@ public class PruebaUserService implements UserDetailsService {
 		return userDetails;
 	}
 	
+	public String getNameUser(String name) {
+		return userRepository.findByUserName(name).getName();
+	}
+	
 	public int getIdUser(String name) {
 		return userRepository.findByUserName(name).getIdUser();
 	}
