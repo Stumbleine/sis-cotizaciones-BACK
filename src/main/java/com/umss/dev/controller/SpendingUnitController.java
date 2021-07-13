@@ -3,6 +3,7 @@ package com.umss.dev.controller;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.security.PermitAll;
+import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.umss.dev.entity.SpendingUnit;
+import com.umss.dev.input.BusinessInput;
+import com.umss.dev.input.SpendingUnitRequestFilteredWithUserIdInput;
 import com.umss.dev.output.CompleteSpendingUnitRequestOutput;
 import com.umss.dev.output.SpendingUnitOutput;
 import com.umss.dev.service.SpendingUnitService;
@@ -39,7 +42,17 @@ public class SpendingUnitController {
 		this.modelMapper = modelMapper;
 	}
 	
+	@GetMapping()
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllWithoutDetailByOrder(){
+		
+		return spendingUnitService.getAllWithoutDetailByOrder();	
+	}
+	
 	@PreAuthorize("hasRole('RUG')")	
+	@GetMapping("/{id}")
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqById(@PathVariable (value = "id") Integer UserId){
+		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
+	}
 	@GetMapping("/{id}")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqById(@PathVariable (value = "id") Integer UserId){
 		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
@@ -56,5 +69,18 @@ public class SpendingUnitController {
 		return spendingUnitService.getAllSpendingUnitsByOrder();
 	}
 	
+	@PermitAll
+	@GetMapping("/getFilteredSpendingUnitRequest")
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequests(@Valid @RequestBody  SpendingUnitRequestFilteredWithUserIdInput filteredInput){
+		System.out.println("----------USER ID----------:"+ filteredInput.getUserId() + "----------REQUEST STATUS----------:" + filteredInput.getSpendingUnitRequestStatus());
+		return spendingUnitService.getBySpendingUnitRequestStatus(filteredInput.getUserId(), filteredInput.getSpendingUnitRequestStatus());
+	}
+	
+	@PermitAll
+	@GetMapping("/getFilteredSpendingUnitRequest/{status}")
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequestsBy(@PathVariable (value = "status") String status){
+		System.out.println("----------REQUEST STATUS----------:" + status);
+		return spendingUnitService.getBySpendingUnitRequestStatus(status);
+	}
 	
 }

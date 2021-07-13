@@ -2,7 +2,7 @@ package com.umss.dev.output;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.umss.dev.entity.Administration;
+//import com.umss.dev.entity.Administration;
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnit;
 import com.umss.dev.entity.SpendingUnitRequest;
@@ -15,7 +15,7 @@ private int idUserRole;
 	private UserSis user;
 	private Role role;
 	private SpendingUnit spendingUnit;
-	private Administration administration;
+	//private Administration administration;
 	private List<SpendingUnitRequest> spendingUnitRequest;
 		
 	public int getIdUserRole() {
@@ -54,14 +54,14 @@ private int idUserRole;
 		this.spendingUnit = spendingUnit;
 	}
 	
-	public Administration getAdministration() {
+	/*public Administration getAdministration() {
 		
 		return administration;
 	}
 	
 	public void setAdministration(Administration administration) {
 		this.administration = administration;
-	}
+	}*/
 	
 	public List<SpendingUnitRequest> getSpendingUnitRequest() {
 		
