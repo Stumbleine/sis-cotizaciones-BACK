@@ -56,5 +56,4 @@ public class SpendingUnitController {
 		return spendingUnitService.getAllSpendingUnitsByOrder();
 	}
 	
-	
 }
