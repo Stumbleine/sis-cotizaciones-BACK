@@ -55,4 +55,9 @@ public class UserController {
 
 		return ResponseEntity.ok(userService.noExistsUserName(userName));
 	}
+	
+	@PutMapping("/updateData/{id}")
+	public ResponseEntity<?> setDataUser(@PathVariable Integer id,@RequestBody UserInput user){
+		return ResponseEntity.ok(userService.setUser(id, user));
+	}
 }
