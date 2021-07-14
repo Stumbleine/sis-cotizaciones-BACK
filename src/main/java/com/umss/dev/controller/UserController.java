@@ -2,6 +2,7 @@ package com.umss.dev.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.umss.dev.entity.UserSis;
 import com.umss.dev.input.UserInput;
 import com.umss.dev.output.UserOutput;
+import com.umss.dev.repository.UserRepository;
 import com.umss.dev.service.UserService;
 
 @RestController
@@ -27,6 +29,8 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserRepository userRepository;
 	@Autowired
 	private ModelMapper modelMapper;
 	
@@ -47,8 +51,12 @@ public class UserController {
 	}
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/responsable/{id}")
-	public ResponseEntity<String> setResponsable(@PathVariable Integer id){
-		return ResponseEntity.ok(userService.setResponsable(id));
+	public ResponseEntity<?> setResponsable(@PathVariable Integer id){
+		if(userRepository.findById(id).get()==null) {
+			 return new ResponseEntity("no existe", HttpStatus.NOT_FOUND);
+		}
+           
+		return new ResponseEntity(userService.setResponsable(id), HttpStatus.OK);
 	}
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/uniqueUserName/{userName}")

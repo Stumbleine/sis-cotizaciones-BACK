@@ -67,7 +67,7 @@ public class UserService {
 	public UserInput save2(UserInput user) {
 		UserSis newUser=new UserSis();
 		newUser.setName(user.getName());
-		newUser.setUserName(user.getUserName());
+		newUser.setUserName(user.getUsername());
 		newUser.setEmail(user.getEmail());
 		newUser.setPassword(encoder.encode(user.getPassword()));        System.out.println("The password's user is "+ newUser.getPassword());
 		newUser.setRegistrationDate(LocalDate.now());
@@ -120,7 +120,7 @@ public class UserService {
 		UserSis user=userRepository.findById(id).get();
 		user.setSelected(true);
 		userRepository.save(user);
-		return "New Responsable is "+user.getName();
+		return user.getName();
 	}
 	
 	public boolean noExistsUserName(String userName) {
@@ -141,7 +141,7 @@ public class UserService {
 		updateUser.setEmail(user.getEmail());
 		updateUser.setName(user.getName());
 		updateUser.setPassword(encoder.encode(user.getPassword()));
-		updateUser.setUserName(user.getUserName());
+		updateUser.setUserName(user.getUsername());
 		userRepository.save(updateUser);
 		return user;
 

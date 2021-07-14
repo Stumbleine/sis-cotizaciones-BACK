@@ -3,7 +3,7 @@ package com.umss.dev.input;
 public class UserInput {
 
 	private String name;
-	private String userName;
+	private String username;
 	private String email;
 	private String password;
 	private int idRole;
@@ -39,11 +39,12 @@ public class UserInput {
 	public void setIdSpendingUnit(int idSpendingUnit) {
 		this.idSpendingUnit = idSpendingUnit;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
+	
 	
 }
