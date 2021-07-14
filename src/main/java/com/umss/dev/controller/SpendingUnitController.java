@@ -75,7 +75,7 @@ public class SpendingUnitController {
 		return spendingUnitService.getBySpendingUnitRequestStatus(filteredInput.getUserId(), filteredInput.getSpendingUnitRequestStatus());
 	}
 	
-	@PreAuthorize("hasRole('RUG')")	
+	@PreAuthorize("hasRole('ADMIN')")	
 	@PermitAll
 	@GetMapping("/getFilteredSpendingUnitRequest/{status}")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequestsBy(@PathVariable (value = "status") String status){
