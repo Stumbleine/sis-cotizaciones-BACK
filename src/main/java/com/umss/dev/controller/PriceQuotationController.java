@@ -81,7 +81,7 @@ public class PriceQuotationController {
 		return newQuotation;
 	}
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PermitAll
 	@PutMapping("/updateQuotation/{id}")
 	public ResponseEntity<Object> updateQuotation(@RequestBody PriceQuotation newQuotation, @PathVariable (value = "id") Integer idPriceQuotation) {
 		//int id = lastPriceQuotationSaved.getIdPriceQuotation();
@@ -100,7 +100,7 @@ public class PriceQuotationController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PermitAll
 	@PutMapping("/updateQuotationAddingBusiness/{id}")
 	public ResponseEntity<Object> updateQuotation(@Valid @RequestBody NewBusinessInput newBusiness, @PathVariable (value = "id") Integer idPriceQuotation) {
 		System.out.println("********//********************//***********es esto 2");
@@ -126,7 +126,7 @@ public class PriceQuotationController {
 		priceQuotationService.relatePriceQuotitionToDetails();
 	}
 
-	@PermitAll
+	
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<CompletePriceQuotation> priceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		

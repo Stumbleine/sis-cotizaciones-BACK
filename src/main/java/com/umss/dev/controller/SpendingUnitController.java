@@ -42,6 +42,7 @@ public class SpendingUnitController {
 		this.modelMapper = modelMapper;
 	}
 	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping()
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllWithoutDetailByOrder(){
 		
@@ -66,6 +67,7 @@ public class SpendingUnitController {
 		return spendingUnitService.getAllSpendingUnitsByOrder();
 	}
 	
+	@PreAuthorize("hasRole('RUG')")	
 	@PermitAll
 	@GetMapping("/getFilteredSpendingUnitRequest")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequests(@Valid @RequestBody  SpendingUnitRequestFilteredWithUserIdInput filteredInput){
@@ -73,6 +75,7 @@ public class SpendingUnitController {
 		return spendingUnitService.getBySpendingUnitRequestStatus(filteredInput.getUserId(), filteredInput.getSpendingUnitRequestStatus());
 	}
 	
+	@PreAuthorize("hasRole('RUG')")	
 	@PermitAll
 	@GetMapping("/getFilteredSpendingUnitRequest/{status}")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequestsBy(@PathVariable (value = "status") String status){

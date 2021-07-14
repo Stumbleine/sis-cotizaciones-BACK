@@ -56,7 +56,7 @@ public class SpendingUnitRequestController {
 		
 		return spendingUnitReqService.getAll();
 	}
-	
+	@PreAuthorize("hasRole('RAF')")	
 	@GetMapping("/allRequestsDescOrder")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqByDescOrder(){
 		

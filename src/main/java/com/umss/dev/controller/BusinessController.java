@@ -58,7 +58,7 @@ public class BusinessController {
 		return businessService.getLastBusiness();
 	}
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PermitAll
 	@PostMapping("/createEmpresa")
 	public 	Business createBusiness(@Valid @RequestBody BusinessInput business) {
 		Area areafound = areaService.getAreaByName(business.getNameArea());
@@ -67,7 +67,7 @@ public class BusinessController {
 		newBusiness.setArea(areafound);
 		return businessService.save(newBusiness);
 	}
-	@PreAuthorize("hasRole('RAF')")	
+	@PermitAll	
 	@PostMapping("/registerBusiness")
 	public ResponseEntity<?> create(@RequestBody CreateBusinessInput business){
 
