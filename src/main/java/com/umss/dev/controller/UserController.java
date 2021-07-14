@@ -47,7 +47,7 @@ public class UserController {
 	}
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/responsable/{id}")
-	public ResponseEntity<?> setResponsable(@PathVariable Integer id,@RequestBody UserInput user){
+	public ResponseEntity<String> setResponsable(@PathVariable Integer id){
 		return ResponseEntity.ok(userService.setResponsable(id));
 	}
 	@PreAuthorize("hasRole('ADMIN')")
