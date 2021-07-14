@@ -193,4 +193,23 @@ public class SpendingUnitService {
 		}
 		return responsables;
 	}
+	
+	public Double setBudget(Double budget) {
+		List <SpendingUnit> allSpendingUnits = spendingUnitRepository.findAll();
+		for (SpendingUnit found: allSpendingUnits) {
+			found.setBudget(budget);
+			spendingUnitRepository.save(found);
+		}
+		return budget;
+	}
+	
+	public Double getBudget() {
+		Double budget=null;
+		List <SpendingUnit> allSpendingUnits = spendingUnitRepository.findAll();
+		for (SpendingUnit found: allSpendingUnits) {
+			budget=found.getBudget();
+
+		}
+		return budget;
+	}
 }
