@@ -37,7 +37,8 @@ public class SpendingUnit {
 	private List<UserRole> userRole;
 	@Column
 	private String acronym;
-
+	@Column
+	private Double budget;
 	public SpendingUnit() {
 		
 	}	
@@ -95,6 +96,14 @@ public class SpendingUnit {
 
 	public void setAcronym(String acronym) {
 		this.acronym = acronym;
+	}
+	
+	public Double getBudget() {
+		return budget;
+	}
+
+	public void setBudget(Double budget) {
+		this.budget = budget;
 	}
 		
 }
