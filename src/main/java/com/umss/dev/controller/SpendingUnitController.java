@@ -55,13 +55,13 @@ public class SpendingUnitController {
 		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
 	}
 	
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
+	@PreAuthorize("hasRole('ADMIN')")	
 	@PostMapping("/registerSpendingUnit")
 	public ResponseEntity<?> createSpendingUnit(@RequestBody SpendingUnit spendingUnit){
 		
 		return ResponseEntity.ok(spendingUnitService.save(spendingUnit));
 	}
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")		
+	@PreAuthorize("hasRole('ADMIN')")		
 	@GetMapping("/allSpendingUnits")
 	public Iterable<SpendingUnitOutput> getSpendingUnits(){
 		return spendingUnitService.getAllSpendingUnitsByOrder();
