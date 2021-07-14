@@ -138,10 +138,19 @@ public class UserService {
 	
 	public UserInput setUser(int id,UserInput user) {
 		UserSis updateUser=userRepository.findById(id).get();
-		updateUser.setEmail(user.getEmail());
-		updateUser.setName(user.getName());
-		updateUser.setPassword(encoder.encode(user.getPassword()));
-		updateUser.setUserName(user.getUsername());
+		if(!user.getEmail().isEmpty()) {
+			updateUser.setEmail(user.getEmail());
+		}
+		if(!user.getName().isEmpty()) {
+			updateUser.setName(user.getName());
+		}
+		if(!user.getPassword().isEmpty()) {
+			updateUser.setPassword(encoder.encode(user.getPassword()));
+		}
+		if(!user.getUsername().isEmpty()) {
+			updateUser.setUserName(user.getUsername());
+		}
+		
 		userRepository.save(updateUser);
 		return user;
 
