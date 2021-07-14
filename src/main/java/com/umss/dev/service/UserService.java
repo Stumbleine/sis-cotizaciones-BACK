@@ -96,6 +96,7 @@ public class UserService {
 			newUser.setIdUser(a.getIdUser());
 			newUser.setName(a.getName());
 			newUser.setRegistrationDate(a.getRegistrationDate());
+			newUser.setEmail(a.getEmail());
 			if (!a.getUserRole().isEmpty()) {
 				if(a.getUserRole().get(0).getSpendingUnit()!=null) {
 					newUser.setSpendingUnit(a.getUserRole().get(0).getSpendingUnit().getAcronym());

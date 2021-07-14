@@ -10,6 +10,7 @@ public class UserOutput {
 	private int idUser;
 	private String name;
 	private String role;
+	private String email;
 	private LocalDate registrationDate;
 	private String spendingUnit;
 	private List<Privilege> privileges;
@@ -49,6 +50,12 @@ public class UserOutput {
 	}
 	public void setPrivileges(List<Privilege> privileges) {
 		this.privileges = privileges;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }
