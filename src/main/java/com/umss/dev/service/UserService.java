@@ -102,6 +102,7 @@ public class UserService {
 					newUser.setSpendingUnit(a.getUserRole().get(0).getSpendingUnit().getAcronym());
 				}
 
+				System.out.println("USERRR: "+a.getName());
 				if(a.getUserRole().get(0).getRole().getRoleName() !=null) {
 					newUser.setRole(a.getUserRole().get(0).getRole().getRoleName());
 					newUser.setPrivileges(a.getUserRole().get(0).getRole().getPrivileges());

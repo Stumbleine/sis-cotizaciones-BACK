@@ -24,8 +24,8 @@ class QuotationAppTests {
 	public void createUser() {
 		UserSis newUser=new UserSis();
 		newUser.setName("Mathias");
-		newUser.setUserName("Mathiasjla");
-		newUser.setEmail("mathias@gmail.com");
+		newUser.setUserName("Admin");
+		newUser.setEmail("admin@gmail.com");
 		newUser.setPassword(encoder.encode("123qwe"));
         System.out.println("The password's user is "+ newUser.getPassword());
 		newUser.setRegistrationDate(LocalDate.now());

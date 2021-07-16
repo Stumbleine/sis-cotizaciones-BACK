@@ -28,7 +28,7 @@ import lombok.Data;
 public class PriceQuotationRequest {
 	
 	@Id
-	@GeneratedValue(strategy  = GenerationType.AUTO)
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idPriceQuotationRequest;
 	
 	@Column

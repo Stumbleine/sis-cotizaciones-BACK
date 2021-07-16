@@ -19,6 +19,8 @@ public class CompleteSpendingUnitRequestOutput {
 	private String username;
 	private int roleId;
 	private String roleName;
+	private String spendindUnit;
+	private int idSpendingUnit;
 	
 	
 	public int getIdSpendingUnitRequest() {
@@ -119,5 +121,23 @@ public class CompleteSpendingUnitRequestOutput {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+
+	public String getSpendindUnit() {
+		return spendindUnit;
+	}
+
+	public void setSpendindUnit(String spendindUnit) {
+		this.spendindUnit = spendindUnit;
+	}
+
+	public int getIdSpendingUnit() {
+		return idSpendingUnit;
+	}
+
+	public void setIdSpendingUnit(int idSpendingUnit) {
+		this.idSpendingUnit = idSpendingUnit;
+	}
+	
+	
 	
 }

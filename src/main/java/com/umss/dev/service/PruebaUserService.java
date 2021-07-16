@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.sun.el.stream.Optional;
+import com.umss.dev.entity.Privilege;
 import com.umss.dev.entity.UserSis;
 import com.umss.dev.repository.UserRepository;
 
@@ -25,10 +26,16 @@ public class PruebaUserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserSis us= userRepository.findByUserName(username);
-		
+		int i=0;
 		List <GrantedAuthority> roles=new ArrayList<>();
-		roles.add(new SimpleGrantedAuthority(us.getUserRole().get(0).getRole().getRoleName()));
-		System.out.println("-------------------> "+us.getUserRole().get(0).getRole().getRoleName());
+		List <Privilege> rol=us.getUserRole().get(0).getRole().getPrivileges();
+		for(Privilege r:rol) {
+			roles.add(new SimpleGrantedAuthority(r.getPrivilege()));
+			System.out.println("-------------------> "+us.getUserRole().get(0).getRole().getPrivileges().get(i).getPrivilege());
+			i++;
+		}
+		//roles.add(new SimpleGrantedAuthority(us.getUserRole().get(0).getRole().getPrivileges());
+		
 		UserDetails userDetails=new User(us.getUserName(),us.getPassword(),roles);
 		return userDetails;
 	}
