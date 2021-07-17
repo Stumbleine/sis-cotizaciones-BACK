@@ -12,6 +12,7 @@ public class AuthenticationResponse {
 	Collection<? extends GrantedAuthority> roles;
 	private int id;
 	String userName;
+	private int identifier;
 	
 
 	public AuthenticationResponse(String jwt, Collection<? extends GrantedAuthority> roles, int id) {
@@ -22,12 +23,13 @@ public class AuthenticationResponse {
 	}
 
 
-	public AuthenticationResponse(String jwt, Collection<? extends GrantedAuthority> roles, int id, String userName) {
+	public AuthenticationResponse(String jwt, Collection<? extends GrantedAuthority> roles, int id, String userName, int identifier) {
 		super();
 		this.jwt = jwt;
 		this.roles = roles;
 		this.id = id;
 		this.userName = userName;
+		this.identifier=identifier;
 	}
 
 
@@ -83,6 +85,16 @@ public class AuthenticationResponse {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+
+	public int getIdentifier() {
+		return identifier;
+	}
+
+
+	public void setIdentifier(int identifier) {
+		this.identifier = identifier;
 	}
 	
 }
