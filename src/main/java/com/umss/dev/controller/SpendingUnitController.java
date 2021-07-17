@@ -51,7 +51,7 @@ public class SpendingUnitController {
 		return spendingUnitService.getAllWithoutDetailByOrder();	
 	}
 	
-	@PreAuthorize("hasRole('RUG') or hasRole('VER_PEDIDO')")	
+	@PreAuthorize("hasRole('VER_PEDIDO')")	
 	@GetMapping("/{id}")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqById(@PathVariable (value = "id") Integer UserId){
 		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
@@ -69,7 +69,7 @@ public class SpendingUnitController {
 		return spendingUnitService.getAllSpendingUnitsByOrder();
 	}
 	
-	@PreAuthorize("hasRole('RUG')")	
+	@PreAuthorize("hasRole('VER_PEDIDO')")	
 	@PermitAll
 	@GetMapping("/getFilteredSpendingUnitRequest")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequests(@Valid @RequestBody  SpendingUnitRequestFilteredWithUserIdInput filteredInput){
@@ -91,7 +91,7 @@ public class SpendingUnitController {
 		return ResponseEntity.ok(spendingUnitService.setBudget(budget));
 	}
 
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")
+	@PreAuthorize("hasRole('RAF') or hasRole('VER_PEDIDO')")
 	@GetMapping("/getBudget")
 	public ResponseEntity<?> getBudget(){
 		return ResponseEntity.ok(spendingUnitService.getBudget());

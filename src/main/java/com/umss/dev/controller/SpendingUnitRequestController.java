@@ -42,7 +42,7 @@ public class SpendingUnitRequestController {
 	public SpendingUnitRequestController(SpendingUnitRequestService spendingUnitReqServ){
 		spendingUnitReqService = spendingUnitReqServ;
 	}
-	@PreAuthorize("hasRole('CREAR')")	//RUG
+	@PreAuthorize("hasRole('CREAR_PEDIDO')")
 	@PostMapping("{id}")
 	public ResponseEntity<?> create(@RequestBody SpendingUnitRequest spendingUnitRequest,@PathVariable (value = "id") Integer userId){
 		SpendingUnitRequest request=spendingUnitRequest;
