@@ -2,13 +2,18 @@ package com.umss.dev.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.umss.dev.entity.Role;
+import com.umss.dev.input.UserInput;
 import com.umss.dev.output.BusinessOutput;
 import com.umss.dev.output.RoleOutput;
 import com.umss.dev.service.RoleService;
@@ -32,5 +37,12 @@ public class RoleController {
 	public Iterable<RoleOutput> getAllRoles(){
 		
 		return roleService.getAllRoles();
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")	
+	@PostMapping("/registerRole")
+	public ResponseEntity<?> createUser(@RequestBody Role role){
+		
+		return ResponseEntity.ok(roleService.save(role));
 	}
 }

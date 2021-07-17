@@ -7,6 +7,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnit;
@@ -40,7 +41,7 @@ public class RoleService {
 	  
 	    return roleAct;
 	}
-	
+	@Transactional
 	public Role save(Role role) {
 	    Role persistedRole = roleRepository.save(role);
 	     
