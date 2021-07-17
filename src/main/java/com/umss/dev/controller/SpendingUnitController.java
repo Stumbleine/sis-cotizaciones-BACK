@@ -51,7 +51,7 @@ public class SpendingUnitController {
 		return spendingUnitService.getAllWithoutDetailByOrder();	
 	}
 	
-	@PreAuthorize("hasRole('RUG') or hasRole('VER')")	
+	@PreAuthorize("hasRole('RUG') or hasRole('VER_PEDIDO')")	
 	@GetMapping("/{id}")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqById(@PathVariable (value = "id") Integer UserId){
 		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);

@@ -10,11 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
-@Data
+//@Data
 @Entity(name = "Privilege" )
 @Table(name = "PRIVILEGE")
 public class Privilege {
@@ -28,6 +29,9 @@ public class Privilege {
 	@JoinColumn(name="idRole")
 	@JsonBackReference
 	private Role roles;
+	@Column
+	private int unitFuntions;
+	
 	public int getIdPrivilege() {
 		return idPrivilege;
 	}
@@ -46,6 +50,11 @@ public class Privilege {
 	public void setRoles(Role roles) {
 		this.roles = roles;
 	}
-	
+	public int getUnitFuntions() {
+		return unitFuntions;
+	}
+	public void setUnitFuntions(int unitFuntions) {
+		this.unitFuntions = unitFuntions;
+	}
 	
 }
