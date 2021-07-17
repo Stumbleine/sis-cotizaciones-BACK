@@ -28,7 +28,6 @@ public class PrivilegeService {
 		for(Privilege p:allPrivileges) {
 		
 			PrivilegeOutput found=new PrivilegeOutput();
-			found.setIdPrivilege(p.getIdPrivilege());
 			found.setIdentifier(p.getIdentifier());
 			found.setPrivilege(p.getPrivilege());
 			int size=allPrivilegeOutput.size();
