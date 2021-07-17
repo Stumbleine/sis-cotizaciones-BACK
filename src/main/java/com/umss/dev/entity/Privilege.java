@@ -30,7 +30,7 @@ public class Privilege {
 	@JsonBackReference
 	private Role roles;
 	@Column
-	private int unitFuntions;
+	private int identifier;
 	
 	public int getIdPrivilege() {
 		return idPrivilege;
@@ -50,11 +50,11 @@ public class Privilege {
 	public void setRoles(Role roles) {
 		this.roles = roles;
 	}
-	public int getUnitFuntions() {
-		return unitFuntions;
+	public int getIdentifier() {
+		return identifier;
 	}
-	public void setUnitFuntions(int unitFuntions) {
-		this.unitFuntions = unitFuntions;
-	}
-	
+	public void setIdentifier(int identifier) {
+		this.identifier = identifier;
+	}	
+
 }

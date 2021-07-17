@@ -49,6 +49,6 @@ public class PruebaUserService implements UserDetailsService {
 	}
 	
 	public int getIdentifier(String name) {
-		return userRepository.findByUserName(name).getUserRole().get(0).getRole().getPrivileges().get(0).getUnitFuntions();
+		return userRepository.findByUserName(name).getUserRole().get(0).getRole().getPrivileges().get(0).getIdentifier();
 	}
 }
