@@ -10,6 +10,7 @@ public class SpendingUnitOutput {
 	private String responsable;
 	private List<UserOutputAtributes> employees;
 	private String faculty;
+	private int identifierUnit;
 	
 	public int getIdSpendingUnit() {
 		return idSpendingUnit;
@@ -47,6 +48,12 @@ public class SpendingUnitOutput {
 	public void setFaculty(String faculty) {
 		this.faculty = faculty;
 	}
+	public int getIdentifierUnit() {
+		return identifierUnit;
+	}
+	public void setIdentifierUnit(int identifierUnit) {
+		this.identifierUnit = identifierUnit;
+	}
 	
-
+	
 }
