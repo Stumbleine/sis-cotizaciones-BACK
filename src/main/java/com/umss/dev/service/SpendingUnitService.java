@@ -287,5 +287,45 @@ public class SpendingUnitService {
 		
 		return allSpendingUnitReqWithoutDetailByOrder;		
 	}
+		
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllByFaculty(int userId){
+		UserSis user=userService.getById(userId);
+		List <SpendingUnitRequest> allSpendingUnitRequests = spendingUnitRequestRepository.findAll();
+		List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetail = new ArrayList<CompleteSpendingUnitRequestOutput>();
+		//List<Integer> reqIds = new ArrayList<Integer>();
+		//List <CompleteSpendingUnitRequestOutput> allSpendingUnitReqWithoutDetailByOrder = new ArrayList<CompleteSpendingUnitRequestOutput>();
+		
+		for (SpendingUnitRequest req: allSpendingUnitRequests) {
+			if (req.getUserRole()!=null) {
+				if(user.getUserRole().get(0).getSpendingUnit().getFaculty().equalsIgnoreCase(req.getUserRole().getSpendingUnit().getFaculty())) {
+				//if(!req.getUserRole().getSpendingUnitRequest().isEmpty() || !req.getUserRole().getSpendingUnitRequest().equals(null)) {
+					
+					CompleteSpendingUnitRequestOutput newReq = new CompleteSpendingUnitRequestOutput();
+					newReq.setIdSpendingUnitRequest(req.getIdSpendingUnitRequest());		
+					//reqIds.add(req.getIdSpendingUnitRequest());				
+					newReq.setInitials(req.getInitials());
+					newReq.setDate(req.getDate());
+					newReq.setStatus(req.getStatus());
+					newReq.setType(req.getType());
+					newReq.setEstimatedAmount(req.getEstimatedAmount());
+					newReq.setJustification(req.getJustification());
+					newReq.setUserId(req.getUserRole().getUser().getIdUser());
+					newReq.setUsername(req.getUserRole().getUser().getName());
+					newReq.setRoleId(req.getUserRole().getRole().getIdRole());
+					newReq.setRoleName(req.getUserRole().getRole().getRoleName());	
+					newReq.setSpendindUnit(req.getUserRole().getSpendingUnit().getNameUnit());
+					newReq.setIdSpendingUnit(req.getUserRole().getSpendingUnit().getIdSpendingUnit());
+					allSpendingUnitReqWithoutDetail.add(newReq);
+					
+				}
+				
+			}
+			
+		}
+		
+		Collections.reverse(allSpendingUnitReqWithoutDetail);
+		return allSpendingUnitReqWithoutDetail;		
+	}
+	
 	
 }

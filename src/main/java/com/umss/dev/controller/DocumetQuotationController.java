@@ -71,13 +71,13 @@ public class DocumetQuotationController {
 		
 		return  ResponseEntity.ok( documentService.getDocumneByIdPriceQuotation(id));
 	}
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")
+	@PreAuthorize("hasRole('RAF') or hasRole('ROLE_VER_INFORME')")
 	@GetMapping("/Report/{id}")
 	public ResponseEntity<DocumentQuotationAtributesOutput> report(@PathVariable (value = "id") Integer id) {
 		
 		return  ResponseEntity.ok(documentService.getDocumneByIdReport(id));
 	}
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")
+	@PreAuthorize("hasRole('RAF') or hasRole('ROLE_VER_INFORME')")
 	@GetMapping("/blob/Report/{id}")
 	public byte[] blob(@PathVariable (value = "id") Integer id) {
 		

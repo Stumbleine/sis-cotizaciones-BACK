@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
+//@Data
 @Entity(name = "Spending_Unit")
 @Table(name = "SPENDING_UNIT")
 public class SpendingUnit {
@@ -39,6 +39,9 @@ public class SpendingUnit {
 	private String acronym;
 	@Column
 	private Double budget;
+	@Column
+	private int identifierUnit;
+	
 	public SpendingUnit() {
 		
 	}	
@@ -105,5 +108,14 @@ public class SpendingUnit {
 	public void setBudget(Double budget) {
 		this.budget = budget;
 	}
+
+	public int getIdentifierUnit() {
+		return identifierUnit;
+	}
+
+	public void setIdentifierUnit(int identifierUnit) {
+		this.identifierUnit = identifierUnit;
+	}
+	
 		
 }

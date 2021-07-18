@@ -45,10 +45,10 @@ public class SpendingUnitController {
 	}
 	
 	@PreAuthorize("hasRole('RAF')")	
-	@GetMapping()
-	public Iterable<CompleteSpendingUnitRequestOutput> getAllWithoutDetailByOrder(){
+	@GetMapping("/allRequest/{id}")
+	public Iterable<CompleteSpendingUnitRequestOutput> getAllWithoutDetailByOrder(@PathVariable (value = "id") Integer userId){
 		
-		return spendingUnitService.getAllWithoutDetailByOrder();	
+		return spendingUnitService.getAllByFaculty(userId);	
 	}
 	
 	@PreAuthorize("hasRole('VER_PEDIDO')")	
