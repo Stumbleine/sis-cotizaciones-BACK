@@ -20,7 +20,7 @@ import lombok.Data;
 public class Report {
 	
 	@Id
-	@GeneratedValue(strategy  = GenerationType.AUTO)
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
 	private int idReport;
 	
 	@Column(length = 1000)

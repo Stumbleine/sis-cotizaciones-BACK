@@ -3,6 +3,7 @@ package com.umss.dev.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +48,17 @@ public class AuthController {
             String jwt = jwtUtil.generateToken(userDetails);
         	Collection<? extends GrantedAuthority> roles=userDetails.getAuthorities();
         	
-        	//roles=(List<GrantedAuthority>) userDetails.getAuthorities();
-            return new ResponseEntity<>(new AuthenticationResponse(jwt,roles,pruebaUserService.getIdUser(request.getUsername()),
-            							pruebaUserService.getNameUser(request.getUsername()), pruebaUserService.getIdentifier(request.getUsername()),
-            							pruebaUserService.getSpendingUnit(request.getUsername()),pruebaUserService.getFaculty(request.getUsername()))
-            		                    , HttpStatus.OK);
+        	if(userDetails.getUsername().equalsIgnoreCase("Admin")) {
+        		return new ResponseEntity<>(new AuthenticationResponse(jwt,roles,pruebaUserService.getIdUser(request.getUsername()),
+    					pruebaUserService.getNameUser(request.getUsername()), pruebaUserService.getIdentifier(request.getUsername())), HttpStatus.OK);
+        	}
+        	else {
+        		return new ResponseEntity<>(new AuthenticationResponse(jwt,roles,pruebaUserService.getIdUser(request.getUsername()),
+						pruebaUserService.getNameUser(request.getUsername()), pruebaUserService.getIdentifier(request.getUsername()),
+						pruebaUserService.getSpendingUnit(request.getUsername()),pruebaUserService.getFaculty(request.getUsername()))
+	                    , HttpStatus.OK);
+        	}
+            
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }

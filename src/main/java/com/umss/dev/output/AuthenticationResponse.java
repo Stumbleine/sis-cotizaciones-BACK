@@ -23,6 +23,14 @@ public class AuthenticationResponse {
 		this.id = id;
 	}
 
+	public AuthenticationResponse(String jwt, Collection<? extends GrantedAuthority> roles, int id, String userName, int identifier) {
+		super();
+		this.jwt = jwt;
+		this.roles = roles;
+		this.id = id;
+		this.userName = userName;
+		this.identifier=identifier;
+	}
 	public AuthenticationResponse(String jwt, Collection<? extends GrantedAuthority> roles, int id, String userName, int identifier, String spendingUnit , String faculty) {
 		super();
 		this.jwt = jwt;
