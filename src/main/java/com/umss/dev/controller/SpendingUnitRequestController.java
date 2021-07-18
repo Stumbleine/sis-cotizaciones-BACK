@@ -63,7 +63,7 @@ public class SpendingUnitRequestController {
 		return spendingUnitReqService.getAllWithoutDetailByOrder();
 	}
 	
-	@PreAuthorize("hasRole('RUG') or hasRole('RAF')")	
+	@PreAuthorize("hasRole('VER_PEDIDO') or hasRole('RAF')")	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> spendingUnitRequest(@PathVariable (value = "id") Integer spendingUnitRequestId){	
 		
