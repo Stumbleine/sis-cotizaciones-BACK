@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.umss.dev.entity.Privilege;
 import com.umss.dev.entity.Role;
 import com.umss.dev.entity.SpendingUnit;
 import com.umss.dev.entity.UserSis;
@@ -64,16 +65,34 @@ public class RoleService {
 		List <Role> allRoles = roleRepository.findAll();
 		List <RoleOutput> allRolesByOrder = new ArrayList<RoleOutput>();
 		
-		for (Role found: allRoles) {
-					
-					RoleOutput newRole = new RoleOutput();
-					newRole.setIdRole(found.getIdRole());
-					newRole.setRoleName(found.getRoleName());
-					newRole.setPrivilegios(found.getPrivileges());
-					allRolesByOrder.add(newRole);
-			
-		}
 		
+		for (Role found : allRoles) {
+			List<Privilege> privileges = new ArrayList<Privilege>();
+			
+			for (int i = 0; i < found.getPrivileges().size(); i++) {
+				Privilege name = new Privilege();
+				String privilege = found.getPrivileges().get(i).getPrivilege().substring(5);
+				String newNameP = "";
+				for (int j = 0; j < privilege.length(); j++) {
+					char c = privilege.toLowerCase().charAt(j);
+					if (c == '_') {
+						c = ' ';
+					}
+					newNameP = newNameP + c;
+				}
+				name.setIdentifier(found.getPrivileges().get(i).getIdentifier());
+				name.setIdPrivilege(found.getPrivileges().get(i).getIdPrivilege());
+				name.setPrivilege(newNameP);
+				privileges.add(name);
+			}
+			RoleOutput newRole = new RoleOutput();
+			newRole.setIdRole(found.getIdRole());
+			newRole.setRoleName(found.getRoleName());
+			newRole.setPrivilegios(privileges);
+			allRolesByOrder.add(newRole);
+
+		}
+
 		Collections.reverse(allRolesByOrder);
 		
 		return allRolesByOrder;	
