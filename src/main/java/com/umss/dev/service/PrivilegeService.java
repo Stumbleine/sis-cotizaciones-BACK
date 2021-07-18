@@ -28,8 +28,9 @@ public class PrivilegeService {
 		for(Privilege p:allPrivileges) {
 		
 			PrivilegeOutput found=new PrivilegeOutput();
+			String privilege = p.getPrivilege().substring(5);
 			found.setIdentifier(p.getIdentifier());
-			found.setPrivilege(p.getPrivilege());
+			found.setPrivilege(privilege);
 			int size=allPrivilegeOutput.size();
 			int j =0;
 			
@@ -40,10 +41,18 @@ public class PrivilegeService {
 			}
             if(!p.getPrivilege().equals("ROLE_ADMIN")) {
             	if(allPrivilegeOutput.size()==0 || j==0) {
+            		String newNameP="";
+        			for (int i=0;i<found.getPrivilege().length();i++) {
+        				char c=found.getPrivilege().toLowerCase().charAt(i);
+        						if(c=='_') {
+        							c=' ';
+        						}
+        				newNameP=newNameP+c;
+        			}
+        			found.setPrivilege(newNameP);
     				allPrivilegeOutput.add(found);
     			}
             }
-			
 			
 		}
 		return allPrivilegeOutput;

@@ -44,7 +44,19 @@ public class RoleService {
 	@Transactional
 	public Role save(Role role) {
 	    Role persistedRole = roleRepository.save(role);
-	     
+	     for(int i=0;i<persistedRole.getPrivileges().size();i++) {
+	    	 String nameP=persistedRole.getPrivileges().get(i).getPrivilege();
+	    	 String newNameP="";
+				for (int j=0;j<nameP.length();j++) {
+					char c= nameP.toUpperCase().charAt(j);
+							if(c==' ') {
+								c='_';
+							}
+					newNameP=newNameP+c;
+				}
+			 persistedRole.getPrivileges().get(i).setPrivilege(newNameP);
+	     }
+	    
 	     return persistedRole;
 	}
 	

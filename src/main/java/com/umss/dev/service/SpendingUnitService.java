@@ -167,6 +167,7 @@ public class SpendingUnitService {
 					newSpendingUnit.setDescription(found.getDescription());
 					newSpendingUnit.setResponsable(getResponsable(found));
 					newSpendingUnit.setEmployees(foundResponsables(found));
+					newSpendingUnit.setFaculty(found.getFaculty());
 					allSpendingUnitsByOrder.add(newSpendingUnit);
 			
 		}
