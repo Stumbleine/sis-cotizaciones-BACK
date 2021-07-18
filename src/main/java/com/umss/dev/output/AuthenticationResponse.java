@@ -16,6 +16,9 @@ public class AuthenticationResponse {
 	private String spendingUnit;
 	private String faculty;
 
+	public AuthenticationResponse() {
+		
+	}
 	public AuthenticationResponse(String jwt, Collection<? extends GrantedAuthority> roles, int id) {
 		super();
 		this.jwt = jwt;

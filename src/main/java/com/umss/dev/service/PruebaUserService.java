@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.sun.el.stream.Optional;
 import com.umss.dev.entity.Privilege;
+import com.umss.dev.entity.SpendingUnit;
 import com.umss.dev.entity.UserSis;
 import com.umss.dev.repository.UserRepository;
 
@@ -53,7 +54,15 @@ public class PruebaUserService implements UserDetailsService {
 	}
 	
 	public String getSpendingUnit(String name) {
-		return userRepository.findByUserName(name).getUserRole().get(0).getSpendingUnit().getNameUnit();
+		SpendingUnit unit=userRepository.findByUserName(name).getUserRole().get(0).getSpendingUnit();
+		
+		if(unit !=null) {
+			return unit.getNameUnit();
+		}
+		else {
+			return null;
+		}
+	
 	}
 	public String getFaculty(String name) {
 		return userRepository.findByUserName(name).getUserRole().get(0).getSpendingUnit().getFaculty();

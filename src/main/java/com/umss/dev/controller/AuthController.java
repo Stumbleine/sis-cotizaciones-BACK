@@ -47,8 +47,7 @@ public class AuthController {
             UserDetails userDetails = pruebaUserService.loadUserByUsername(request.getUsername());
             String jwt = jwtUtil.generateToken(userDetails);
         	Collection<? extends GrantedAuthority> roles=userDetails.getAuthorities();
-        	
-        	if(userDetails.getUsername().equalsIgnoreCase("Admin")) {
+        	if(pruebaUserService.getSpendingUnit(request.getUsername())==null) {
         		return new ResponseEntity<>(new AuthenticationResponse(jwt,roles,pruebaUserService.getIdUser(request.getUsername()),
     					pruebaUserService.getNameUser(request.getUsername()), pruebaUserService.getIdentifier(request.getUsername())), HttpStatus.OK);
         	}
