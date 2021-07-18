@@ -46,7 +46,7 @@ public class RoleService {
 	    Role persistedRole = roleRepository.save(role);
 	     for(int i=0;i<persistedRole.getPrivileges().size();i++) {
 	    	 String nameP=persistedRole.getPrivileges().get(i).getPrivilege();
-	    	 String newNameP="";
+	    	 String newNameP="ROLE_";
 				for (int j=0;j<nameP.length();j++) {
 					char c= nameP.toUpperCase().charAt(j);
 							if(c==' ') {
