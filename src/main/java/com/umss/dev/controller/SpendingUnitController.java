@@ -57,7 +57,7 @@ public class SpendingUnitController {
 		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
 	}
 	
-	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
+	@PreAuthorize("hasRole('ADMIN')")	
 	@PostMapping("/registerSpendingUnit")
 	public ResponseEntity<?> createSpendingUnit(@RequestBody SpendingUnit spendingUnit){
 		
