@@ -85,7 +85,7 @@ public class SpendingUnitController {
 		return spendingUnitService.getBySpendingUnitRequestStatus(status);
 	}
 	
-	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")
+	@PreAuthorize("hasRole('TOMAR_DECISION')")
 	@PutMapping("/updateBudget")
 	public ResponseEntity<?> setBudget(@RequestParam("budget") Double budget){
 		return ResponseEntity.ok(spendingUnitService.setBudget(budget));
