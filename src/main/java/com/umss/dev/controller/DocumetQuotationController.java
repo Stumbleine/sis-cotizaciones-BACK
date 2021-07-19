@@ -32,7 +32,7 @@ public class DocumetQuotationController {
 	@Autowired
 	private DocumetQuotationService documentService;
 	
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
 	@PostMapping("/{id}")
 	public ResponseEntity<DocumentQuotation> uploadDocument(@PathVariable (value = "id") Integer id,@RequestParam("document")MultipartFile file) {
 		
@@ -65,13 +65,14 @@ public class DocumetQuotationController {
 	
 	} 
 	
-	@PreAuthorize("hasRole('RAF')")		
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES') or hasRole('ROLE_VER_DETALLE_PEDIDO')")		
 	@GetMapping("/Quotation/{id}")
 	public ResponseEntity<DocumentQuotationAtributesOutput> priceQuotation(@PathVariable (value = "id") Integer id) {
 		
 		return  ResponseEntity.ok( documentService.getDocumneByIdPriceQuotation(id));
 	}
-	@PreAuthorize("hasRole('RAF') or hasRole('ROLE_VER_INFORME')")
+
+	@PreAuthorize("hasRole('ROLE_VER_INFORME') or hasRole('ROLE_VER_DETALLE_PEDIDO')")
 	@GetMapping("/Report/{id}")
 	public ResponseEntity<DocumentQuotationAtributesOutput> report(@PathVariable (value = "id") Integer id) {
 		DocumentQuotationAtributesOutput report=documentService.getDocumneByIdReport(id);
@@ -82,32 +83,33 @@ public class DocumetQuotationController {
 		}
 		
 	}
-	@PreAuthorize("hasRole('RAF') or hasRole('ROLE_VER_INFORME')")
+
+	@PreAuthorize("hasRole('ROLE_VER_INFORME') or hasRole('ROLE_VER_DETALLE_PEDIDO')")
 	@GetMapping("/blob/Report/{id}")
 	public byte[] blob(@PathVariable (value = "id") Integer id) {
 		
 		return documentService.getDocumneByIdReport(id).getContent();
 	}
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
+	@PreAuthorize("hasRole('ROLE_VER_DETALLE_PEDIDO')")	
 	@GetMapping("/blob/Quotation/{id}")
 	public byte[] blobQuotation(@PathVariable (value = "id") Integer id) {
 		
 		return  documentService.getDocumneByIdQuotation(id).getContent();
 	}
-	@PreAuthorize("hasRole('RAF')")
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")
 	@DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<DocumentQuotationAtributesOutput> deleteDocumentQuotation(@PathVariable Integer id) {
 
         return  ResponseEntity.ok(documentService.deleteDocumentByIdPriceQuotation(id));
     }
-	@PreAuthorize("hasRole('RAF')")
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")
 	@PostMapping("/uploadDetail")
 	public ResponseEntity<DocumentQuotation> uploadDocumentDetail(@RequestParam (value = "idRow") Integer id,@RequestParam("document")MultipartFile file) {
 		
 		return ResponseEntity.ok( documentService.saveDocumentQuotationDetail(file,id));		
 	}
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
 	@GetMapping("/blob/ItemDocument/{id}")
 	public byte[] blobItemDocument(@PathVariable (value = "id") Integer id) {
 		

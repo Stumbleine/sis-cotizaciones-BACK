@@ -29,7 +29,7 @@ public class PriceQuotationRequestController {
 	@Autowired
 	PriceQuotationRequestService priceQuotationRequestService;
 	
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO') or hasRole('TOMAR_DECISION') or hasRole('GESTIONAR_COTIZACIONES')")	
 	@GetMapping("/{id}/quotation")
 	public  Iterable<PriceQuotationOutput> getPriceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		
@@ -43,7 +43,7 @@ public class PriceQuotationRequestController {
 	}
 	 **/
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
 	@PutMapping("/updateDeadLine/{id}")
 	public ResponseEntity<?> updateQuotation(@PathVariable Integer id, @RequestBody PriceQuotationRequest PriceQuotationRequest) {
 		

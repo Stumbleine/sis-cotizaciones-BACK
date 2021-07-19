@@ -26,7 +26,7 @@ public class ReportController {
 		this.reportService = reportService;
 	}
 
-	@PreAuthorize("hasRole('RAF')")	
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
 	@GetMapping("/{id}")
 	public ReportOutput report(@PathVariable (value = "id") Integer id){
 		return reportService.getReport(id);
