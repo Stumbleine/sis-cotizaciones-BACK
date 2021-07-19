@@ -52,14 +52,14 @@ public class ComparativeTablesOfQuotesController {
 		return ResponseEntity.ok(comparativeTable);
 	}
 
-    @PreAuthorize("hasRole('VER_DETALLE_PEDIDO') or hasRole('ROLE_GESTIONAR_COTIZACIONES')")	
+    @PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
     @GetMapping("/{id}")
 	public Iterable<ComparativeTableOfQuotes> getComparativeTableOfQuotesService(@PathVariable Integer id){
 		
 		return comparativeTableOfQuotesService.getComparativeTable(id);
 	}
     
-    @PreAuthorize("hasRole('RAF')")	
+    @PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
     @PutMapping("/{id}")
 	public ResponseEntity<?> updateComparativeTableOfQuotes(@PathVariable Integer id, @RequestBody List<ComparativeTableOfQuotes> comparativeTableOfQuotes) {
 		

@@ -73,7 +73,7 @@ public class PriceQuotationController {
 		//priceQuotationService.saveOther(actPriceQuotation);
 		return ResponseEntity.ok(request);
 	}
-	@PreAuthorize("hasRole('RAF')")	
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
 	@GetMapping("/getIdOfNewQuotation")
 	public PriceQuotationIdOutput getIdOfNewQuotation(){
 		PriceQuotationIdOutput newQuotation = new PriceQuotationIdOutput();
@@ -120,7 +120,7 @@ public class PriceQuotationController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
+	@PermitAll
 	@PutMapping("/RelatingPriceQuotationToDetails")
 	public void relatePriceQuotationToDetails(@RequestBody PriceQuotation newQuotation) {
 		priceQuotationService.relatePriceQuotitionToDetails();

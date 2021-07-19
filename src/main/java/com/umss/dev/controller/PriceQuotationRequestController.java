@@ -28,8 +28,8 @@ public class PriceQuotationRequestController {
 	
 	@Autowired
 	PriceQuotationRequestService priceQuotationRequestService;
-	
-	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO') or hasRole('TOMAR_DECISION') or hasRole('GESTIONAR_COTIZACIONES')")	
+
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")
 	@GetMapping("/{id}/quotation")
 	public  Iterable<PriceQuotationOutput> getPriceQuotation(@PathVariable (value = "id") Integer idPriceQuotation){
 		

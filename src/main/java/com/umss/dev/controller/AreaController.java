@@ -58,14 +58,14 @@ public class AreaController {
 		
 	}
 	
-	@PreAuthorize("hasRole('RAF')")		
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")		
 	@GetMapping("/getAllBusiness")
 	public Iterable<BusinessOutput> getAllBusiness(){
 		
 		return areaService.getAll();
 	}
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
 	@GetMapping("/getAllNameArea")
 	public List<String> getAllNameArea(){
 		return areaService.getallNameArea();

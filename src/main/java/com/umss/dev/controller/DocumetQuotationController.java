@@ -1,5 +1,6 @@
 package com.umss.dev.controller;
 
+import javax.annotation.security.PermitAll;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
@@ -65,14 +66,14 @@ public class DocumetQuotationController {
 	
 	} 
 	
-	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES') or hasRole('ROLE_VER_DETALLE_PEDIDO')")		
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES') or hasRole('VER_DETALLE_PEDIDO')")		
 	@GetMapping("/Quotation/{id}")
 	public ResponseEntity<DocumentQuotationAtributesOutput> priceQuotation(@PathVariable (value = "id") Integer id) {
 		
 		return  ResponseEntity.ok( documentService.getDocumneByIdPriceQuotation(id));
 	}
 
-	@PreAuthorize("hasRole('ROLE_VER_INFORME') or hasRole('ROLE_VER_DETALLE_PEDIDO')")
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO') or hasRole('VER_INFORME')")
 	@GetMapping("/Report/{id}")
 	public ResponseEntity<DocumentQuotationAtributesOutput> report(@PathVariable (value = "id") Integer id) {
 		DocumentQuotationAtributesOutput report=documentService.getDocumneByIdReport(id);
@@ -84,13 +85,14 @@ public class DocumetQuotationController {
 		
 	}
 
-	@PreAuthorize("hasRole('ROLE_VER_INFORME') or hasRole('ROLE_VER_DETALLE_PEDIDO')")
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO') or hasRole('VER_INFORME')")
 	@GetMapping("/blob/Report/{id}")
 	public byte[] blob(@PathVariable (value = "id") Integer id) {
 		
 		return documentService.getDocumneByIdReport(id).getContent();
 	}
-	@PreAuthorize("hasRole('ROLE_VER_DETALLE_PEDIDO')")	
+
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
 	@GetMapping("/blob/Quotation/{id}")
 	public byte[] blobQuotation(@PathVariable (value = "id") Integer id) {
 		
@@ -102,14 +104,15 @@ public class DocumetQuotationController {
 
         return  ResponseEntity.ok(documentService.deleteDocumentByIdPriceQuotation(id));
     }
-	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")
+
+	@PermitAll
 	@PostMapping("/uploadDetail")
 	public ResponseEntity<DocumentQuotation> uploadDocumentDetail(@RequestParam (value = "idRow") Integer id,@RequestParam("document")MultipartFile file) {
 		
 		return ResponseEntity.ok( documentService.saveDocumentQuotationDetail(file,id));		
 	}
 	
-	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
 	@GetMapping("/blob/ItemDocument/{id}")
 	public byte[] blobItemDocument(@PathVariable (value = "id") Integer id) {
 		

@@ -46,6 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		.antMatchers("/**/createEmpresa").permitAll()
         		.antMatchers("/**/registerBusiness").permitAll()
         		.antMatchers("/**/updateQuotation/*").permitAll()
+        		.antMatchers("/**/RelatingPriceQuotationToDetails").permitAll()
+        		.antMatchers("/**/uploadDetail").permitAll()
         		//.antMatchers("/api/request").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().sessionManagement()
