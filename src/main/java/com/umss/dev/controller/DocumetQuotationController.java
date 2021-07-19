@@ -84,7 +84,7 @@ public class DocumetQuotationController {
 		
 		return documentService.getDocumneByIdReport(id).getContent();
 	}
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
 	@GetMapping("/blob/Quotation/{id}")
 	public byte[] blobQuotation(@PathVariable (value = "id") Integer id) {
 		
