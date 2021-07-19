@@ -56,21 +56,21 @@ public class SpendingUnitRequestController {
 		
 		return spendingUnitReqService.getAll();
 	}
-	@PreAuthorize("hasRole('RAF')")	
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO') or hasRole('GESTIONAR_COTIZACIONES') or hasRole('TOMAR_DECISION')")	
 	@GetMapping("/allRequestsDescOrder")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqByDescOrder(){
 		
 		return spendingUnitReqService.getAllWithoutDetailByOrder();
 	}
 	
-	@PreAuthorize("hasRole('VER_PEDIDO') or hasRole('RAF')")	
+	@PreAuthorize("hasRole('VER_PEDIDO') or hasRole('VER_DETALLE_PEDIDO') or hasRole('GESTIONAR_COTIZACIONES') or hasRole('TOMAR_DECISION')")	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> spendingUnitRequest(@PathVariable (value = "id") Integer spendingUnitRequestId){	
 		
 		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
 	}
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PreAuthorize("hasRole('TOMAR_DECISION') or hasRole('GESTIONAR_COTIZACIONES')")	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> spendingUnitRequest(@PathVariable (value = "id") Integer spendingUnitRequestId,@RequestParam("state")String state,
 												@RequestParam("comentary")String comentary,@RequestParam("document")MultipartFile file,@RequestParam("idQuotation")int idQuotation) throws IOException{

@@ -52,7 +52,7 @@ public class ComparativeTablesOfQuotesController {
 		return ResponseEntity.ok(comparativeTable);
 	}
 
-    @PreAuthorize("hasRole('RAF')")	
+    @PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
     @GetMapping("/{id}")
 	public Iterable<ComparativeTableOfQuotes> getComparativeTableOfQuotesService(@PathVariable Integer id){
 		

@@ -44,7 +44,7 @@ public class SpendingUnitController {
 		this.modelMapper = modelMapper;
 	}
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
 	@GetMapping("/allRequest/{id}")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllWithoutDetailByOrder(@PathVariable (value = "id") Integer userId){
 		
@@ -57,13 +57,13 @@ public class SpendingUnitController {
 		return spendingUnitService.getAllByIdWithoutDetailByOrder(UserId);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")	
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
 	@PostMapping("/registerSpendingUnit")
 	public ResponseEntity<?> createSpendingUnit(@RequestBody SpendingUnit spendingUnit){
 		
 		return ResponseEntity.ok(spendingUnitService.save(spendingUnit));
 	}
-	@PreAuthorize("hasRole('ADMIN')")		
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")		
 	@GetMapping("/allSpendingUnits")
 	public Iterable<SpendingUnitOutput> getSpendingUnits(){
 		return spendingUnitService.getAllSpendingUnitsByOrder();
@@ -77,7 +77,7 @@ public class SpendingUnitController {
 		return spendingUnitService.getBySpendingUnitRequestStatus(filteredInput.getUserId(), filteredInput.getSpendingUnitRequestStatus());
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")	
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
 	@PermitAll
 	@GetMapping("/getFilteredSpendingUnitRequest/{status}")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllFilteredRequestsBy(@PathVariable (value = "status") String status){
@@ -85,13 +85,13 @@ public class SpendingUnitController {
 		return spendingUnitService.getBySpendingUnitRequestStatus(status);
 	}
 	
-	@PreAuthorize("hasRole('RAF')")
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")
 	@PutMapping("/updateBudget")
 	public ResponseEntity<?> setBudget(@RequestParam("budget") Double budget){
 		return ResponseEntity.ok(spendingUnitService.setBudget(budget));
 	}
 
-	@PreAuthorize("hasRole('RAF') or hasRole('VER_PEDIDO')")
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO') or hasRole('VER_PEDIDO')")
 	@GetMapping("/getBudget")
 	public ResponseEntity<?> getBudget(){
 		return ResponseEntity.ok(spendingUnitService.getBudget());

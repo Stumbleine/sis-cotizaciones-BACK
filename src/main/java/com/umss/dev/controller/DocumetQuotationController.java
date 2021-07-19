@@ -32,7 +32,7 @@ public class DocumetQuotationController {
 	@Autowired
 	private DocumetQuotationService documentService;
 	
-	@PreAuthorize("hasRole('RAF') or hasRole('RUG')")	
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES') or hasRole('RUG')")	
 	@PostMapping("/{id}")
 	public ResponseEntity<DocumentQuotation> uploadDocument(@PathVariable (value = "id") Integer id,@RequestParam("document")MultipartFile file) {
 		
@@ -65,7 +65,7 @@ public class DocumetQuotationController {
 	
 	} 
 	
-	@PreAuthorize("hasRole('RAF')")		
+	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")		
 	@GetMapping("/Quotation/{id}")
 	public ResponseEntity<DocumentQuotationAtributesOutput> priceQuotation(@PathVariable (value = "id") Integer id) {
 		
