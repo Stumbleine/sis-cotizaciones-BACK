@@ -40,7 +40,7 @@ public class ComparativeTablesOfQuotesController {
 		this.comparativeTableOfQuotesService = comparativeTableOfQuotesService;
 	}
 
-    @PreAuthorize("hasRole('RAF')")	
+    @PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
     @PostMapping("/{id}")
 	public ResponseEntity<?> create(@RequestBody List<ComparativeTableOfQuotes> comparativeTableOfQuotes,@PathVariable Integer id){
     	
@@ -59,7 +59,7 @@ public class ComparativeTablesOfQuotesController {
 		return comparativeTableOfQuotesService.getComparativeTable(id);
 	}
     
-    @PreAuthorize("hasRole('RAF')")	
+    @PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
     @PutMapping("/{id}")
 	public ResponseEntity<?> updateComparativeTableOfQuotes(@PathVariable Integer id, @RequestBody List<ComparativeTableOfQuotes> comparativeTableOfQuotes) {
 		
