@@ -153,14 +153,14 @@ public class UserService {
 		if(!user.getUsername().isEmpty()) {
 			updateUser.setUserName(user.getUsername());
 		}
-		//if(user.getIdRole().) {
+		if(user.getIdRole()!=0) {
 			UserRole userRole=updateUser.getUserRole().get(0);
 			Role role=roleRepository.findById(user.getIdRole()).get();
 			userRole.setRole(role);
 			List<UserRole> userRoles=new ArrayList<UserRole>();
 			userRoles.add(userRole);
 			updateUser.setUserRole(userRoles);
-		//}
+		}
 		
 		userRepository.save(updateUser);
 		return user;
