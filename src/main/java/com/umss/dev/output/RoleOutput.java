@@ -8,6 +8,7 @@ public class RoleOutput {
 
 	private int idRole;
 	private String roleName;
+	private String description;
 	private List<Privilege> privilegios;
 	public int getIdRole() {
 		return idRole;
@@ -26,6 +27,12 @@ public class RoleOutput {
 	}
 	public void setPrivilegios(List<Privilege> privilegios) {
 		this.privilegios = privilegios;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

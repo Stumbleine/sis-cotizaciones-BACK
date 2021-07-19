@@ -88,6 +88,7 @@ public class RoleService {
 			RoleOutput newRole = new RoleOutput();
 			newRole.setIdRole(found.getIdRole());
 			newRole.setRoleName(found.getRoleName());
+			newRole.setDescription(found.getDescription());
 			newRole.setPrivilegios(privileges);
 			if(!found.getRoleName().equalsIgnoreCase("ADMIN")) {
 				allRolesByOrder.add(newRole);
