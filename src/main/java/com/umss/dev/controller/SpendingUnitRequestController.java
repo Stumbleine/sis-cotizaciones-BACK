@@ -56,14 +56,15 @@ public class SpendingUnitRequestController {
 		
 		return spendingUnitReqService.getAll();
 	}
-	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO') or hasRole('GESTIONAR_COTIZACIONES') or hasRole('TOMAR_DECISION')")	
+	//@PreAuthorize("hasRole('VER_DETALLE_PEDIDO') or hasRole('GESTIONAR_COTIZACIONES') or hasRole('TOMAR_DECISION')")
+	@PreAuthorize("hasRole('VER_DETALLE_PEDIDO')")	
 	@GetMapping("/allRequestsDescOrder")
 	public Iterable<CompleteSpendingUnitRequestOutput> getAllReqByDescOrder(){
 		
 		return spendingUnitReqService.getAllWithoutDetailByOrder();
 	}
-	
-	@PreAuthorize("hasRole('VER_PEDIDO') or hasRole('VER_DETALLE_PEDIDO') or hasRole('GESTIONAR_COTIZACIONES') or hasRole('TOMAR_DECISION')")	
+	//@PreAuthorize("hasRole('VER_PEDIDO') or hasRole('VER_DETALLE_PEDIDO') or hasRole('GESTIONAR_COTIZACIONES') or hasRole('TOMAR_DECISION')")		
+	@PreAuthorize("hasRole('VER_PEDIDO') or hasRole('VER_DETALLE_PEDIDO')")	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> spendingUnitRequest(@PathVariable (value = "id") Integer spendingUnitRequestId){	
 		

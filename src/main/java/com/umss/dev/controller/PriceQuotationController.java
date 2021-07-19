@@ -120,7 +120,8 @@ public class PriceQuotationController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
+	//@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
+	@PermitAll
 	@PutMapping("/RelatingPriceQuotationToDetails")
 	public void relatePriceQuotationToDetails(@RequestBody PriceQuotation newQuotation) {
 		priceQuotationService.relatePriceQuotitionToDetails();
