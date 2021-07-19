@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
+//@Data
 @Entity(name = "Role")
 @Table(name = "ROLE")
 public class Role {
@@ -35,6 +35,10 @@ public class Role {
 	@JsonManagedReference
 	private List<Privilege> privileges;
 
+	public Role() {
+
+	}
+	
 	public int getIdRole() {
 		
 		return idRole;
@@ -85,5 +89,7 @@ public class Role {
 	public void setPrivileges(List<Privilege> privileges) {
 		this.privileges = privileges;
 	}
+
+	
 
 }

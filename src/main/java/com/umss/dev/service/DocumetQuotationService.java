@@ -119,16 +119,19 @@ public class DocumetQuotationService {
 
 	public DocumentQuotationAtributesOutput getDocumneByIdReport(Integer id) {
 		SpendingUnitRequest request= requestService.getSpendingUnitRequestNormal(id);
-		DocumentQuotation documentQuotation=request.getPriceQuotation().getReport().getDocumentQuotation();
 		
-		DocumentQuotationAtributesOutput documentQuotationAtributesOutput=new DocumentQuotationAtributesOutput();
+		if(request.getPriceQuotation()!=null) {
+			DocumentQuotation documentQuotation=request.getPriceQuotation().getReport().getDocumentQuotation();		
+			DocumentQuotationAtributesOutput documentQuotationAtributesOutput=new DocumentQuotationAtributesOutput();		
+			documentQuotationAtributesOutput.setContent(documentQuotation.getContent());
+			documentQuotationAtributesOutput.setNameDocumenQuotaion(documentQuotation.getNameDocumenQuotaion());
+			documentQuotationAtributesOutput.setSizeDocuemntQuotaion(documentQuotation.getSizeDocuemntQuotaion());
+			
+			return documentQuotationAtributesOutput;
+		}else {
+			return null;
+		}
 		
-		documentQuotationAtributesOutput.setContent(documentQuotation.getContent());
-		documentQuotationAtributesOutput.setNameDocumenQuotaion(documentQuotation.getNameDocumenQuotaion());
-		documentQuotationAtributesOutput.setSizeDocuemntQuotaion(documentQuotation.getSizeDocuemntQuotaion());
-		
-		
-		return documentQuotationAtributesOutput;
 	}
 
 	public DocumentQuotationAtributesOutput getDocumneByIdQuotation(Integer id) {

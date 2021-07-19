@@ -74,8 +74,13 @@ public class DocumetQuotationController {
 	@PreAuthorize("hasRole('RAF') or hasRole('ROLE_VER_INFORME')")
 	@GetMapping("/Report/{id}")
 	public ResponseEntity<DocumentQuotationAtributesOutput> report(@PathVariable (value = "id") Integer id) {
+		DocumentQuotationAtributesOutput report=documentService.getDocumneByIdReport(id);
+		if(report!=null) {
+			return  ResponseEntity.ok(documentService.getDocumneByIdReport(id));
+		}else {
+			return ResponseEntity.noContent().build();
+		}
 		
-		return  ResponseEntity.ok(documentService.getDocumneByIdReport(id));
 	}
 	@PreAuthorize("hasRole('RAF') or hasRole('ROLE_VER_INFORME')")
 	@GetMapping("/blob/Report/{id}")

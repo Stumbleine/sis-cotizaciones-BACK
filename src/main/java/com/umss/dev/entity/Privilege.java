@@ -32,6 +32,23 @@ public class Privilege {
 	@Column
 	private int identifier;
 	
+	public Privilege() {
+
+	}
+	
+	public Privilege(String privilege) {
+		super();
+		this.privilege = privilege;
+	}
+
+	public Privilege(int idPrivilege, String privilege, Role roles, int identifier) {
+		super();
+		this.idPrivilege = idPrivilege;
+		this.privilege = privilege;
+		this.roles = roles;
+		this.identifier = identifier;
+	}
+
 	public int getIdPrivilege() {
 		return idPrivilege;
 	}

@@ -89,7 +89,10 @@ public class RoleService {
 			newRole.setIdRole(found.getIdRole());
 			newRole.setRoleName(found.getRoleName());
 			newRole.setPrivilegios(privileges);
-			allRolesByOrder.add(newRole);
+			if(!found.getRoleName().equalsIgnoreCase("ADMIN")) {
+				allRolesByOrder.add(newRole);
+			}
+			
 
 		}
 
