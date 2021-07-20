@@ -2,6 +2,8 @@ package com.umss.dev.controller;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +44,7 @@ public class AreaController {
 		return ResponseEntity.ok(spendingUnitReqService.getSpendingUnitRequeste(spendingUnitRequestId)) ;
 	}*/
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PermitAll	
 	@GetMapping("/getBusinessesByAreaId/{id}")
 	public Iterable<BusinessOutput> getBusinessByIdArea(@PathVariable (value = "id") Integer areaId){
 		
@@ -50,7 +52,7 @@ public class AreaController {
 		
 	}
 	
-	@PreAuthorize("hasRole('RAF')")	
+	@PermitAll	
 	@GetMapping("/getBusinessesByAreaName/{name}")
 	public Iterable<BusinessOutput> getBusinessByAreaName(@PathVariable (value = "name") String areaName){
 		
