@@ -32,7 +32,7 @@ public class Privilege {
 	@Column
 	private int identifier;
 	
-	public Privilege() {
+	/*public Privilege() {
 
 	}
 	
@@ -47,7 +47,7 @@ public class Privilege {
 		this.privilege = privilege;
 		this.roles = roles;
 		this.identifier = identifier;
-	}
+	}*/
 
 	public int getIdPrivilege() {
 		return idPrivilege;
