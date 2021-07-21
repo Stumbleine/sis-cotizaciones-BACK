@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		.antMatchers("/**/updateQuotation/*").permitAll()
         		.antMatchers("/**/RelatingPriceQuotationToDetails").permitAll()
         		.antMatchers("/**/uploadDetail").permitAll()
+        		.antMatchers("/**/getAllNameArea/").permitAll()
         		//.antMatchers("/api/request").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().sessionManagement()

@@ -86,12 +86,13 @@ public class ReportService {
 		
 		reportOutput.setTotal(priceQuotation.getTotal());
 		
-		if(priceQuotation.getBusinessCompanyName()!=null) {
-			reportOutput.setNameBusiness(priceQuotation.getBusinessCompanyName());
+		if(priceQuotation.getBusiness()!=null) {
+			reportOutput.setNameBusiness(priceQuotation.getBusiness().getName());
+			reportOutput.setNameArea(priceQuotation.getBusiness().getNameArea());
 		}
 		else {
-			reportOutput.setNameBusiness(priceQuotation.getBusiness().getName());
-			reportOutput.setNameArea(priceQuotation.getBusiness().getNameArea());	
+			reportOutput.setNameBusiness(priceQuotation.getBusinessCompanyName());
+				
 		}
 		
 		

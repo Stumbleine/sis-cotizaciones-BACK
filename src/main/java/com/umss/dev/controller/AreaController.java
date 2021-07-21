@@ -67,7 +67,7 @@ public class AreaController {
 		return areaService.getAll();
 	}
 	
-	@PreAuthorize("hasRole('GESTIONAR_COTIZACIONES')")	
+	@PermitAll
 	@GetMapping("/getAllNameArea")
 	public List<String> getAllNameArea(){
 		return areaService.getallNameArea();
